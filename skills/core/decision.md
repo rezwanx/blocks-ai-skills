@@ -60,23 +60,25 @@ If no flow matches, fall back to the intent mapping table in `skill.md`.
 
 ## Step 3 — Ask Pre-flight Questions
 
-Before generating any code or calling any API, ask the developer:
+**Before asking anything, check `PROJECT.md`** — see `core/context.md` for how to read it. Any question already answered there must be skipped.
+
+For questions not covered by `PROJECT.md`, ask the developer:
 
 ### Always ask:
 1. **What is the feature name / module name?** *(used for folder and file naming)*
 2. **Is this a new page or an addition to an existing page?**
 
-### Ask for auth-related features:
+### Ask for auth-related features (skip if answered in PROJECT.md):
 3. **Which login methods are enabled?** `email/password`, `social login`, `OIDC`, or multiple?
 4. **Is MFA required?** If yes, which type — `email OTP`, `authenticator app (TOTP)`, or both?
 5. **Is CAPTCHA enabled?** If yes, which provider — `reCaptcha` or `hCaptcha`?
 6. **Is this self-registration (user signs up themselves) or admin-created (admin creates users)?**
 
-### Ask for user management features:
+### Ask for user management features (skip if answered in PROJECT.md):
 7. **Which roles exist in this project?** *(needed for set-roles calls)*
 8. **Are organizations used?** If yes, should users be assigned to one on creation?
 
-Do not proceed until these questions are answered. The answers determine which flow branches to follow.
+Do not proceed until these questions are answered. Update `PROJECT.md` with any new answers after the feature is built.
 
 ---
 
@@ -95,14 +97,15 @@ If the user only wants backend or only wants frontend, confirm before limiting s
 
 ## Step 5 — Follow Execution Order
 
-1. Read `core/clarification.md` — when to ask, what to ask, how to ask before and during execution
-2. Read `core/security.md` — SAST rules that apply to all generated code
-3. Read `core/runtime.md` — execution rules and token flow
-4. Read `core/conventions.md` — naming conventions and flow file template format
-5. Read the matched flow file in full
-6. Read the action files referenced by the flow
-7. Read `contracts.md` for request/response schemas
-8. **Check the reference implementation** — `https://github.com/SELISEdigitalplatforms/blocks-construct-react` — before generating any frontend code. Verify component names, module structure, and auth patterns against the actual codebase.
-9. **Use the shadcn/ui MCP** — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code.
-10. Execute or generate in the order defined by the flow
-11. Never skip steps or reorder them — the flow defines the correct sequence
+1. Read `core/context.md` — load PROJECT.md if it exists; create/update it after execution
+2. Read `core/clarification.md` — when to ask, what to ask, how to ask before and during execution
+3. Read `core/security.md` — SAST rules that apply to all generated code
+4. Read `core/runtime.md` — execution rules and token flow
+5. Read `core/conventions.md` — naming conventions and flow file template format
+6. Read the matched flow file in full
+7. Read the action files referenced by the flow
+8. Read `contracts.md` for request/response schemas
+9. **Check the reference implementation** — `https://github.com/SELISEdigitalplatforms/blocks-construct-react` — before generating any frontend code. Verify component names, module structure, and auth patterns against the actual codebase.
+10. **Use the shadcn/ui MCP** — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code.
+11. Execute or generate in the order defined by the flow
+12. Never skip steps or reorder them — the flow defines the correct sequence

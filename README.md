@@ -123,15 +123,17 @@ Cloud Portal → Projects → Create Project
 Copy the **Project Slug** → `VITE_PROJECT_SLUG`
 Copy the **Blocks Key** → `VITE_X_BLOCKS_KEY`
 
+> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Mixing values from different projects will cause authentication failures.
+
 ### 2. Create an Environment
 Cloud Portal → Projects → [Your Project] → Environments → Create
 
-Copy the **Environment URL** → `VITE_API_BASE_URL`
+The API base URL is always `https://api.seliseblocks.com` — you do not need to copy it. The environment must exist for your project to be active.
 
 ### 3. Add a Developer Account with `cloudadmin` role
 Cloud Portal → Projects → [Your Project] → People → Add Member
 
-Assign the `cloudadmin` role. This account's credentials become `USERNAME` and `PASSWORD` in `.env`. Without `cloudadmin`, all API calls return `403`.
+Add the account to **the same project**. Assign the `cloudadmin` role. This account's credentials become `USERNAME` and `PASSWORD` in `.env`. Without `cloudadmin`, all API calls return `403`.
 
 ### 4. Attach a Repository
 Cloud Portal → Projects → [Your Project] → Repositories → Attach
@@ -153,9 +155,9 @@ Create a `.env` file in your project root:
 
 ```bash
 # Vite environment variables
-VITE_API_BASE_URL=https://dev-api.seliseblocks.com
-VITE_X_BLOCKS_KEY=your_blocks_key
-VITE_PROJECT_SLUG=your_project_slug
+VITE_API_BASE_URL=https://api.seliseblocks.com
+VITE_X_BLOCKS_KEY=your_blocks_key        # Cloud Portal → Project settings
+VITE_PROJECT_SLUG=your_project_slug      # Cloud Portal → Project settings (same project)
 
 VITE_CAPTCHA_SITE_KEY=your_captcha_site_key
 VITE_CAPTCHA_TYPE=reCaptcha
@@ -172,6 +174,7 @@ VITE_SECONDARY_COLOR=#5194B8
 
 # CLI/Claude credentials — for direct API operations only
 # The frontend gets these from the login form, not from here
+# Must be a user added to the SAME project as VITE_X_BLOCKS_KEY / VITE_PROJECT_SLUG
 USERNAME=your_cloudadmin_email
 PASSWORD=your_cloudadmin_password
 

@@ -4,6 +4,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Core
 
+- skills/core/context.md
 - skills/core/clarification.md
 - skills/core/decision.md
 - skills/core/runtime.md
