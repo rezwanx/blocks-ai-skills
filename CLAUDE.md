@@ -53,9 +53,9 @@ Ask for only these if missing or empty:
 | `VITE_SECONDARY_COLOR` | `#5194B8` | Default theme — user can change later |
 | `GENERATE_SOURCEMAP` | `false` | Always false for production builds |
 
-**Discovered after authentication (Step 3):**
+**Discovered automatically after authentication (Step 3):**
 
-After getting a token, attempt to discover `VITE_PROJECT_SLUG` by calling `GET $VITE_API_BASE_URL/idp/v1/User/GetInfo` with the access token. If the response contains a project identifier, extract and store it. If not, ask the user: "What is your project slug?" (Cloud Portal → Project settings).
+`VITE_PROJECT_SLUG` is auto-discovered after `get-token` succeeds — see `skills/identity-access/actions/discover-project-slug.md`. The user should never need to provide this manually.
 
 **Conditional — ask only if needed:**
 
@@ -70,7 +70,7 @@ Write the `.env` with all known values immediately. Leave captcha blank until co
 # Vite environment variables
 VITE_API_BASE_URL=https://api.seliseblocks.com
 VITE_X_BLOCKS_KEY=<value>
-VITE_PROJECT_SLUG=<discovered or leave blank>
+VITE_PROJECT_SLUG=<auto-discovered in Step 3b>
 
 VITE_CAPTCHA_SITE_KEY=
 VITE_CAPTCHA_TYPE=
@@ -97,21 +97,23 @@ REFRESH_TOKEN=
 
 ---
 
-### Step 3 — Authenticate
+### Step 3 — Authenticate and Discover Project Slug
 
-Run the get-token action (`skills/identity-access/actions/get-token.md`) to obtain `ACCESS_TOKEN` and `REFRESH_TOKEN`.
+**3a.** Run the get-token action (`skills/identity-access/actions/get-token.md`) to obtain `ACCESS_TOKEN` and `REFRESH_TOKEN`.
 
 **If get-token fails, diagnose using this table:**
 
 | HTTP Status | Meaning | Action |
 |-------------|---------|--------|
-| `200` ✅ | Success | Store tokens and proceed |
+| `200` ✅ | Success | Store tokens and proceed to 3b |
 | `400` | Malformed request or wrong `client_id` | Check `VITE_BLOCKS_OIDC_CLIENT_ID` and `VITE_X_BLOCKS_KEY` |
 | `401` | Wrong `USERNAME` or `PASSWORD` | Re-enter credentials — check the account in Cloud Portal → People |
 | `403` | Account missing `cloudadmin` role | Ask admin to assign `cloudadmin` role in Cloud Portal → People |
 | `404` | Environment not created or project not active | Verify the project and environment exist in the Cloud Portal |
 
 Do **not** proceed with any task until get-token returns `200`.
+
+**3b.** Immediately after get-token succeeds, run the discover-project-slug action (`skills/identity-access/actions/discover-project-slug.md`) to auto-detect and write `VITE_PROJECT_SLUG` to `.env`. This must happen before any other API calls.
 
 ---
 

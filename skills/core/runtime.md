@@ -87,6 +87,7 @@ If the refresh also returns 401 → both tokens are expired. Re-authenticate fro
 * Use "$VITE_API_BASE_URL" as prefix for all endpoints
 * Include "Content-Type: application/json" for POST/PUT requests
 * Always include "Authorization: Bearer $ACCESS_TOKEN"
+* **GraphQL endpoint:** `POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql` — the project slug goes in the URL **path**, not as a query parameter. The `x-blocks-key` header is also required on every request.
 
 ---
 

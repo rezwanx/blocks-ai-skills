@@ -424,7 +424,7 @@ import { onError } from '@apollo/client/link/error'
 import { useAuthStore } from '@/state/store/auth'
 
 const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/graphql`,
+  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/graphql`,
 })
 
 const authLink = setContext((_, { headers }) => {
