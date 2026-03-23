@@ -45,42 +45,48 @@ src/modules/data-management/
 
 ### `data-management.service.ts`
 
-```ts
-const BASE = `${import.meta.env.VITE_API_BASE_URL}/uds/v1`
+Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold.md`). No manual token handling needed.
 
-const headers = (accessToken: string) => ({
-  Authorization: `Bearer ${accessToken}`,
-  'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
-  'Content-Type': 'application/json',
-})
+```ts
+import https from '@/lib/https'
+import axios from 'axios'
+
+const BASE = '/uds/v1'
 
 // Schema
-export const getSchemas = (params, accessToken) => ...
-export const defineSchema = (payload, accessToken) => ...
-export const saveSchemaInfo = (payload, accessToken) => ...
-export const saveSchemaFields = (payload, accessToken) => ...
-export const reloadConfiguration = (projectKey, accessToken) => ...
+export const getSchemas = (params) => https.get(`${BASE}/schemas`, { params })
+export const defineSchema = (payload) => https.post(`${BASE}/schemas/define`, payload)
+export const saveSchemaInfo = (payload) => https.post(`${BASE}/schemas/save-info`, payload)
+export const saveSchemaFields = (payload) => https.post(`${BASE}/schemas/save-fields`, payload)
+export const reloadConfiguration = (projectKey: string) =>
+  https.post(`${BASE}/configurations/${projectKey}/reload`)
 
 // DataSource
-export const addDataSource = (payload, accessToken) => ...
-export const updateDataSource = (payload, accessToken) => ...
+export const addDataSource = (payload) => https.post(`${BASE}/data-source/add`, payload)
+export const updateDataSource = (payload) => https.put(`${BASE}/data-source/update`, payload)
 
 // DataAccess
-export const changeSecurity = (payload, accessToken) => ...
-export const createAccessPolicy = (payload, accessToken) => ...
+export const changeSecurity = (payload) => https.post(`${BASE}/schemas/change-security`, payload)
+export const createAccessPolicy = (payload) => https.post(`${BASE}/access-policies`, payload)
 
 // DataValidation
-export const createValidation = (payload, accessToken) => ...
-export const getSchemaValidations = (schemaId, accessToken) => ...
+export const createValidation = (payload) => https.post(`${BASE}/validations`, payload)
+export const getSchemaValidations = (schemaId: string) =>
+  https.get(`${BASE}/validations/schema/${schemaId}`)
 
-// Files
-export const getPreSignedUploadUrl = (payload, accessToken) => ...
-export const uploadToS3 = (url: string, file: File) => ...
-export const uploadToDms = (formData: FormData, accessToken) => ...
-export const getDmsFiles = (payload, accessToken) => ...
-export const createFolder = (payload, accessToken) => ...
-export const deleteFile = (payload, accessToken) => ...
-export const updateFileInfo = (payload, accessToken) => ...
+// Files — S3 pre-signed upload (two-step)
+export const getPreSignedUploadUrl = (payload) =>
+  https.post(`${BASE}/Files/GetPreSignedUploadUrl`, payload)
+export const uploadToS3 = (url: string, file: File) =>
+  axios.put(url, file, { headers: { 'Content-Type': file.type } })  // direct S3 — no auth header
+export const updateFileInfo = (payload) => https.put(`${BASE}/Files/UpdateFileInfo`, payload)
+
+// Files — DMS upload
+export const uploadToDms = (formData: FormData) =>
+  https.post(`${BASE}/Files/UploadFile`, formData)  // axios auto-sets multipart Content-Type
+export const getDmsFiles = (payload) => https.post(`${BASE}/Files/GetFiles`, payload)
+export const createFolder = (payload) => https.post(`${BASE}/Files/CreateFolder`, payload)
+export const deleteFile = (payload) => https.delete(`${BASE}/Files/Delete`, { data: payload })
 ```
 
 ---

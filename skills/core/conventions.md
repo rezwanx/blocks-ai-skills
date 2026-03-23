@@ -56,7 +56,7 @@ Content-Type: application/json
 
 ```
 Authorization: Bearer ${accessToken}      ← from app state/storage
-x-blocks-key: ${import.meta.env.VITE_VITE_X_BLOCKS_KEY}
+x-blocks-key: ${import.meta.env.VITE_X_BLOCKS_KEY}
 Content-Type: application/json
 ```
 
@@ -64,10 +64,10 @@ Content-Type: application/json
 
 ## Environment Variables
 
-| Context | Source | Prefix |
-|---------|--------|--------|
-| Claude operations (this repo) | `.env` in skills repo | No prefix — `$VITE_X_BLOCKS_KEY` |
-| Generated app code | `.env` in app directory | `VITE_` — `VITE_VITE_X_BLOCKS_KEY` |
+| Context | Source | How to access |
+|---------|--------|---------------|
+| Claude operations (curl) | `.env` in project root | `$VITE_X_BLOCKS_KEY` |
+| Generated Vite app code | `.env` in project root | `import.meta.env.VITE_X_BLOCKS_KEY` |
 
 Never mix contexts. Never hardcode values from one context into the other.
 

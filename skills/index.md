@@ -4,6 +4,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Core
 
+- skills/core/setup-consuming-project.md
 - skills/core/context.md
 - skills/core/clarification.md
 - skills/core/decision.md
@@ -12,6 +13,8 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/core/frontend.md
 - skills/core/security.md
 - skills/core/prerequisites.md
+- skills/core/app-scaffold.md
+- skills/core/app-layout.md
 
 ## Identity & Access
 

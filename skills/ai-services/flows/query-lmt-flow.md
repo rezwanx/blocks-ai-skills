@@ -29,7 +29,7 @@ List available models for the project.
 
 ```
 Action: get-models
-Input:  project_key = $VITE_X_BLOCKS_KEY
+Input:  project_key = $VITE_PROJECT_SLUG
 ```
 
 If no models exist → run `manage-models` flow first to configure one.
@@ -44,16 +44,13 @@ Send a single prompt and wait for the full response.
 ```
 Action: query-lmt
 Input:
-  model_id   = model_id from Step 1
-  messages   = [
-    { "role": "system", "content": "You are a helpful assistant." },
-    { "role": "user",   "content": "What is the capital of France?" }
-  ]
-  project_key = $VITE_X_BLOCKS_KEY
+  model_id    = model_id from Step 1
+  message     = the user's prompt string
+  project_key = $VITE_PROJECT_SLUG
 
 Output:
-  response.content → the model's reply
-  response.usage   → token counts (prompt_tokens, completion_tokens)
+  response    → the model's reply string
+  is_success  → true on success
 ```
 
 ```bash
@@ -63,11 +60,8 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
   --header "Content-Type: application/json" \
   --data '{
     "model_id": "'"$MODEL_ID"'",
-    "messages": [
-      { "role": "system", "content": "You are a helpful assistant." },
-      { "role": "user", "content": "What is the capital of France?" }
-    ],
-    "project_key": "'"$VITE_X_BLOCKS_KEY"'"
+    "message": "What is the capital of France?",
+    "project_key": "'"$VITE_PROJECT_SLUG"'"
   }'
 ```
 
@@ -91,11 +85,8 @@ curl --location --no-buffer \
   --header "Accept: text/event-stream" \
   --data '{
     "model_id": "'"$MODEL_ID"'",
-    "messages": [
-      { "role": "system", "content": "You are a helpful assistant." },
-      { "role": "user", "content": "Write a short poem about the ocean." }
-    ],
-    "project_key": "'"$VITE_X_BLOCKS_KEY"'"
+    "message": "Write a short poem about the ocean.",
+    "project_key": "'"$VITE_PROJECT_SLUG"'"
   }'
 ```
 
@@ -111,22 +102,7 @@ Stop when `done: true`.
 
 ---
 
-### Step 3 — Handle Multi-Turn Conversation
-
-To maintain conversation history, accumulate messages and include them in each subsequent call:
-
-```json
-{
-  "messages": [
-    { "role": "system",    "content": "You are a helpful assistant." },
-    { "role": "user",      "content": "What is 2+2?" },
-    { "role": "assistant", "content": "4" },
-    { "role": "user",      "content": "Multiply that by 3." }
-  ]
-}
-```
-
-> For persistent conversation sessions with full session management (save history, retrieve sessions, delete sessions), use `chat-flow` instead. This flow is for stateless or custom-managed conversations.
+> For persistent multi-turn conversation sessions with full session management (save history, retrieve sessions, delete sessions), use `chat-flow` instead. This flow is for stateless single-turn queries.
 
 ---
 

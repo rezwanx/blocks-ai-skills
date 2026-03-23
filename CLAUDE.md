@@ -28,41 +28,55 @@ Ask the user: **"Have all four cloud portal steps been completed?"**
 
 ### Step 2 — Check Environment Variables
 
-Check if a `.env` file exists in the project root and all required variables are present and non-empty.
+Only **4 values** are required from the user. Everything else is auto-set or discovered.
 
-> **Important — these four values must all come from the same SELISE Blocks project:**
-> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD`.
-> `VITE_X_BLOCKS_KEY` and `VITE_PROJECT_SLUG` come from Cloud Portal → Project settings.
-> `USERNAME` and `PASSWORD` are the credentials of a user added to that same project with the `cloudadmin` role.
+> All four must come from the same SELISE Blocks project:
+> `VITE_X_BLOCKS_KEY` and `VITE_BLOCKS_OIDC_CLIENT_ID` from Cloud Portal → Project settings.
+> `USERNAME` and `PASSWORD` from a user added to that project with the `cloudadmin` role.
 
-`VITE_API_BASE_URL` is always `https://api.seliseblocks.com` — do not ask for it.
+Ask for only these if missing or empty:
 
-Prompt the user for each of the following if missing or empty:
+| Variable | Where to find it |
+|----------|-----------------|
+| `VITE_X_BLOCKS_KEY` | Cloud Portal → Project settings |
+| `VITE_BLOCKS_OIDC_CLIENT_ID` | Cloud Portal → Project → Auth settings |
+| `USERNAME` | Cloud Portal → People (must have `cloudadmin` role) |
+| `PASSWORD` | Same account as USERNAME |
 
-| Variable | Description | Where to find it |
-|----------|-------------|-----------------|
-| `VITE_X_BLOCKS_KEY` | Blocks API key | Cloud Portal → Project settings |
-| `VITE_PROJECT_SLUG` | Project identifier slug | Cloud Portal → Project settings (same project as above) |
-| `VITE_CAPTCHA_SITE_KEY` | reCAPTCHA site key | Google reCAPTCHA admin |
-| `VITE_CAPTCHA_TYPE` | Captcha provider type | e.g. `reCaptcha` |
-| `VITE_BLOCKS_OIDC_CLIENT_ID` | OIDC client ID | Cloud Portal → Project → Auth settings |
-| `VITE_BLOCKS_OIDC_REDIRECT_URI` | OIDC redirect URI | Your app's callback URL |
-| `USERNAME` | Developer account email | Account added to the same project in Cloud Portal → People (must have `cloudadmin` role) |
-| `PASSWORD` | Developer account password | Same account as USERNAME |
+**Auto-set without asking:**
 
-Write the completed `.env` file in this exact format:
+| Variable | Value | Reason |
+|----------|-------|--------|
+| `VITE_API_BASE_URL` | `https://api.seliseblocks.com` | Always the same |
+| `VITE_BLOCKS_OIDC_REDIRECT_URI` | `http://localhost:5173/auth/callback` | Standard local dev default |
+| `VITE_PRIMARY_COLOR` | `#15969B` | Default theme — user can change later |
+| `VITE_SECONDARY_COLOR` | `#5194B8` | Default theme — user can change later |
+| `GENERATE_SOURCEMAP` | `false` | Always false for production builds |
+
+**Discovered after authentication (Step 3):**
+
+After getting a token, attempt to discover `VITE_PROJECT_SLUG` by calling `GET $VITE_API_BASE_URL/idp/v1/User/GetInfo` with the access token. If the response contains a project identifier, extract and store it. If not, ask the user: "What is your project slug?" (Cloud Portal → Project settings).
+
+**Conditional — ask only if needed:**
+
+| Variable | When to ask |
+|----------|------------|
+| `VITE_CAPTCHA_SITE_KEY` | Only if captcha is enabled (confirmed by user or detected during login) |
+| `VITE_CAPTCHA_TYPE` | Same — `reCaptcha` or `hCaptcha` |
+
+Write the `.env` with all known values immediately. Leave captcha blank until confirmed:
 
 ```
 # Vite environment variables
 VITE_API_BASE_URL=https://api.seliseblocks.com
 VITE_X_BLOCKS_KEY=<value>
-VITE_PROJECT_SLUG=<value>
+VITE_PROJECT_SLUG=<discovered or leave blank>
 
-VITE_CAPTCHA_SITE_KEY=<value>
-VITE_CAPTCHA_TYPE=<value>
+VITE_CAPTCHA_SITE_KEY=
+VITE_CAPTCHA_TYPE=
 
 VITE_BLOCKS_OIDC_CLIENT_ID=<value>
-VITE_BLOCKS_OIDC_REDIRECT_URI=<value>
+VITE_BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
 
 # Build configuration
 GENERATE_SOURCEMAP=false
@@ -132,6 +146,8 @@ Before taking any action, read:
 - `skills/core/frontend.md` — frontend code generation rules
 - `skills/core/security.md` — SAST-compliant coding rules for all generated code
 - `skills/core/prerequisites.md` — cloud portal setup requirements and error guidance
+- `skills/core/app-scaffold.md` — new project setup: deps, http client, providers, router
+- `skills/core/app-layout.md` — app shell: sidebar, header, permissions, OIDC callback
 
 Then read the `skill.md` for the matched domain:
 - `skills/identity-access/skill.md` — auth, users, roles, permissions, MFA, organizations

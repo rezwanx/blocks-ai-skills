@@ -41,7 +41,6 @@ Use this exact template:
 |-------|-------|
 | Name | [project name] |
 | Description | [one-line description] |
-| Environment URL | [VITE_API_BASE_URL value] |
 | Project Slug | [VITE_PROJECT_SLUG value] |
 | Primary Color | [VITE_PRIMARY_COLOR value] |
 | Secondary Color | [VITE_SECONDARY_COLOR value] |

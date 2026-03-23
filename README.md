@@ -222,16 +222,33 @@ At session start, Claude will automatically:
 
 ---
 
-### Option B — Load skills remotely into an existing project
+### Option B — Add to an existing project
 
-If you already have a project, load the skills index directly. The `skills/index.md` file lists all skills with their raw GitHub URLs:
+If you already have a project, create a `CLAUDE.md` in its root with the following content. Claude will fetch all skills remotely on every session start — nothing is cloned or copied locally.
 
+```markdown
+# Blocks AI Skills
+
+At the start of every session, you MUST fetch and follow the skills from the remote repository:
+
+**Repository:** https://github.com/rezwanx/blocks-ai-skills
+
+## Startup Procedure
+
+1. Fetch the CLAUDE.md from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/CLAUDE.md` and follow its instructions.
+2. Fetch the skill index from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/index.md` to understand available domains and skills.
+3. Fetch individual skill files on-demand as needed based on the user's request (e.g., `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/<domain>/skill.md`).
+
+## Rules
+
+- ALWAYS use WebFetch to read skill files from the repository above — never skip this step.
+- Follow the instructions in the fetched CLAUDE.md as if they were defined locally.
+- When a user request maps to a specific domain/skill, fetch the relevant skill files before proceeding.
+- Cache awareness: WebFetch has a 15-minute cache, so re-fetching within a session is cheap.
+- All file paths referenced inside the fetched CLAUDE.md (e.g. `skills/identity-access/actions/get-token.md`) are relative to `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/` — resolve them with WebFetch, not as local files.
 ```
-Base URL: https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main
-Index:    https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/index.md
-```
 
-Point Claude at this index to load only the skills you need without cloning the repo.
+That's it. Run `claude` in your project — it will load all skills from GitHub automatically.
 
 ---
 

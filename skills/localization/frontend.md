@@ -1,7 +1,88 @@
 # Localization — Frontend Guide
 
-This file extends `core/frontend.md` with localization-specific patterns for the localization skill.
-Always read `core/frontend.md` first, then apply the overrides and additions here.
+This file covers two distinct concerns:
+
+1. **App-level i18n** — how every feature in the app uses translation keys (mandatory for all features)
+2. **Localization admin UI** — the management pages for languages, modules, and keys
+
+Always read `core/frontend.md` first, then apply the additions here.
+
+---
+
+## App-Level i18n Integration
+
+This section applies to **every feature** in the app, not just the localization admin pages.
+
+### Startup — Load Translations
+
+On app boot, fetch the UILM file for the stored language before rendering protected routes:
+
+```tsx
+// src/app.tsx or src/providers/i18n-provider.tsx
+const I18nProvider = ({ children }: { children: React.ReactNode }) => {
+  const { currentLanguage } = useLanguageStore()
+  const { data: translations, isLoading } = useGetUilmFile({
+    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    languageCode: currentLanguage,
+  })
+
+  if (isLoading) return <LoadingOverlay />
+
+  return <>{children}</>
+}
+```
+
+Wrap the entire router inside `<I18nProvider>`.
+
+### Re-fetch on Language Change
+
+When the user switches language, the UILM file query must automatically re-fetch. Since `useGetUilmFile` uses `currentLanguage` as part of its query key, React Query handles this automatically.
+
+```tsx
+// ✅ query key includes language — re-fetches on change
+useQuery({
+  queryKey: ['uilm', projectKey, languageCode],
+  queryFn: () => localizationService.getUilmFile({ projectKey, languageCode }),
+})
+```
+
+### Key Lookup Before Feature Generation
+
+When generating any new feature component, follow this order:
+
+```
+Step 1 — List all strings needed
+  e.g. title, form labels, button text, empty state, error messages
+
+Step 2 — Call get-keys-by-names
+  Check which keys already exist in the project
+
+Step 3 — Reuse existing keys
+  Map existing key names to the component's t() calls
+
+Step 4 — Create missing keys
+  Call save-keys (batch) for any key not found in Step 2
+  Include translations for all configured languages if known
+
+Step 5 — Generate component
+  Use confirmed key names in all t() calls
+```
+
+### Common Keys to Always Check First
+
+Before creating any new key, check if these common keys already exist:
+
+```
+common.submit         common.cancel        common.save
+common.delete         common.edit          common.create
+common.search         common.filter        common.reset
+common.loading        common.error         common.success
+common.confirm        common.back          common.close
+common.yes            common.no            common.actions
+common.noData         common.required      common.optional
+```
+
+---
 
 ---
 
@@ -56,17 +137,16 @@ Server state (languages, modules, keys) is managed via React Query — no duplic
 
 ## HTTP Client
 
-Use the shared `https.ts` client from `src/lib/https.ts`. Localization endpoints require the same authenticated headers:
+Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold.md`). It handles auth headers and token refresh automatically.
 
 ```typescript
-headers: {
-  'Authorization': `Bearer ${accessToken}`,  // from Zustand auth store
-  'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
-  'Content-Type': 'application/json',
-}
+import https from '@/lib/https'
+
+export const getLanguages = (projectKey: string) =>
+  https.get(`/uilm/v1/Language/Gets?projectKey=${projectKey}`)
 ```
 
-For file import (multipart), set `Content-Type` to `multipart/form-data` and pass a `FormData` object.
+For file import (multipart), pass `FormData` as the body — axios sets `Content-Type: multipart/form-data` automatically when the body is a `FormData` instance.
 
 ---
 

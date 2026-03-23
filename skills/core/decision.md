@@ -5,6 +5,21 @@ It routes the request to the correct skill domain and defines what to clarify be
 
 ---
 
+## Step 0 — Check for App Scaffold / Layout
+
+Before routing to a skill domain, check if the project needs foundational setup:
+
+| If the user wants to... | Use skill |
+|-------------------------|-----------|
+| Create a new project / initialise the app / set up dependencies | `core/app-scaffold.md` |
+| Set up the app layout, sidebar, navigation, app shell | `core/app-layout.md` |
+| Add the HTTP client, providers, or route assembly | `core/app-scaffold.md` |
+| Add permissions check, OIDC callback page | `core/app-layout.md` |
+
+If the project already has `main.tsx`, `App.tsx`, and a working layout, skip to Step 1.
+
+---
+
 ## Step 1 — Route to Skill Domain
 
 | If the user wants to... | Use skill |
@@ -93,6 +108,24 @@ Every request must produce both:
 
 If the user only wants backend or only wants frontend, confirm before limiting scope.
 
+### Localization is mandatory for every frontend output
+
+Before generating any component:
+
+1. List every user-visible string in the planned output
+2. Call `get-keys-by-names` to check which keys already exist
+3. Reuse existing keys — do not create duplicates
+4. Call `save-keys` to create any missing keys
+5. Use `t('key.name')` for every string in the generated component — no hardcoded text
+
+If this is the first feature in the project, also generate:
+- `src/hooks/use-translation.tsx` — the app-level translation hook
+- `src/state/store/language/index.tsx` — persisted language store
+- `src/components/core/language-switcher/language-switcher.tsx` — the switcher component
+- Mount `<LanguageSwitcher />` in the app header/layout
+
+See `core/frontend.md` for the exact implementation of each.
+
 ---
 
 ## Step 5 — Follow Execution Order
@@ -107,5 +140,6 @@ If the user only wants backend or only wants frontend, confirm before limiting s
 8. Read `contracts.md` for request/response schemas
 9. **Check the reference implementation** — `https://github.com/SELISEdigitalplatforms/blocks-construct-react` — before generating any frontend code. Verify component names, module structure, and auth patterns against the actual codebase.
 10. **Use the shadcn/ui MCP** — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code.
-11. Execute or generate in the order defined by the flow
-12. Never skip steps or reorder them — the flow defines the correct sequence
+11. **Localization** — before writing any component: list strings → `get-keys-by-names` → reuse or `save-keys` → use `t()` for every string. If first feature: generate translation hook, language store, and language switcher.
+12. Execute or generate in the order defined by the flow
+13. Never skip steps or reorder them — the flow defines the correct sequence

@@ -71,4 +71,4 @@ Authorization: Bearer $ACCESS_TOKEN
 * 400 — malformed request, wrong client_id, or invalid grant_type
 * 401 — wrong USERNAME or PASSWORD
 * 403 — account missing `cloudadmin` role — assign it in Cloud Portal → People
-* 404 — wrong VITE_API_BASE_URL — check environment URL in Cloud Portal → Environments
+* 404 — environment not created or project not active — verify in Cloud Portal → Environments

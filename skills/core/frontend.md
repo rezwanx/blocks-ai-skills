@@ -167,6 +167,174 @@ modules/
 
 ---
 
+## Localization — Mandatory for All Frontend Code
+
+**Every user-visible string must use a translation key. No hardcoded strings anywhere.**
+
+This is not optional. It applies to labels, placeholders, button text, error messages, tooltips, headings, empty state messages, and toast notifications.
+
+### Translation Hook
+
+All components use `useTranslation` from `src/hooks/use-translation.tsx`:
+
+```tsx
+import { useTranslation } from '@/hooks/use-translation'
+
+const { t } = useTranslation()
+
+// ✅ correct
+<Button>{t('common.submit')}</Button>
+<FormLabel>{t('auth.login.emailLabel')}</FormLabel>
+<p>{t('users.table.emptyState')}</p>
+
+// ❌ wrong — hardcoded string
+<Button>Submit</Button>
+<FormLabel>Email address</FormLabel>
+```
+
+### Key Naming Convention
+
+```
+{module}.{context}.{element}
+
+auth.login.title
+auth.login.emailLabel
+auth.login.passwordLabel
+auth.login.submitButton
+auth.login.forgotPassword
+common.submit
+common.cancel
+common.save
+common.delete
+common.loading
+common.error
+users.table.emptyState
+users.form.createTitle
+```
+
+### Key Lookup Before Creation — Required Workflow
+
+Before writing any component, Claude must:
+
+1. **List all user-visible strings** in the planned component
+2. **Call `get-keys-by-names`** with the candidate key names to check which already exist
+3. **Reuse existing keys** — do not create duplicates
+4. **Call `save-keys`** (batch) to create only the missing keys
+5. **Then generate the component** using the confirmed key names
+
+```
+// ✅ correct workflow
+1. Component needs: "Submit", "Cancel", "Email address", "Password"
+2. Check: common.submit ✅ exists | common.cancel ✅ exists | auth.login.emailLabel ❓ | auth.login.passwordLabel ❓
+3. Create missing: save-keys([{ keyName: 'auth.login.emailLabel', ... }, { keyName: 'auth.login.passwordLabel', ... }])
+4. Generate component using all four keys
+
+// ❌ wrong — generating component first, adding keys later
+```
+
+### i18n Setup — `src/hooks/use-translation.tsx`
+
+```tsx
+import { useLanguageStore } from '@/state/store/language'
+import { useGetUilmFile } from '@/modules/localization/hooks/use-localization'
+
+export const useTranslation = () => {
+  const { currentLanguage } = useLanguageStore()
+  const { data: translations, isLoading } = useGetUilmFile({
+    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    languageCode: currentLanguage,
+  })
+
+  const t = (keyName: string, fallback?: string): string => {
+    if (!translations) return fallback ?? keyName
+    return translations[keyName] ?? fallback ?? keyName
+  }
+
+  return { t, currentLanguage, isLoading }
+}
+```
+
+### Language Store — `src/state/store/language/index.tsx`
+
+```tsx
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+interface LanguageState {
+  currentLanguage: string
+  setLanguage: (code: string) => void
+}
+
+export const useLanguageStore = create<LanguageState>()(
+  persist(
+    (set) => ({
+      currentLanguage: 'en',
+      setLanguage: (code) => set({ currentLanguage: code }),
+    }),
+    { name: 'language-storage' }
+  )
+)
+```
+
+### Language Switcher — Required in Every App
+
+The language switcher must be added to the app header/navbar from the very first feature. It is not added later — it is part of the base layout.
+
+Location: `src/components/core/language-switcher/language-switcher.tsx`
+
+```tsx
+import { useLanguageStore } from '@/state/store/language'
+import { useGetLanguages } from '@/modules/localization/hooks/use-localization'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui-kit/select'
+import { Globe } from 'lucide-react'
+
+export const LanguageSwitcher = () => {
+  const { currentLanguage, setLanguage } = useLanguageStore()
+  const { data: languages } = useGetLanguages({
+    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+  })
+
+  if (!languages?.length) return null
+
+  return (
+    <Select value={currentLanguage} onValueChange={setLanguage}>
+      <SelectTrigger className="w-36 gap-2">
+        <Globe className="h-4 w-4" />
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {languages.map((lang) => (
+          <SelectItem key={lang.code} value={lang.code}>
+            {lang.name}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
+```
+
+Mount in `src/layout/app-header.tsx` or equivalent top-level layout component.
+
+### Zod Validation Error Messages
+
+Zod schema error messages must also use translation keys:
+
+```tsx
+// ❌ hardcoded
+const schema = z.object({
+  email: z.string().email('Invalid email address'),
+})
+
+// ✅ localized
+const { t } = useTranslation()
+const schema = z.object({
+  email: z.string().email(t('validation.email.invalid')),
+})
+```
+
+---
+
 ## Rules
 
 * Use TypeScript for all components — no plain `.jsx` files
@@ -176,3 +344,6 @@ modules/
 * Handle loading state with `<Skeleton />` components
 * Handle error state with `<ErrorAlert />` or inline error messages
 * All pages must handle loading, error, and empty states
+* **Every user-visible string must use `t('key.name')` — no hardcoded strings, ever**
+* **Look up existing keys with `get-keys-by-names` before creating new ones**
+* **Language switcher must be in the app layout from the first feature**

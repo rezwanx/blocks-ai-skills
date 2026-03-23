@@ -135,4 +135,4 @@ curl --location "https://api.seliseblocks.com/idp/v1/Authentication/Token" \
 | `400` | Wrong `grant_type`, `client_id`, or malformed request |
 | `401` | Wrong `USERNAME`, `PASSWORD`, or `VITE_X_BLOCKS_KEY` |
 | `403` | Account missing `cloudadmin` role |
-| `404` | Wrong `VITE_API_BASE_URL` or environment not created |
+| `404` | Environment not created or project not active |

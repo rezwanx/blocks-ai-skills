@@ -68,24 +68,16 @@ Rules:
 
 ## HTTP Client
 
-The frontend HTTP client must handle token refresh automatically. Pattern from reference implementation:
+All API calls use the shared `https` client from `src/lib/https.ts`. It automatically attaches auth headers and refreshes the access token on 401 before retrying.
+
+See `core/app-scaffold.md` for the full implementation.
 
 ```typescript
-// src/lib/https.ts
-// On 401 response:
-//   1. Call refresh-token endpoint
-//   2. Update Zustand store with new tokens
-//   3. Retry original request with new access_token
-//   4. If refresh also 401 → call logout() and redirect to /login
-```
+// Usage in service layer — no manual token handling needed
+import https from '@/lib/https'
 
-Always include these headers on every authenticated request:
-```typescript
-headers: {
-  'Authorization': `Bearer ${accessToken}`,  // from Zustand store
-  'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
-  'Content-Type': 'application/json',
-}
+export const createUser = (payload: CreateUserPayload) =>
+  https.post('/idp/v1/User/Create', payload)
 ```
 
 ---

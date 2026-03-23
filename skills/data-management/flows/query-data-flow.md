@@ -54,7 +54,7 @@ Check that the schema exists and configuration has been reloaded.
 
 ```
 Action: get-schema
-Input:  id = schemaId, ProjectKey = $VITE_X_BLOCKS_KEY
+Input:  id = schemaId, ProjectKey = $VITE_PROJECT_SLUG
 ```
 
 If the schema exists → proceed. If not → run `define-schema-flow` first.
@@ -62,7 +62,7 @@ If the schema exists → proceed. If not → run `define-schema-flow` first.
 If you have pending unadapted changes:
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_X_BLOCKS_KEY (path param)
+Input:  projectKey = $VITE_PROJECT_SLUG (path param)
 ```
 
 ---

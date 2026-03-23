@@ -157,7 +157,7 @@ while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
     --header "Authorization: Bearer $ACCESS_TOKEN" \
     --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
     --header "Content-Type: application/json" \
-    --data "{\"query\": \"test\", \"top_k\": 1, \"project_key\": \"$VITE_X_BLOCKS_KEY\"}")
+    --data "{\"query\": \"test\", \"top_k\": 1, \"project_key\": \"$VITE_PROJECT_SLUG\"}")
 
   COUNT=$(echo $RESULT | jq '.results | length')
   if [ "$COUNT" -gt "0" ]; then

@@ -17,6 +17,7 @@ The following variables must be available:
 
 * VITE_API_BASE_URL
 * VITE_X_BLOCKS_KEY
+* VITE_PROJECT_SLUG
 * VITE_BLOCKS_OIDC_CLIENT_ID
 * USERNAME
 * PASSWORD

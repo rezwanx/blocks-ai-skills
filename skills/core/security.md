@@ -25,7 +25,7 @@ const apiKey = import.meta.env.VITE_X_BLOCKS_KEY
 
 ```bash
 # ✅ safe in VITE_ — public keys, non-sensitive config
-VITE_API_BASE_URL=https://dev-api.seliseblocks.com
+VITE_API_BASE_URL=https://api.seliseblocks.com
 VITE_X_BLOCKS_KEY=your_blocks_key
 VITE_CAPTCHA_SITE_KEY=your_public_captcha_key
 
