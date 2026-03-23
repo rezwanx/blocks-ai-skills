@@ -27,7 +27,7 @@ User wants to read or write data from a schema that has already been defined.
 After `reload-configuration`, SELISE Blocks exposes a **GraphQL endpoint** that reflects your defined schemas. All CRUD operations on your data go through this endpoint — NOT through any REST action in this skill.
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql
+POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway
 ```
 
 Headers required:
@@ -37,7 +37,7 @@ x-blocks-key: $VITE_X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
-> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/ddoxpd/graphql`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
+> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/ddoxpd/gateway`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
 
 The GraphQL schema is auto-generated from your schema definitions. Each collection gets:
 - A query to list records (with filter, sort, pagination)
@@ -76,7 +76,7 @@ Use the GraphQL endpoint directly. The query name follows the pattern `get{Schem
 #### List records
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
@@ -88,7 +88,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
 #### Get single record by ID
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
@@ -110,7 +110,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
 ### Step 3 — Create Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
@@ -124,7 +124,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
 ### Step 4 — Update Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
@@ -138,7 +138,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
 ### Step 5 — Delete Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
@@ -170,13 +170,13 @@ Every record has an auto-generated `_id` field (MongoDB ObjectId).
 Use a GraphQL client (Apollo Client or TanStack Query with fetch) to query the UDS endpoint:
 
 ```typescript
-// src/lib/graphql.ts
+// src/lib/gateway.ts
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
 // Project slug is part of the URL path — x-blocks-key header is also required
 const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/graphql`,
+  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/gateway`,
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -240,7 +240,7 @@ For `RoleBased`: if the authenticated user's role does not have a policy that al
 
 | File | Purpose |
 |------|---------|
-| `src/lib/graphql.ts` | Apollo Client setup with auth link |
+| `src/lib/gateway.ts` | Apollo Client setup with auth link |
 | `modules/data-management/hooks/use-{schema-name}.tsx` | Generated CRUD hooks per schema |
 | `modules/data-management/pages/{schema-name}/list-page.tsx` | Paginated list with filter |
 | `modules/data-management/pages/{schema-name}/detail-page.tsx` | Single record view/edit |
