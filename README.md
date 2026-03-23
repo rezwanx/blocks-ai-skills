@@ -86,12 +86,12 @@ With this approach, AI can:
 /skills
   ├── core/              ✅ implemented
   ├── identity-access/   ✅ implemented
-  ├── communication/     🔜 planned
-  ├── data-management/   🔜 planned
-  ├── localization/      🔜 planned
-  ├── ai-services/       🔜 planned
+  ├── communication/     ✅ implemented
+  ├── data-management/   ✅ implemented
+  ├── localization/      ✅ implemented
+  ├── ai-services/       ✅ implemented
+  ├── lmt/               ✅ implemented
   ├── devsecops/         🔜 planned
-  ├── utilities/         🔜 planned
 ```
 
 ### Structure Breakdown

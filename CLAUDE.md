@@ -114,4 +114,11 @@ Before taking any action, read:
 - `skills/core/conventions.md` — naming, structure, and flow file standards
 - `skills/core/frontend.md` — frontend code generation rules
 - `skills/core/prerequisites.md` — cloud portal setup requirements and error guidance
-- `skills/identity-access/skill.md` — intent mapping, flows index, and action index
+
+Then read the `skill.md` for the matched domain:
+- `skills/identity-access/skill.md` — auth, users, roles, permissions, MFA, organizations
+- `skills/communication/skill.md` — email, notifications, templates
+- `skills/data-management/skill.md` — schemas, data sources, files, access policies
+- `skills/localization/skill.md` — languages, translation keys, import/export
+- `skills/ai-services/skill.md` — AI agents, knowledge base, models, tools, chat
+- `skills/lmt/skill.md` — logs, traces, performance analytics

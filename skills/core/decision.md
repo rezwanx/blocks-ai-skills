@@ -10,12 +10,12 @@ It routes the request to the correct skill domain and defines what to clarify be
 | If the user wants to... | Use skill |
 |-------------------------|-----------|
 | Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access` |
-| Send email, push notification, SMS, messaging | `communication` *(planned)* |
-| Create, read, update, delete records, query data, storage | `data-management` *(planned)* |
-| Translate content, manage languages, locale settings | `localization` *(planned)* |
-| AI chat, RAG, vector search, embeddings, model orchestration | `ai-services` *(planned)* |
-| CI/CD, monitoring, observability, security scanning | `devsecops` *(planned)* |
-| Utility operations (file upload, image resize, export) | `utilities` *(planned)* |
+| Send email, push notification, in-app notification, messaging, email templates | `communication` |
+| Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management` |
+| Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization` |
+| AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services` |
+| View service logs, distributed traces, API performance analytics, live log streaming | `lmt` |
+| CI/CD, infrastructure, security scanning | `devsecops` *(not implemented)* |
 
 If the request spans multiple domains, handle one domain at a time starting with `identity-access` (authentication must always come first).
 
@@ -34,6 +34,25 @@ Before picking individual actions, check if the request maps to an existing flow
 | Admin user creation + role assignment | `identity-access/flows/user-onboarding.md` |
 | Session management / logout UI | `identity-access/flows/session-management.md` |
 | Role and permission configuration | `identity-access/flows/role-permission-setup.md` |
+| Send email | `communication/flows/send-email-flow.md` |
+| In-app notifications | `communication/flows/notification-flow.md` |
+| Email template management | `communication/flows/manage-templates-flow.md` |
+| Data schema definition | `data-management/flows/define-schema-flow.md` |
+| Query / insert / update / delete records in a schema | `data-management/flows/query-data-flow.md` |
+| Modify an existing schema (add/change fields) | `data-management/flows/migrate-schema-flow.md` |
+| Database connection setup | `data-management/flows/setup-data-source-flow.md` |
+| File upload / document management | `data-management/flows/upload-file-flow.md` |
+| Data access policies | `data-management/flows/configure-access-policy-flow.md` |
+| Add languages / set default language | `localization/flows/language-setup.md` |
+| Manage translation keys | `localization/flows/key-management.md` |
+| Import / export translations | `localization/flows/import-export.md` |
+| Create AI agent | `ai-services/flows/create-agent-flow.md` |
+| Set up knowledge base | `ai-services/flows/setup-knowledge-base.md` |
+| Chat with an AI agent | `ai-services/flows/chat-flow.md` |
+| Query an LLM directly / send a prompt / stream a response | `ai-services/flows/query-lmt-flow.md` |
+| Configure AI models | `ai-services/flows/manage-models.md` |
+| View service logs | `lmt/flows/view-logs-flow.md` |
+| Analyze traces and performance | `lmt/flows/view-traces-flow.md` |
 
 If no flow matches, fall back to the intent mapping table in `skill.md`.
 
