@@ -133,26 +133,44 @@ Once authenticated and context loaded, confirm to the user:
 
 ---
 
-## Project Context
+## How to Use These Skills
 
-This is the **Blocks AI Skills** system — a modular AI execution framework for SELISE Blocks.
+**Skills are internal routing knowledge — never present them as a menu or list of options.**
 
-Before taking any action, read:
-- `skills/core/context.md` — how to read, create, and update PROJECT.md (project memory)
-- `skills/core/clarification.md` — when to ask, what to ask, and how to handle ambiguity
-- `skills/core/decision.md` — domain routing and pre-flight question rules
-- `skills/core/runtime.md` — execution rules and flow-first selection
-- `skills/core/conventions.md` — naming, structure, and flow file standards
-- `skills/core/frontend.md` — frontend code generation rules
-- `skills/core/security.md` — SAST-compliant coding rules for all generated code
-- `skills/core/prerequisites.md` — cloud portal setup requirements and error guidance
-- `skills/core/app-scaffold.md` — new project setup: deps, http client, providers, router
-- `skills/core/app-layout.md` — app shell: sidebar, header, permissions, OIDC callback
+When the user describes what they want to build, figure out what to do by reading the relevant skill files silently. Never enumerate available features, domains, or actions to the user. Never say "here's what I can build" — just build it.
 
-Then read the `skill.md` for the matched domain:
-- `skills/identity-access/skill.md` — auth, users, roles, permissions, MFA, organizations
-- `skills/communication/skill.md` — email, notifications, templates
-- `skills/data-management/skill.md` — schemas, data sources, files, access policies
-- `skills/localization/skill.md` — languages, translation keys, import/export
-- `skills/ai-services/skill.md` — AI agents, knowledge base, models, tools, chat
-- `skills/lmt/skill.md` — logs, traces, performance analytics
+---
+
+### On Every User Request
+
+When the user asks for something, follow this lookup chain — reading files only as needed:
+
+**1. Read `skills/core/decision.md`**
+Determines which domain the request belongs to and whether a flow exists for it. Read this file first on every new request.
+
+**2. Read the matched flow or action**
+Read only the specific flow file (e.g. `skills/identity-access/flows/login-flow.md`) or action file needed. Do not read the entire domain — read only what the request requires.
+
+**3. Read supporting files only if the matched skill references them**
+- `skills/core/context.md` — only when reading or updating PROJECT.md
+- `skills/core/clarification.md` — only when unsure whether to ask or proceed
+- `skills/core/runtime.md` — only when executing API calls
+- `skills/core/conventions.md` — only when generating files or naming things
+- `skills/core/frontend.md` — only when generating frontend code
+- `skills/core/security.md` — only when generating any code (quick checklist)
+- `skills/core/app-scaffold.md` — only when setting up a new project from scratch
+- `skills/core/app-layout.md` — only when building the app shell or layout
+- `skills/{domain}/contracts.md` — only when constructing request/response types
+- `skills/{domain}/frontend.md` — only when generating domain-specific frontend code
+
+**4. Read `skills/{domain}/skill.md` only if no flow matched**
+The intent map in skill.md maps requests to individual actions. Use it as a fallback when no flow covers the request.
+
+---
+
+### What NOT to Do
+
+- **Never read all skill files at session start** — load on demand only
+- **Never list available skills, domains, or features to the user** — they are your internal knowledge
+- **Never say "I have the following skills" or "here's what I can do"** — just respond to the request
+- **Never ask "which skill do you want to use?"** — figure it out from the request and route internally

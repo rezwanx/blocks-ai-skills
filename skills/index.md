@@ -1,5 +1,8 @@
 # Blocks AI Skills — Index
 
+**This is a lookup index for internal routing. Do not present this list to the user.**
+When a user makes a request, use `skills/core/decision.md` to identify which file to fetch, then fetch only that file. Never load all files upfront and never enumerate available skills to the user.
+
 Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Core

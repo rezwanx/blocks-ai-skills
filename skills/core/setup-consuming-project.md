@@ -34,23 +34,24 @@ Create `CLAUDE.md` in the consuming project root with this exact content:
 ```markdown
 # Blocks AI Skills
 
-At the start of every session, you MUST fetch and follow the skills from the remote repository:
+At the start of every session, fetch and follow the skills from the remote repository:
 
 **Repository:** https://github.com/rezwanx/blocks-ai-skills
 
 ## Startup Procedure
 
-1. Fetch the CLAUDE.md from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/CLAUDE.md` and follow its instructions.
-2. Fetch the skill index from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/index.md` to understand available domains and skills.
-3. Fetch individual skill files on-demand as needed based on the user's request (e.g., `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/<domain>/skill.md`).
+1. Fetch `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/CLAUDE.md` and follow its instructions exactly.
+2. Do NOT enumerate or list available skills to the user. Wait for the user to describe what they want to build.
+3. When the user makes a request, fetch `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/core/decision.md` to route the request to the correct skill file.
+4. Fetch only the specific skill files needed for that request — do not fetch all skill files upfront.
 
 ## Rules
 
-- ALWAYS use WebFetch to read skill files from the repository above — never skip this step.
-- Follow the instructions in the fetched CLAUDE.md as if they were defined locally.
-- When a user request maps to a specific domain/skill, fetch the relevant skill files before proceeding.
+- Skills are internal routing knowledge — never present them as a menu or list to the user.
+- ALWAYS use WebFetch to read skill files — never skip this step.
+- Fetch skill files on demand per request, not all at startup.
+- All file paths in the fetched CLAUDE.md are relative to `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/` — resolve them with WebFetch.
 - Cache awareness: WebFetch has a 15-minute cache, so re-fetching within a session is cheap.
-- All file paths referenced inside the fetched CLAUDE.md (e.g. `skills/identity-access/actions/get-token.md`) are relative to the base URL above — resolve them with WebFetch, not as local files.
 ```
 
 ---

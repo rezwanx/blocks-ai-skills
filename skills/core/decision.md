@@ -5,31 +5,24 @@ It routes the request to the correct skill domain and defines what to clarify be
 
 ---
 
-## Step 0 — Check for App Scaffold / Layout
+## How to Use This File
 
-Before routing to a skill domain, check if the project needs foundational setup:
-
-| If the user wants to... | Use skill |
-|-------------------------|-----------|
-| Create a new project / initialise the app / set up dependencies | `core/app-scaffold.md` |
-| Set up the app layout, sidebar, navigation, app shell | `core/app-layout.md` |
-| Add the HTTP client, providers, or route assembly | `core/app-scaffold.md` |
-| Add permissions check, OIDC callback page | `core/app-layout.md` |
-
-If the project already has `main.tsx`, `App.tsx`, and a working layout, skip to Step 1.
+Read this file on every user request. Use the tables below to determine internally which skill to load next. **Do not present these tables or options to the user** — route silently and proceed.
 
 ---
 
 ## Step 1 — Route to Skill Domain
 
-| If the user wants to... | Use skill |
-|-------------------------|-----------|
-| Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access` |
-| Send email, push notification, in-app notification, messaging, email templates | `communication` |
-| Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management` |
-| Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization` |
-| AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services` |
-| View service logs, distributed traces, API performance analytics, live log streaming | `lmt` |
+| If the user wants to... | Read |
+|-------------------------|------|
+| Set up a new project, install dependencies, create main.tsx / App.tsx / http client | `core/app-scaffold.md` |
+| Set up the app shell, sidebar, layout, header, profile menu, permissions hook | `core/app-layout.md` |
+| Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access/skill.md` |
+| Send email, push notification, in-app notification, messaging, email templates | `communication/skill.md` |
+| Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management/skill.md` |
+| Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization/skill.md` |
+| AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services/skill.md` |
+| View service logs, distributed traces, API performance analytics, live log streaming | `lmt/skill.md` |
 | CI/CD, infrastructure, security scanning | `devsecops` *(not implemented)* |
 
 If the request spans multiple domains, handle one domain at a time starting with `identity-access` (authentication must always come first).
