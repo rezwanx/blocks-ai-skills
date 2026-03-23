@@ -2,9 +2,12 @@
 
 ## Execution Model
 
-* Read relevant skill and action files before executing
-* Select the most appropriate action based on user intent
-* Execute API calls using curl
+1. Read `core/decision.md` — route the request to the correct skill domain
+2. Check `flows/` in the matched skill — if a flow covers the request, follow it completely
+3. If no flow matches, use the intent mapping in `skill.md` to select the right action
+4. Read `contracts.md` for request/response schemas before constructing any request body
+5. Follow the action file exactly — do not skip steps or reorder them
+6. Execute API calls using curl
 
 ---
 

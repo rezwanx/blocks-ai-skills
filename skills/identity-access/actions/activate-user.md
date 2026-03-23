@@ -6,6 +6,12 @@ Activate a user account using an activation code.
 
 ---
 
+## Authentication
+
+Not required. This action is public.
+
+---
+
 ## Endpoint
 
 ```
@@ -51,6 +57,12 @@ User account activated. User can now login.
 
 ---
 
+## Constraints
+
+* `password` — minimum 8 characters, must include uppercase, lowercase, number, and special character
+
+---
+
 ## On Failure
 
-* 400 — invalid or expired activation code
+* 400 — invalid or expired activation code, or password does not meet strength requirements

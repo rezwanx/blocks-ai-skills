@@ -17,16 +17,18 @@ GET $VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp" \
+curl --location "$VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp?userId=USER_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
 ---
 
-## Request Body
+## Query Parameters
 
-None.
+| Param | Type | Required |
+|-------|------|----------|
+| userId | string | yes |
 
 ---
 

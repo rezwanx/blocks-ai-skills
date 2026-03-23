@@ -4,11 +4,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Core
 
+- skills/core/decision.md
 - skills/core/runtime.md
 - skills/core/conventions.md
-- skills/core/env.md
-- skills/core/rules.md
-- skills/core/projects.md
 - skills/core/frontend.md
 - skills/core/prerequisites.md
 
@@ -16,6 +14,16 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/identity-access/skill.md
 - skills/identity-access/contracts.md
+- skills/identity-access/frontend.md
+
+### Flows
+- skills/identity-access/flows/login-flow.md
+- skills/identity-access/flows/user-registration.md
+- skills/identity-access/flows/password-recovery.md
+- skills/identity-access/flows/mfa-setup.md
+- skills/identity-access/flows/user-onboarding.md
+- skills/identity-access/flows/session-management.md
+- skills/identity-access/flows/role-permission-setup.md
 
 ### Authentication
 - skills/identity-access/actions/get-token.md
@@ -23,6 +31,8 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/identity-access/actions/logout.md
 - skills/identity-access/actions/logout-all.md
 - skills/identity-access/actions/get-user-info.md
+- skills/identity-access/actions/get-login-options.md
+- skills/identity-access/actions/get-social-login-endpoint.md
 - skills/identity-access/actions/generate-user-code.md
 - skills/identity-access/actions/get-user-codes.md
 
@@ -37,7 +47,11 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/identity-access/actions/recover-user.md
 - skills/identity-access/actions/reset-password.md
 - skills/identity-access/actions/resend-activation.md
+- skills/identity-access/actions/validate-activation-code.md
 - skills/identity-access/actions/check-email-available.md
+- skills/identity-access/actions/get-account.md
+- skills/identity-access/actions/get-account-roles.md
+- skills/identity-access/actions/get-account-permissions.md
 - skills/identity-access/actions/get-user-roles.md
 - skills/identity-access/actions/get-user-permissions.md
 - skills/identity-access/actions/get-sessions.md
@@ -62,6 +76,8 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/identity-access/actions/save-organization.md
 - skills/identity-access/actions/get-organizations.md
 - skills/identity-access/actions/get-organization.md
+- skills/identity-access/actions/save-organization-config.md
+- skills/identity-access/actions/get-organization-config.md
 
 ### MFA
 - skills/identity-access/actions/generate-otp.md
@@ -72,4 +88,5 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ### Captcha
 - skills/identity-access/actions/create-captcha.md
+- skills/identity-access/actions/submit-captcha.md
 - skills/identity-access/actions/verify-captcha.md

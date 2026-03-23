@@ -17,7 +17,7 @@ GET $VITE_API_BASE_URL/idp/v1/Captcha/Verify
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Captcha/Verify?VerificationCode=USER_CAPTCHA_CODE&ConfigurationName=default" \
+curl --location "$VITE_API_BASE_URL/idp/v1/Captcha/Verify?VerificationCode=USER_CAPTCHA_CODE" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
@@ -28,7 +28,8 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Captcha/Verify?VerificationCode=USER_
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | VerificationCode | string | yes | Code entered by the user |
-| ConfigurationName | string | yes | Must match the one used in create-captcha |
+
+> **Note:** The Swagger spec only documents `VerificationCode` for this endpoint. `ConfigurationName` is not listed as a query param in the API spec.
 
 ---
 

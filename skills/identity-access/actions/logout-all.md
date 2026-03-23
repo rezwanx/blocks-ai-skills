@@ -17,7 +17,7 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll
 ## curl
 
 ```bash
-curl --location --request POST "$VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll" \
+curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
@@ -33,3 +33,9 @@ None.
 ## On Success (200)
 
 All sessions invalidated. Clear $ACCESS_TOKEN and $REFRESH_TOKEN from storage.
+
+---
+
+## On Failure
+
+* 401 — access token already expired, still clear tokens

@@ -6,6 +6,12 @@ Initiate password recovery — sends a reset link to the user's email.
 
 ---
 
+## Authentication
+
+Not required. This action is public.
+
+---
+
 ## Endpoint
 
 ```

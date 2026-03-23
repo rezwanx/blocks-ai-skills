@@ -64,9 +64,26 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Create" \
 
 User created. Returns user details.
 
+### Sample Response
+
+```json
+{
+  "errors": [],
+  "isSuccess": true
+}
+```
+
+---
+
+## Constraints
+
+* `email` — must be a valid email format and unique per project
+* `password` — minimum 8 characters, must include uppercase, lowercase, number, and special character
+* `userPassType` — if `Hashed`, password must be pre-hashed before sending
+
 ---
 
 ## On Failure
 
-* 400 — validation error (duplicate email, weak password)
+* 400 — validation error (duplicate email, weak password, invalid field)
 * 401 — run refresh-token then retry

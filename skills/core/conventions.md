@@ -81,10 +81,47 @@ Each feature must follow:
 feature/
 ├── skill.md
 ├── contracts.md
-├── frontend.md   (optional)
-└── actions/
-    └── verb-resource.md
+├── frontend.md      (optional)
+├── actions/
+│   └── verb-resource.md
+└── flows/
+    └── flow-name.md
 ```
+
+---
+
+## Flow File Template
+
+Every flow file must contain these sections in order:
+
+```markdown
+# Flow: flow-name
+
+## Trigger
+What user request activates this flow. Include example phrases.
+
+## Pre-flight Questions
+What Claude must ask the developer before starting.
+
+## Flow Steps
+Ordered steps. Each step includes:
+- Which action to call
+- Exact input fields
+- Output / what to do next
+- Branch conditions (if any)
+
+## Error Handling
+Table of errors per step: error | cause | action
+
+## Frontend Output
+Table of files to generate: file path | purpose
+```
+
+Rules:
+- One flow = one complete user-facing scenario
+- Steps must be in execution order — never reorder
+- Every branch must be documented (success and failure)
+- Frontend output must follow `core/frontend.md` conventions
 
 ---
 

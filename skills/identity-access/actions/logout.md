@@ -17,7 +17,7 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/Logout
 ## curl
 
 ```bash
-curl --location --request POST "$VITE_API_BASE_URL/idp/v1/Authentication/Logout" \
+curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Logout" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \

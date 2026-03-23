@@ -6,11 +6,19 @@ Check if an email address is available (not already registered).
 
 ---
 
+## Authentication
+
+Not required. This action is public.
+
+---
+
 ## Endpoint
 
 ```
 GET $VITE_API_BASE_URL/idp/v1/Iam/IsEmailAvaiable
 ```
+
+> **Note:** The endpoint path uses `Avaiable` (missing `l`) — this matches the backend API spelling exactly. Do not correct it.
 
 ---
 
@@ -34,3 +42,9 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/IsEmailAvaiable?email=user@exampl
 ## On Success (200)
 
 Returns boolean — `true` if available, `false` if already taken.
+
+---
+
+## On Failure
+
+* 400 — invalid email format

@@ -52,9 +52,23 @@ All subsequent API calls must use:
 Authorization: Bearer $ACCESS_TOKEN
 ```
 
+### Sample Response
+
+```json
+{
+  "access_token": "eyJhbGci...",
+  "token_type": "Bearer",
+  "expires_in": 8000,
+  "refresh_token": "538b8ede...",
+  "id_token": null
+}
+```
+
 ---
 
 ## On Failure
 
-* 400 — invalid username, password, or client_id
-* 401 — invalid VITE_X_BLOCKS_KEY
+* 400 — malformed request, wrong client_id, or invalid grant_type
+* 401 — wrong USERNAME or PASSWORD
+* 403 — account missing `cloudadmin` role — assign it in Cloud Portal → People
+* 404 — wrong VITE_API_BASE_URL — check environment URL in Cloud Portal → Environments

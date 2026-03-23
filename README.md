@@ -84,14 +84,14 @@ With this approach, AI can:
 
 ```bash id="m7hrpq"
 /skills
-  ├── core/
-  ├── identity-access/
-  ├── communication/
-  ├── data-management/
-  ├── localization/
-  ├── ai-services/
-  ├── devsecops/
-  ├── utilities/
+  ├── core/              ✅ implemented
+  ├── identity-access/   ✅ implemented
+  ├── communication/     🔜 planned
+  ├── data-management/   🔜 planned
+  ├── localization/      🔜 planned
+  ├── ai-services/       🔜 planned
+  ├── devsecops/         🔜 planned
+  ├── utilities/         🔜 planned
 ```
 
 ### Structure Breakdown

@@ -25,12 +25,12 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUsers" \
     "page": 1,
     "pageSize": 20,
     "sort": {
-      "field": "createdDate",
-      "order": "desc"
+      "property": "createdDate",
+      "isDescending": true
     },
     "filter": {
-      "search": "",
-      "isActive": true
+      "name": "",
+      "email": ""
     },
     "projectKey": "'$VITE_X_BLOCKS_KEY'"
   }'
@@ -44,17 +44,53 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUsers" \
 |-------|------|----------|-------|
 | page | integer | yes | Starts at 1 |
 | pageSize | integer | yes | Number of results per page |
-| sort.field | string | no | Field to sort by |
-| sort.order | string | no | asc \| desc |
-| filter.search | string | no | Search by name or email |
-| filter.isActive | boolean | no | Filter by active status |
+| sort.property | string | no | Field to sort by (e.g. `createdDate`, `email`, `firstName`) |
+| sort.isDescending | boolean | no | `true` for descending, `false` for ascending |
+| filter.name | string | no | Filter by name |
+| filter.email | string | no | Filter by email |
+| filter.userIds | array | no | Filter by specific user IDs |
+| filter.status | string | no | Filter by status (Active, Inactive) |
+| filter.organizationId | string | no | Filter by organization |
+| filter.joinedOn | date-time | no | Filter by join date (ISO 8601) |
+| filter.lastLogin | date-time | no | Filter by last login date (ISO 8601) |
 | projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+
+---
+
+## Pagination
+
+* `page` starts at 1
+* `pageSize` max is 100, default is 20
+* Results ordered by `sort.field` — common values: `createdDate`, `email`, `firstName`
 
 ---
 
 ## On Success (200)
 
 Returns paginated list of users with total count.
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "userId": "string",
+      "email": "user@example.com",
+      "userName": "string",
+      "firstName": "string",
+      "lastName": "string",
+      "phoneNumber": "string",
+      "status": "Active",
+      "mfaEnabled": false,
+      "createdDate": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "totalCount": 100,
+  "errors": [],
+  "isSuccess": true
+}
+```
 
 ---
 

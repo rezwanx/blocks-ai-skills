@@ -36,6 +36,30 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUser?userId=USER_ID" \
 
 Returns full user object including roles, permissions, and profile data.
 
+### Sample Response
+
+```json
+{
+  "data": {
+    "userId": "string",
+    "email": "user@example.com",
+    "userName": "string",
+    "firstName": "string",
+    "lastName": "string",
+    "phoneNumber": "string",
+    "status": "Active",
+    "mfaEnabled": false,
+    "userMfaType": "OTP",
+    "allowedLogInType": ["Email"],
+    "roles": ["string"],
+    "tags": ["string"],
+    "createdDate": "2024-01-01T00:00:00Z"
+  },
+  "errors": {},
+  "isSuccess": true
+}
+```
+
 ---
 
 ## On Failure

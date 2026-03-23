@@ -46,7 +46,13 @@ Password changed. Existing tokens remain valid unless revoked.
 
 ---
 
+## Constraints
+
+* `newPassword` — minimum 8 characters, must include uppercase, lowercase, number, and special character
+
+---
+
 ## On Failure
 
-* 400 — old password incorrect or new password too weak
+* 400 — old password incorrect or new password does not meet strength requirements
 * 401 — run refresh-token then retry

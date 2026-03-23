@@ -6,6 +6,12 @@ Reset a user's password using the recovery code from email.
 
 ---
 
+## Authentication
+
+Not required. This action is public.
+
+---
+
 ## Endpoint
 
 ```
@@ -45,6 +51,12 @@ Password reset. User can login with new password.
 
 ---
 
+## Constraints
+
+* `newPassword` — minimum 8 characters, must include uppercase, lowercase, number, and special character
+
+---
+
 ## On Failure
 
-* 400 — invalid or expired recovery code
+* 400 — invalid or expired recovery code, or new password does not meet strength requirements

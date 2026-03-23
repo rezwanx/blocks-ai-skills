@@ -6,6 +6,12 @@ Create a CAPTCHA challenge to present to the user before sensitive operations (r
 
 ---
 
+## Authentication
+
+Not required. This action is public.
+
+---
+
 ## Endpoint
 
 ```
