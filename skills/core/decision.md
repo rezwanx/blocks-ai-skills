@@ -95,10 +95,14 @@ If the user only wants backend or only wants frontend, confirm before limiting s
 
 ## Step 5 — Follow Execution Order
 
-1. Read `core/runtime.md` — execution rules and token flow
-2. Read `core/conventions.md` — naming conventions and flow file template format
-3. Read the matched flow file in full
-4. Read the action files referenced by the flow
-5. Read `contracts.md` for request/response schemas
-6. Execute or generate in the order defined by the flow
-7. Never skip steps or reorder them — the flow defines the correct sequence
+1. Read `core/clarification.md` — when to ask, what to ask, how to ask before and during execution
+2. Read `core/security.md` — SAST rules that apply to all generated code
+3. Read `core/runtime.md` — execution rules and token flow
+4. Read `core/conventions.md` — naming conventions and flow file template format
+5. Read the matched flow file in full
+6. Read the action files referenced by the flow
+7. Read `contracts.md` for request/response schemas
+8. **Check the reference implementation** — `https://github.com/SELISEdigitalplatforms/blocks-construct-react` — before generating any frontend code. Verify component names, module structure, and auth patterns against the actual codebase.
+9. **Use the shadcn/ui MCP** — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code.
+10. Execute or generate in the order defined by the flow
+11. Never skip steps or reorder them — the flow defines the correct sequence

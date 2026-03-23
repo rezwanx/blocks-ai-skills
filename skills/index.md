@@ -4,10 +4,12 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Core
 
+- skills/core/clarification.md
 - skills/core/decision.md
 - skills/core/runtime.md
 - skills/core/conventions.md
 - skills/core/frontend.md
+- skills/core/security.md
 - skills/core/prerequisites.md
 
 ## Identity & Access

@@ -109,10 +109,12 @@ Once authenticated, confirm to the user:
 This is the **Blocks AI Skills** system — a modular AI execution framework for SELISE Blocks.
 
 Before taking any action, read:
+- `skills/core/clarification.md` — when to ask, what to ask, and how to handle ambiguity
 - `skills/core/decision.md` — domain routing and pre-flight question rules
 - `skills/core/runtime.md` — execution rules and flow-first selection
 - `skills/core/conventions.md` — naming, structure, and flow file standards
 - `skills/core/frontend.md` — frontend code generation rules
+- `skills/core/security.md` — SAST-compliant coding rules for all generated code
 - `skills/core/prerequisites.md` — cloud portal setup requirements and error guidance
 
 Then read the `skill.md` for the matched domain:
