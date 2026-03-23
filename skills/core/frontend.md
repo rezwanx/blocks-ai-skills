@@ -13,7 +13,40 @@
 | Forms | React Hook Form + Zod |
 | Font | Nunito Sans |
 
-Reference implementation: https://github.com/SELISEdigitalplatforms/blocks-construct-react
+---
+
+## Reference Implementation
+
+**Always check the reference repo before generating any frontend code:**
+
+```
+https://github.com/SELISEdigitalplatforms/blocks-construct-react
+```
+
+Use it to verify:
+- Exact component names and import paths used in production
+- Auth flow shape (Zustand store, HTTP interceptor, token handling)
+- Module folder structure and naming conventions
+- How existing patterns are composed (form layouts, table pages, modal dialogs)
+
+When in doubt about a UI pattern, read the reference first — do not invent structure.
+
+---
+
+## shadcn/ui MCP
+
+A Model Context Protocol server is available for shadcn/ui component lookups:
+
+```
+https://ui.shadcn.com/docs/mcp
+```
+
+Use it to:
+- Fetch the exact installation command for any shadcn/ui component
+- Look up component API (props, variants, composition patterns)
+- Check which Radix UI primitive a component wraps
+
+**When to use it:** Any time you generate code that uses a shadcn/ui component (`Button`, `Dialog`, `Table`, `Form`, `Select`, etc.) — use the MCP to confirm the correct import path and props before writing the component.
 
 ---
 

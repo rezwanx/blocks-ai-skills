@@ -1,29 +1,97 @@
-# 🚀 Blocks AI Skills
+# Blocks AI Skills
 
-**Blocks AI Skills** is a modular AI skill system designed to accelerate application development using **SELISE Blocks** and **Claude Code**.
+**Blocks AI Skills** is a modular AI skill system that enables **Claude Code** to build full-stack applications on **SELISE Blocks** — automatically calling the right APIs, generating production-ready frontend code, and following consistent architecture across every project.
 
-It provides a structured way to define reusable **skills, actions, and execution rules** that allow AI to interact with backend APIs, generate frontend code, and maintain a consistent architecture across projects.
-
-This repository acts as an **AI execution layer** that connects your application with backend services through secure and repeatable workflows.
+Instead of writing boilerplate integration code, you describe what you want to build. Claude reads the skills, selects the correct flow or action, executes the backend requests, and generates the frontend — all grounded in real API contracts.
 
 ---
 
-## 🌐 About SELISE Blocks
+## About SELISE Blocks
 
-SELISE Blocks is a cloud-based platform that provides backend services, AI capabilities, and DevSecOps tooling in a unified environment.
+SELISE Blocks is a cloud platform that provides backend services as a unified environment:
 
-* Website: https://seliseblocks.com
-* Repositories: https://github.com/SELISEdigitalplatforms
-* Cloud Platform: https://cloud.seliseblocks.com
-* Official Documentation: https://docs.seliseblocks.com/cloud/
+| Service | What it does |
+|---------|-------------|
+| IDP | Authentication, MFA, users, roles, permissions, organizations |
+| UDS | Data schemas, GraphQL access, files, access policies |
+| blocksai-api | AI agents, knowledge bases, models, tools, streaming chat |
+| communication | Email, in-app notifications, templates |
+| uilm | Localization, translation keys, import/export |
+| lmt | Logs, distributed traces, performance analytics |
 
-Blocks AI Skills is designed specifically to integrate with these services and make them **AI-operable**.
+- Cloud Portal: https://cloud.seliseblocks.com
+- Documentation: https://docs.seliseblocks.com/cloud/
+- GitHub: https://github.com/SELISEdigitalplatforms
 
 ---
 
-## 🖥️ Frontend Stack
+## How It Works — 3-Layer Decision Model
 
-The default frontend stack is:
+When you describe a feature, Claude follows a fixed decision chain:
+
+```
+User request
+    │
+    ▼
+core/decision.md          ← Which domain? (identity-access, data-management, ai-services, …)
+    │
+    ▼
+flows/*.md                ← Is there a multi-step flow for this? (login-flow, define-schema-flow, …)
+    │
+    ▼
+skill.md intent map       ← Which single action handles this?
+    │
+    ▼
+actions/*.md              ← Exact curl, request body, response shape, error handling
+    │
+    ▼
+contracts.md              ← TypeScript types for frontend
+    │
+    ▼
+frontend.md               ← React components, hooks, Zod schemas, routing
+```
+
+**Flows are the key layer.** A flow bundles multiple actions into a correct sequence — for example, the login flow covers: get login options → handle CAPTCHA → call get-token → branch on MFA → store tokens → redirect. Without flows, each action would need to be manually ordered every time.
+
+---
+
+## Skill Domain Structure
+
+Each domain follows this layout:
+
+```
+skills/
+└── domain-name/
+    ├── skill.md        ← intent map: "user wants X → use action Y or flow Z"
+    ├── contracts.md    ← all request/response TypeScript types for this domain
+    ├── frontend.md     ← React module structure, hooks, component patterns
+    ├── flows/          ← multi-step workflows (login, schema creation, KB setup, …)
+    │   └── *.md
+    └── actions/        ← single API operations with exact curl and error handling
+        └── *.md
+```
+
+---
+
+## Implemented Domains
+
+```
+skills/
+├── core/              ✅  routing rules, runtime, conventions, frontend design system
+├── identity-access/   ✅  auth, MFA, CAPTCHA, users, roles, permissions, orgs, sessions
+├── communication/     ✅  email, in-app notifications, templates
+├── data-management/   ✅  schemas, GraphQL data access, files, access policies, validation
+├── localization/      ✅  languages, translation keys, auto-translate, import/export
+├── ai-services/       ✅  AI agents, knowledge bases, models, tools, streaming chat, LLM queries
+├── lmt/               ✅  logs, distributed traces, performance analytics, live log streaming
+└── devsecops/         🔜  CI/CD, security scanning (planned)
+```
+
+---
+
+## Frontend Stack
+
+The default stack follows the reference implementation at [blocks-construct-react](https://github.com/SELISEdigitalplatforms/blocks-construct-react):
 
 | Layer | Technology |
 |-------|-----------|
@@ -33,182 +101,21 @@ The default frontend stack is:
 | Components | Radix UI + shadcn/ui |
 | Icons | Lucide React |
 | Forms | React Hook Form + Zod |
+| State | Zustand (persisted) |
+| Data fetching | TanStack Query |
 | Font | Nunito Sans |
 
-The reference implementation follows the design system and structure from [blocks-construct-react](https://github.com/SELISEdigitalplatforms/blocks-construct-react).
+**shadcn/ui MCP** — configure the shadcn/ui MCP server in Claude Code for real-time component API lookups during code generation. Setup: `https://ui.shadcn.com/docs/mcp`
 
-### Changing the Frontend Stack
+### Changing the stack
 
-This skills system is **not tied to any specific frontend framework**. To use a different stack:
-
-1. Edit `skills/core/frontend.md` — replace the stack, component conventions, and folder structure
-2. Claude will generate all frontend code according to whatever is defined there
-
-For example, to switch to Next.js + Chakra UI, update `frontend.md` with those conventions and all generated UI code will follow them automatically.
+The skills system is not tied to any specific framework. To use a different stack, edit `skills/core/frontend.md` — all generated code will follow whatever is defined there.
 
 ---
 
-## 🧠 Overview
+## Prerequisites — Cloud Portal Setup
 
-Modern development often involves repetitive API integration, inconsistent patterns, and manual workflows. Blocks AI Skills solves this by introducing a **skill-based architecture** where each capability is clearly defined and executable.
-
-With this approach, AI can:
-
-* Understand your system structure
-* Select the correct operation
-* Execute backend requests securely
-* Generate production-ready frontend code
-
----
-
-## 🎯 Key Capabilities
-
-* **Executable API Actions**
-  Each action is defined with real API calls, enabling direct execution using environment variables and secure tokens.
-
-* **Modular Skill Architecture**
-  Features are organized into domains such as identity, communication, data management, AI services, and DevSecOps.
-
-* **Secure Token-Based Execution**
-  Authentication uses username and password to obtain an ACCESS_TOKEN via the IDP. All backend operations use the ACCESS_TOKEN stored securely in environment variables.
-
-* **Frontend and Backend Alignment**
-  Designed to work seamlessly with React (Vite) and modern UI systems like shadcn/ui.
-
-* **Reusable Across Multiple Projects**
-  This repository is independent of any single application and can be reused across different systems.
-
----
-
-## 🏗️ Project Structure
-
-```bash id="m7hrpq"
-/skills
-  ├── core/              ✅ implemented
-  ├── identity-access/   ✅ implemented
-  ├── communication/     ✅ implemented
-  ├── data-management/   ✅ implemented
-  ├── localization/      ✅ implemented
-  ├── ai-services/       ✅ implemented
-  ├── lmt/               ✅ implemented
-  ├── devsecops/         🔜 planned
-```
-
-### Structure Breakdown
-
-* **core/**
-  Contains runtime instructions, environment setup, global rules, and the frontend design system reference that guide all code generation.
-
-* **identity-access/**
-  Handles authentication, authorization, MFA, and CAPTCHA.
-
-* **communication/**
-  Manages email, messaging, and notification systems.
-
-* **data-management/**
-  Covers data services, CRUD operations, and storage.
-
-* **localization/**
-  Provides language and localization support.
-
-* **ai-services/**
-  Includes advanced capabilities such as RAG, vector databases, and AI model orchestration.
-
-* **devsecops/**
-  Focuses on CI/CD, monitoring, observability, and security testing.
-
----
-
-## ⚙️ How It Works
-
-### 1. Define Skills
-
-Each feature follows a consistent structure:
-
-```bash id="ewdxm7"
-feature/
-  ├── skill.md
-  ├── frontend.md
-  ├── contracts.md
-  ├── actions/
-```
-
-* `skill.md` → defines responsibilities and scope
-* `frontend.md` → describes UI integration
-* `contracts.md` → defines request and response formats
-* `actions/` → contains executable API calls
-
----
-
-### 2. AI Reads and Understands
-
-When using Claude Code, the system:
-
-* Identifies the correct domain
-* Reads the relevant skill
-* Selects the appropriate action
-
----
-
-### 3. Execute Backend Actions
-
-Example API execution:
-
-```bash id="cznvya"
-curl -X POST "$VITE_API_BASE_URL/api/data" \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "x-blocks-key: $VITE_X_BLOCKS_KEY" \
-  -H "Content-Type: application/json"
-```
-
-All requests use secure environment variables and follow consistent patterns.
-
----
-
-## 🔐 Environment Setup
-
-Create a `.env` file in your local environment:
-
-```bash id="j1h9tx"
-# Vite environment variables
-VITE_API_BASE_URL=https://dev-api.seliseblocks.com
-VITE_X_BLOCKS_KEY=your_blocks_key
-VITE_CAPTCHA_SITE_KEY=your_captcha_site_key
-VITE_CAPTCHA_TYPE=reCaptcha
-VITE_PROJECT_SLUG=your_project_slug
-
-VITE_BLOCKS_OIDC_CLIENT_ID=your_oidc_client_id
-VITE_BLOCKS_OIDC_REDIRECT_URI=your_redirect_uri
-
-# Build configuration
-GENERATE_SOURCEMAP=false
-
-# Theme Colors
-VITE_PRIMARY_COLOR=#15969B
-VITE_SECONDARY_COLOR=#5194B8
-
-# Credentials for authentication
-USERNAME=your_username
-PASSWORD=your_password
-
-# Populated at runtime after authentication
-ACCESS_TOKEN=
-REFRESH_TOKEN=
-```
-
-### Security Guidelines
-
-* Never commit `.env` files
-* Never expose credentials or tokens in frontend code
-* Always use environment variables in action definitions
-
----
-
-## ⚠️ Prerequisites — Cloud Portal Setup
-
-Before using this system, four steps **must be completed manually** in the [SELISE Blocks Cloud Portal](https://cloud.seliseblocks.com). Claude cannot do these. They are one-time setup steps per project.
-
-> Your account must have the **`cloudadmin`** role. Without it, all API calls will return `403 Forbidden`.
+Four steps must be completed manually in the [SELISE Blocks Cloud Portal](https://cloud.seliseblocks.com) before any API call will work. Claude cannot do these.
 
 ### 1. Create a Project
 Cloud Portal → Projects → Create Project
@@ -216,153 +123,184 @@ Cloud Portal → Projects → Create Project
 Copy the **Project Slug** → `VITE_PROJECT_SLUG`
 Copy the **Blocks Key** → `VITE_X_BLOCKS_KEY`
 
+> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Mixing values from different projects will cause authentication failures.
+
 ### 2. Create an Environment
 Cloud Portal → Projects → [Your Project] → Environments → Create
 
-Copy the **Environment URL** → `VITE_API_BASE_URL`
+The API base URL is always `https://api.seliseblocks.com` — you do not need to copy it. The environment must exist for your project to be active.
 
-### 3. Add People (with cloudadmin role)
+### 3. Add a Developer Account with `cloudadmin` role
 Cloud Portal → Projects → [Your Project] → People → Add Member
 
-- Add the developer account that will be used for operations
-- Assign the `cloudadmin` role to this account
-- This account's email and password become `USERNAME` and `PASSWORD` in `.env`
+Add the account to **the same project**. Assign the `cloudadmin` role. This account's credentials become `USERNAME` and `PASSWORD` in `.env`. Without `cloudadmin`, all API calls return `403`.
 
-### 4. Attach Repository
+### 4. Attach a Repository
 Cloud Portal → Projects → [Your Project] → Repositories → Attach
-
-Link your application repository for CI/CD and deployment.
-
----
 
 ### Error Reference
 
-| Error | Likely Cause | Fix |
-|-------|-------------|-----|
-| `401 Unauthorized` | Wrong credentials | Check `USERNAME` / `PASSWORD` match the portal account |
-| `403 Forbidden` | Missing `cloudadmin` role | Assign role in Cloud Portal → People |
-| `404 Not Found` | Wrong API URL | Re-check `VITE_API_BASE_URL` from Environments |
-| All APIs fail | Project/environment not set up | Complete all 4 portal steps above |
-
-See `skills/core/prerequisites.md` for detailed per-step error guidance.
+| HTTP Status | Likely Cause | Fix |
+|-------------|-------------|-----|
+| `401` | Wrong credentials | Check `USERNAME` / `PASSWORD` in Cloud Portal → People |
+| `403` | Missing `cloudadmin` role | Assign role in Cloud Portal → People |
+| `404` | Wrong API URL | Re-check `VITE_API_BASE_URL` from Environments |
+| All APIs fail | Project not set up | Complete all 4 portal steps above |
 
 ---
 
-## 🚀 Getting Started
+## Environment Variables
 
-### 1. Clone the repository
+Create a `.env` file in your project root:
 
-```bash id="t1m5i4"
-git clone https://github.com/your-org/blocks-ai-skills.git
+```bash
+# Vite environment variables
+VITE_API_BASE_URL=https://api.seliseblocks.com
+VITE_X_BLOCKS_KEY=your_blocks_key        # Cloud Portal → Project settings
+VITE_PROJECT_SLUG=your_project_slug      # Cloud Portal → Project settings (same project)
+
+VITE_CAPTCHA_SITE_KEY=your_captcha_site_key
+VITE_CAPTCHA_TYPE=reCaptcha
+
+VITE_BLOCKS_OIDC_CLIENT_ID=your_oidc_client_id
+VITE_BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
+
+# Build configuration
+GENERATE_SOURCEMAP=false
+
+# Theme Colors — hex or hsl format
+VITE_PRIMARY_COLOR=#15969B
+VITE_SECONDARY_COLOR=#5194B8
+
+# CLI/Claude credentials — for direct API operations only
+# The frontend gets these from the login form, not from here
+# Must be a user added to the SAME project as VITE_X_BLOCKS_KEY / VITE_PROJECT_SLUG
+USERNAME=your_cloudadmin_email
+PASSWORD=your_cloudadmin_password
+
+# Populated at runtime after authentication
+ACCESS_TOKEN=
+REFRESH_TOKEN=
 ```
 
+`.env` is gitignored. The `ACCESS_TOKEN` and `REFRESH_TOKEN` fields are left empty — Claude writes these at runtime after authentication.
+
 ---
 
-### 2. Configure environment variables
+## Getting Started
 
-```bash id="d5c9yw"
-cp .env.example .env
+There are two ways to use this repository.
+
+---
+
+### Option A — Use directly (recommended for new Blocks projects)
+
+Clone this repo as the working directory for your Blocks project. Claude Code reads the `CLAUDE.md` automatically and loads all skills.
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/rezwanx/blocks-ai-skills.git my-project
+cd my-project
 ```
 
----
+#### 2. Set up your environment
 
-### 3. Start using with Claude Code
+Create a `.env` file using the template in the [Environment Variables](#environment-variables) section. Fill in values from your Cloud Portal project.
 
-Run Claude in your project:
+#### 3. Start Claude Code
 
-```bash id="0xxa3j"
+```bash
 claude
 ```
 
-Then use natural prompts such as:
+At session start, Claude will automatically:
+1. Check that the Cloud Portal prerequisites are complete
+2. Verify your `.env` variables
+3. Authenticate and store `ACCESS_TOKEN`
+4. Confirm ready
 
-```id="d93um4"
-Use the data-management skill to create a new record
+---
+
+### Option B — Load skills remotely into an existing project
+
+If you already have a project, load the skills index directly. The `skills/index.md` file lists all skills with their raw GitHub URLs:
+
+```
+Base URL: https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main
+Index:    https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/index.md
+```
+
+Point Claude at this index to load only the skills you need without cloning the repo.
+
+---
+
+### Build features with natural prompts
+
+```
+Build a login page with email/password and MFA support
+```
+
+```
+Create a data schema for a products collection with name, price, and category fields
+```
+
+```
+Set up a knowledge base for my AI agent with these PDF files
+```
+
+```
+Add email notification when a user registers
 ```
 
 ---
 
-## 🧩 Example Use Cases
+## Example Use Cases
 
-### Authentication and Access Control
-
-* User login and signup
-* Multi-factor authentication
-* Role and permission management
+### Authentication & Access Control
+Login, registration, MFA (email OTP + TOTP), password recovery, role and permission management, session management, SSO/OIDC
 
 ### Data Management
-
-* Create, update, and retrieve records
-* Integrate with backend APIs
-* Manage structured data
+Schema definition, GraphQL-based CRUD, file upload (S3 / DMS), access policies, field validation, schema migration
 
 ### AI-Powered Features
+AI agent creation and configuration, Retrieval-Augmented Generation (RAG) with knowledge bases, direct LLM queries, streaming chat, model management
 
-* Retrieve augmented generation (RAG) queries
-* Vector database operations
-* Multi-model AI workflows
+### Communication
+Transactional email, in-app notifications, email template management
 
-### Communication Systems
+### Localization
+Multi-language setup, translation key management, auto-translation, UILM file import/export
 
-* Send emails
-* Trigger notifications
-* Handle messaging workflows
-
----
-
-## 🧠 Best Practices
-
-* Keep each action focused on a single API operation
-* Use descriptive and consistent naming conventions
-* Define clear request and response contracts
-* Separate frontend logic from backend execution
-* Validate API responses before proceeding
+### Observability
+Service log viewing, distributed trace analysis, API performance analytics, live log streaming
 
 ---
 
-## ❌ Common Mistakes to Avoid
+## Providing Feedback from Real Implementations
 
-* Hardcoding tokens or secrets
-* Combining multiple responsibilities in one action
-* Skipping contract definitions
-* Using inconsistent naming patterns
+The skills are grounded in Swagger docs and the reference repo, but real project behavior is the highest-fidelity source. If something is wrong or incomplete, the fastest ways to fix it:
 
----
-
-## 🔄 Development Workflow
-
-```text id="t1y7f6"
-User Request → Claude Code
-        ↓
-Skill Selection
-        ↓
-Action Execution (with ACCESS_TOKEN)
-        ↓
-API Response
-        ↓
-Frontend or Output Generation
-```
+- **Paste a working curl** — copy from your browser network tab or Postman (mask the token, keep the URL and body)
+- **Paste an API response** — real JSON response lets contracts be fixed immediately
+- **Share a private repo** — provide a GitHub link with working service calls
+- **Describe what failed** — "calling X with Y returned Z" is enough to diagnose most issues
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome. You can help by:
+Contributions welcome. The most valuable additions:
 
-* Adding new skills or actions
-* Improving existing definitions
-* Enhancing documentation and structure
+- New action files grounded in real Swagger endpoints
+- Flow files for common multi-step patterns not yet covered
+- Corrections to contracts.md based on real API responses
+- New domain skill sets (devsecops is next)
+
+Repository: https://github.com/rezwanx/blocks-ai-skills
 
 ---
 
-## 📄 License
+## License
 
 MIT License
-
----
-
-## ⭐ Final Thoughts
-
-Blocks AI Skills provides a structured foundation for building applications with AI-assisted workflows. By combining modular skills, secure execution, and consistent architecture, it enables faster development and more reliable systems.
-
-It is designed to scale with your projects while keeping complexity under control.

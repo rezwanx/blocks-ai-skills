@@ -31,6 +31,8 @@ The user account used for all operations must have the **`cloudadmin`** role.
 4. Copy the project slug → this becomes `VITE_PROJECT_SLUG` in your `.env`
 5. Copy the Blocks Key → this becomes `VITE_X_BLOCKS_KEY` in your `.env`
 
+> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Using values from different projects will cause authentication and API failures.
+
 **Error Guidance:**
 
 | Symptom | Likely Cause | Fix |
@@ -48,13 +50,14 @@ The user account used for all operations must have the **`cloudadmin`** role.
 **What to do:**
 1. Open your project in the portal
 2. Create an environment (e.g. `dev`, `staging`, `production`)
-3. Note the environment URL → this becomes `VITE_API_BASE_URL` in your `.env`
+
+> The API base URL is always `https://api.seliseblocks.com` — you do not need to copy it. The environment must exist in the portal for your project to be active.
 
 **Error Guidance:**
 
 | Symptom | Likely Cause | Fix |
 |---------|-------------|-----|
-| API calls return `404` | Wrong environment URL | Re-check `VITE_API_BASE_URL` matches the environment |
+| API calls return `404` | Environment not created or project not active | Create the environment in the cloud portal |
 | Environment not visible | Not yet created | Complete this step in the cloud portal first |
 
 ---
@@ -102,12 +105,11 @@ The user account used for all operations must have the **`cloudadmin`** role.
 
 Before starting any development, confirm all items are complete:
 
-- [ ] Account has `cloudadmin` role in the project
 - [ ] Project created in cloud portal
-- [ ] `VITE_PROJECT_SLUG` and `VITE_X_BLOCKS_KEY` copied from portal
-- [ ] Environment created and `VITE_API_BASE_URL` confirmed
-- [ ] User account added to project with `cloudadmin` role
-- [ ] `USERNAME` and `PASSWORD` set in `.env`
+- [ ] `VITE_PROJECT_SLUG` and `VITE_X_BLOCKS_KEY` copied from that project's settings
+- [ ] Environment created for the project
+- [ ] User account added to **the same project** with `cloudadmin` role
+- [ ] `USERNAME` and `PASSWORD` in `.env` match that account
 - [ ] Repository attached to the project in the portal
 - [ ] `get-token` runs successfully (validates all of the above)
 
@@ -118,7 +120,7 @@ Before starting any development, confirm all items are complete:
 Run this to confirm your credentials and role are correct:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
+curl --location "https://api.seliseblocks.com/idp/v1/Authentication/Token" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
