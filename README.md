@@ -21,6 +21,33 @@ Blocks AI Skills is designed specifically to integrate with these services and m
 
 ---
 
+## 🖥️ Frontend Stack
+
+The default frontend stack is:
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | React 19 + TypeScript |
+| Build tool | Vite |
+| Styling | Tailwind CSS 3.4 |
+| Components | Radix UI + shadcn/ui |
+| Icons | Lucide React |
+| Forms | React Hook Form + Zod |
+| Font | Nunito Sans |
+
+The reference implementation follows the design system and structure from [blocks-construct-react](https://github.com/SELISEdigitalplatforms/blocks-construct-react).
+
+### Changing the Frontend Stack
+
+This skills system is **not tied to any specific frontend framework**. To use a different stack:
+
+1. Edit `skills/core/frontend.md` — replace the stack, component conventions, and folder structure
+2. Claude will generate all frontend code according to whatever is defined there
+
+For example, to switch to Next.js + Chakra UI, update `frontend.md` with those conventions and all generated UI code will follow them automatically.
+
+---
+
 ## 🧠 Overview
 
 Modern development often involves repetitive API integration, inconsistent patterns, and manual workflows. Blocks AI Skills solves this by introducing a **skill-based architecture** where each capability is clearly defined and executable.
@@ -43,7 +70,7 @@ With this approach, AI can:
   Features are organized into domains such as identity, communication, data management, AI services, and DevSecOps.
 
 * **Secure Token-Based Execution**
-  All backend operations use a Private Access Token (PAT) stored securely in environment variables.
+  Authentication uses username and password to obtain an ACCESS_TOKEN via the IDP. All backend operations use the ACCESS_TOKEN stored securely in environment variables.
 
 * **Frontend and Backend Alignment**
   Designed to work seamlessly with React (Vite) and modern UI systems like shadcn/ui.
@@ -70,7 +97,7 @@ With this approach, AI can:
 ### Structure Breakdown
 
 * **core/**
-  Contains runtime instructions, environment setup, and global rules that guide execution.
+  Contains runtime instructions, environment setup, global rules, and the frontend design system reference that guide all code generation.
 
 * **identity-access/**
   Handles authentication, authorization, MFA, and CAPTCHA.
@@ -128,8 +155,9 @@ When using Claude Code, the system:
 Example API execution:
 
 ```bash id="cznvya"
-curl -X POST "$BASE_URL/api/data" \
-  -H "Authorization: Bearer $PAT" \
+curl -X POST "$VITE_API_BASE_URL/api/data" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "x-blocks-key: $VITE_X_BLOCKS_KEY" \
   -H "Content-Type: application/json"
 ```
 
@@ -142,15 +170,81 @@ All requests use secure environment variables and follow consistent patterns.
 Create a `.env` file in your local environment:
 
 ```bash id="j1h9tx"
-BASE_URL=https://api.seliseblocks.com
-PAT=your_private_access_token
+# Vite environment variables
+VITE_API_BASE_URL=https://dev-api.seliseblocks.com
+VITE_X_BLOCKS_KEY=your_blocks_key
+VITE_CAPTCHA_SITE_KEY=your_captcha_site_key
+VITE_CAPTCHA_TYPE=reCaptcha
+VITE_PROJECT_SLUG=your_project_slug
+
+VITE_BLOCKS_OIDC_CLIENT_ID=your_oidc_client_id
+VITE_BLOCKS_OIDC_REDIRECT_URI=your_redirect_uri
+
+# Build configuration
+GENERATE_SOURCEMAP=false
+
+# Theme Colors
+VITE_PRIMARY_COLOR=#15969B
+VITE_SECONDARY_COLOR=#5194B8
+
+# Credentials for authentication
+USERNAME=your_username
+PASSWORD=your_password
+
+# Populated at runtime after authentication
+ACCESS_TOKEN=
+REFRESH_TOKEN=
 ```
 
 ### Security Guidelines
 
 * Never commit `.env` files
-* Never expose the PAT in frontend code
+* Never expose credentials or tokens in frontend code
 * Always use environment variables in action definitions
+
+---
+
+## ⚠️ Prerequisites — Cloud Portal Setup
+
+Before using this system, four steps **must be completed manually** in the [SELISE Blocks Cloud Portal](https://cloud.seliseblocks.com). Claude cannot do these. They are one-time setup steps per project.
+
+> Your account must have the **`cloudadmin`** role. Without it, all API calls will return `403 Forbidden`.
+
+### 1. Create a Project
+Cloud Portal → Projects → Create Project
+
+Copy the **Project Slug** → `VITE_PROJECT_SLUG`
+Copy the **Blocks Key** → `VITE_X_BLOCKS_KEY`
+
+### 2. Create an Environment
+Cloud Portal → Projects → [Your Project] → Environments → Create
+
+Copy the **Environment URL** → `VITE_API_BASE_URL`
+
+### 3. Add People (with cloudadmin role)
+Cloud Portal → Projects → [Your Project] → People → Add Member
+
+- Add the developer account that will be used for operations
+- Assign the `cloudadmin` role to this account
+- This account's email and password become `USERNAME` and `PASSWORD` in `.env`
+
+### 4. Attach Repository
+Cloud Portal → Projects → [Your Project] → Repositories → Attach
+
+Link your application repository for CI/CD and deployment.
+
+---
+
+### Error Reference
+
+| Error | Likely Cause | Fix |
+|-------|-------------|-----|
+| `401 Unauthorized` | Wrong credentials | Check `USERNAME` / `PASSWORD` match the portal account |
+| `403 Forbidden` | Missing `cloudadmin` role | Assign role in Cloud Portal → People |
+| `404 Not Found` | Wrong API URL | Re-check `VITE_API_BASE_URL` from Environments |
+| All APIs fail | Project/environment not set up | Complete all 4 portal steps above |
+
+See `skills/core/prerequisites.md` for detailed per-step error guidance.
 
 ---
 
@@ -242,7 +336,7 @@ User Request → Claude Code
         ↓
 Skill Selection
         ↓
-Action Execution (with PAT)
+Action Execution (with ACCESS_TOKEN)
         ↓
 API Response
         ↓
