@@ -90,3 +90,218 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/identity-access/actions/create-captcha.md
 - skills/identity-access/actions/submit-captcha.md
 - skills/identity-access/actions/verify-captcha.md
+
+## AI Services
+
+- skills/ai-services/skill.md
+- skills/ai-services/contracts.md
+- skills/ai-services/frontend.md
+
+### Flows
+- skills/ai-services/flows/create-agent-flow.md
+- skills/ai-services/flows/setup-knowledge-base.md
+- skills/ai-services/flows/chat-flow.md
+- skills/ai-services/flows/query-lmt-flow.md
+- skills/ai-services/flows/manage-models.md
+
+### Agents
+- skills/ai-services/actions/create-agent.md
+- skills/ai-services/actions/update-agent-persona.md
+- skills/ai-services/actions/update-agent-ai-config.md
+- skills/ai-services/actions/change-agent-status.md
+- skills/ai-services/actions/delete-agent.md
+- skills/ai-services/actions/get-agents.md
+- skills/ai-services/actions/get-agent.md
+- skills/ai-services/actions/publish-agent.md
+
+### Knowledge Base
+- skills/ai-services/actions/upload-kb-file.md
+- skills/ai-services/actions/ingest-kb-text.md
+- skills/ai-services/actions/ingest-kb-qa.md
+- skills/ai-services/actions/ingest-kb-link.md
+- skills/ai-services/actions/create-kb-folder.md
+- skills/ai-services/actions/delete-kb.md
+- skills/ai-services/actions/test-kb-retrieval.md
+
+### Tools
+- skills/ai-services/actions/create-api-tool.md
+- skills/ai-services/actions/create-mcp-tool.md
+- skills/ai-services/actions/test-tool-action.md
+- skills/ai-services/actions/get-tools.md
+- skills/ai-services/actions/delete-tool.md
+
+### Models
+- skills/ai-services/actions/create-model.md
+- skills/ai-services/actions/get-models.md
+- skills/ai-services/actions/get-model.md
+- skills/ai-services/actions/validate-model.md
+- skills/ai-services/actions/get-provider-models.md
+
+### Conversations & Chat
+- skills/ai-services/actions/initiate-conversation.md
+- skills/ai-services/actions/get-conversations.md
+- skills/ai-services/actions/delete-conversation.md
+- skills/ai-services/actions/query-lmt.md
+- skills/ai-services/actions/stream-query-lmt.md
+- skills/ai-services/actions/chat-agent.md
+- skills/ai-services/actions/chat-sse.md
+
+## LMT (Logging, Monitoring & Tracing)
+
+- skills/lmt/skill.md
+- skills/lmt/contracts.md
+- skills/lmt/frontend.md
+
+### Flows
+- skills/lmt/flows/view-logs-flow.md
+- skills/lmt/flows/view-traces-flow.md
+
+### Logs
+- skills/lmt/actions/get-logs.md
+- skills/lmt/actions/get-logs-by-date.md
+- skills/lmt/actions/stream-live-logs.md
+
+### Traces
+- skills/lmt/actions/get-traces.md
+- skills/lmt/actions/get-trace.md
+- skills/lmt/actions/get-operational-analytics.md
+- skills/lmt/actions/get-service-analytics.md
+
+## Data Management
+
+- skills/data-management/skill.md
+- skills/data-management/contracts.md
+- skills/data-management/frontend.md
+
+### Flows
+- skills/data-management/flows/define-schema-flow.md
+- skills/data-management/flows/query-data-flow.md
+- skills/data-management/flows/migrate-schema-flow.md
+- skills/data-management/flows/setup-data-source-flow.md
+- skills/data-management/flows/upload-file-flow.md
+- skills/data-management/flows/configure-access-policy-flow.md
+
+### Schema
+- skills/data-management/actions/get-schemas.md
+- skills/data-management/actions/get-schema.md
+- skills/data-management/actions/delete-schema.md
+- skills/data-management/actions/define-schema.md
+- skills/data-management/actions/update-schema.md
+- skills/data-management/actions/save-schema-info.md
+- skills/data-management/actions/update-schema-info.md
+- skills/data-management/actions/save-schema-fields.md
+- skills/data-management/actions/get-unadapted-changes.md
+
+### DataSource
+- skills/data-management/actions/get-data-source.md
+- skills/data-management/actions/add-data-source.md
+- skills/data-management/actions/update-data-source.md
+
+### DataAccess
+- skills/data-management/actions/change-security.md
+- skills/data-management/actions/create-access-policy.md
+- skills/data-management/actions/update-access-policy.md
+- skills/data-management/actions/delete-access-policy.md
+- skills/data-management/actions/get-access-policies.md
+
+### DataValidation
+- skills/data-management/actions/get-validations.md
+- skills/data-management/actions/create-validation.md
+- skills/data-management/actions/update-validation.md
+- skills/data-management/actions/get-validation.md
+- skills/data-management/actions/delete-validation.md
+- skills/data-management/actions/get-schema-validations.md
+- skills/data-management/actions/get-field-validation.md
+
+### Files
+- skills/data-management/actions/get-file.md
+- skills/data-management/actions/get-files.md
+- skills/data-management/actions/get-files-info.md
+- skills/data-management/actions/get-presigned-upload-url.md
+- skills/data-management/actions/delete-file.md
+- skills/data-management/actions/upload-to-local-storage.md
+- skills/data-management/actions/update-file-info.md
+- skills/data-management/actions/get-dms-files.md
+- skills/data-management/actions/upload-to-dms.md
+- skills/data-management/actions/create-folder.md
+
+### Configuration
+- skills/data-management/actions/reload-configuration.md
+- skills/data-management/actions/add-server-config.md
+
+### DataManage
+- skills/data-management/actions/get-mock-data.md
+- skills/data-management/actions/delete-mock-data.md
+
+## Localization
+
+- skills/localization/skill.md
+- skills/localization/contracts.md
+- skills/localization/frontend.md
+
+### Flows
+- skills/localization/flows/language-setup.md
+- skills/localization/flows/key-management.md
+- skills/localization/flows/import-export.md
+
+### Languages
+- skills/localization/actions/save-language.md
+- skills/localization/actions/get-languages.md
+- skills/localization/actions/delete-language.md
+- skills/localization/actions/set-default-language.md
+
+### Modules
+- skills/localization/actions/save-module.md
+- skills/localization/actions/get-modules.md
+
+### Keys
+- skills/localization/actions/save-key.md
+- skills/localization/actions/save-keys.md
+- skills/localization/actions/get-keys.md
+- skills/localization/actions/get-keys-by-names.md
+- skills/localization/actions/get-key.md
+- skills/localization/actions/delete-key.md
+- skills/localization/actions/get-key-timeline.md
+- skills/localization/actions/get-uilm-file.md
+- skills/localization/actions/generate-uilm-file.md
+- skills/localization/actions/translate-all.md
+- skills/localization/actions/translate-key.md
+- skills/localization/actions/import-uilm.md
+- skills/localization/actions/export-uilm.md
+- skills/localization/actions/get-exported-files.md
+- skills/localization/actions/get-generation-history.md
+- skills/localization/actions/rollback-key.md
+
+### Config
+- skills/localization/actions/save-webhook.md
+
+## Communication
+
+- skills/communication/skill.md
+- skills/communication/contracts.md
+- skills/communication/frontend.md
+
+### Flows
+- skills/communication/flows/send-email-flow.md
+- skills/communication/flows/notification-flow.md
+- skills/communication/flows/manage-templates-flow.md
+
+### Mail
+- skills/communication/actions/send-email-to-any.md
+- skills/communication/actions/send-email-with-template.md
+- skills/communication/actions/get-mailbox-mails.md
+- skills/communication/actions/get-mailbox-mail.md
+
+### Notifier
+- skills/communication/actions/send-notification.md
+- skills/communication/actions/get-unread-notifications.md
+- skills/communication/actions/mark-all-notifications-read.md
+- skills/communication/actions/mark-notification-read.md
+- skills/communication/actions/get-notifications.md
+
+### Template
+- skills/communication/actions/save-template.md
+- skills/communication/actions/get-template.md
+- skills/communication/actions/get-templates.md
+- skills/communication/actions/clone-template.md
+- skills/communication/actions/delete-template.md

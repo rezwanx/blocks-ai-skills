@@ -54,6 +54,30 @@ Authorization: Bearer $ACCESS_TOKEN
 ### Step 3 — Handle Token Expiry
 If any API returns 401, refresh the access token using the refresh-token action, then retry the original request.
 
+### Token Expiry in Multi-Step Flows
+
+Long-running flows (e.g. bulk KB ingestion, schema creation with many fields) may span several minutes. The `access_token` expires after `expires_in` seconds (typically 8000s ≈ 2 hours). To prevent mid-flow failures:
+
+1. Before starting a multi-step flow, note the token's issue time
+2. If a step returns 401, immediately refresh — do not abort the flow
+3. Retry only the failed step with the new token; all previous steps stay completed
+
+```bash
+# Refresh pattern (run on any 401):
+RESPONSE=$(curl --silent "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
+  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "grant_type=refresh_token" \
+  --data-urlencode "refresh_token=$REFRESH_TOKEN" \
+  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID")
+
+export ACCESS_TOKEN=$(echo $RESPONSE | jq -r '.access_token')
+export REFRESH_TOKEN=$(echo $RESPONSE | jq -r '.refresh_token')
+# Then retry the failed step
+```
+
+If the refresh also returns 401 → both tokens are expired. Re-authenticate from Step 1 using `USERNAME` and `PASSWORD`.
+
 ---
 
 ## API Execution Rules
