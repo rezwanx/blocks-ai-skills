@@ -1,3 +1,10 @@
+---
+name: identity-access
+description: "Use this skill for any request involving login, MFA setup, user creation, role/permission management, organization switching, SSO/OIDC configuration, session handling, password recovery, CAPTCHA, or access control on SELISE Blocks. Maps natural language intents to the correct flow or action and enforces security best practices."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # Identity & Access Skill
 
 ## Purpose
@@ -5,6 +12,23 @@
 Handles all authentication, user management, role/permission management, MFA, and organization operations for SELISE Blocks via the IDP v1 API.
 
 Must run get-token before any other action in a session.
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Build a login page with email/password and Google SSO"
+- "Set up MFA with TOTP for admin users"
+- "Create an admin role with full permissions"
+- "Show me active user sessions with logout button"
+- "Build a forgot password flow"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 

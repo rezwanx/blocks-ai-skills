@@ -39,7 +39,7 @@ core/decision.md          ← Which domain? (identity-access, data-management, a
 flows/*.md                ← Is there a multi-step flow for this? (login-flow, define-schema-flow, …)
     │
     ▼
-skill.md intent map       ← Which single action handles this?
+SKILL.md intent map       ← Which single action handles this?
     │
     ▼
 actions/*.md              ← Exact curl, request body, response shape, error handling
@@ -62,7 +62,7 @@ Each domain follows this layout:
 ```
 skills/
 └── domain-name/
-    ├── skill.md        ← intent map: "user wants X → use action Y or flow Z"
+    ├── SKILL.md        ← intent map: "user wants X → use action Y or flow Z"
     ├── contracts.md    ← all request/response TypeScript types for this domain
     ├── frontend.md     ← React module structure, hooks, component patterns
     ├── flows/          ← multi-step workflows (login, schema creation, KB setup, …)
@@ -193,16 +193,24 @@ There are two ways to use this repository.
 
 ---
 
-### Option A — Use directly (recommended for new Blocks projects)
+### Option A — Install into your project (recommended)
 
-Clone this repo as the working directory for your Blocks project. Claude Code reads the `CLAUDE.md` automatically and loads all skills.
+Copy the skills into your project's `.claude/skills/` directory. Claude Code auto-discovers skills here — no extra configuration needed.
 
-#### 1. Clone the repository
+#### 1. Clone and install
 
 ```bash
-git clone https://github.com/rezwanx/blocks-ai-skills.git my-project
-cd my-project
+git clone https://github.com/rezwanx/blocks-ai-skills.git /tmp/blocks-ai-skills
+cd your-project
+
+# Run the install script
+bash /tmp/blocks-ai-skills/scripts/install.sh
 ```
+
+This copies:
+- All domain skill folders → `.claude/skills/`
+- Core files (decision routing, conventions, runtime) → `.claude/skills/core/`
+- `CLAUDE.md` → project root (if not already present)
 
 #### 2. Set up your environment
 
@@ -214,6 +222,20 @@ Create a `.env` file using the template in the [Environment Variables](#environm
 claude
 ```
 
+Claude Code auto-discovers all skills in `.claude/skills/` at startup. It loads only names and descriptions initially, then loads full skill content on demand when your request matches a domain.
+
+---
+
+### Option B — Clone as project root (for new Blocks projects)
+
+Use this repo directly as your project. Claude Code reads the `CLAUDE.md` which routes to the `skills/` directory.
+
+```bash
+git clone https://github.com/rezwanx/blocks-ai-skills.git my-project
+cd my-project
+claude
+```
+
 At session start, Claude will automatically:
 1. Check that the Cloud Portal prerequisites are complete
 2. Verify your `.env` variables
@@ -222,9 +244,9 @@ At session start, Claude will automatically:
 
 ---
 
-### Option B — Add to an existing project
+### Option C — Fetch remotely (no local install)
 
-If you already have a project, create a `CLAUDE.md` in its root with the following content. Claude will fetch all skills remotely on every session start — nothing is cloned or copied locally.
+If you don't want to copy files, create a `CLAUDE.md` in your project root with the following content. Claude fetches skills from GitHub on demand.
 
 ```markdown
 # Blocks AI Skills
@@ -237,7 +259,7 @@ At the start of every session, you MUST fetch and follow the skills from the rem
 
 1. Fetch the CLAUDE.md from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/CLAUDE.md` and follow its instructions.
 2. Fetch the skill index from `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/index.md` to understand available domains and skills.
-3. Fetch individual skill files on-demand as needed based on the user's request (e.g., `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/<domain>/skill.md`).
+3. Fetch individual skill files on-demand as needed based on the user's request (e.g., `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/skills/<domain>/SKILL.md`).
 
 ## Rules
 
@@ -248,7 +270,19 @@ At the start of every session, you MUST fetch and follow the skills from the rem
 - All file paths referenced inside the fetched CLAUDE.md (e.g. `skills/identity-access/actions/get-token.md`) are relative to `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main/` — resolve them with WebFetch, not as local files.
 ```
 
-That's it. Run `claude` in your project — it will load all skills from GitHub automatically.
+> **Trade-off:** Option C uses WebFetch on every session, consuming context tokens. Option A is faster and works offline.
+
+---
+
+## Quick Start
+
+Once your session is ready, try these prompts:
+
+1. **"Build a login page with email/password"** — Generates the full auth flow: get-token API call, React login form with validation, token storage, and redirect logic.
+2. **"Create a schema for blog posts with title, body, and tags"** — Defines a UDS schema via API, then generates TypeScript types and a CRUD hook for the collection.
+3. **"Set up an AI agent with a knowledge base"** — Creates an agent, uploads documents for RAG, and generates a streaming chat UI component.
+4. **"Add email notifications for new signups"** — Configures an email template and wires up the send-email API call triggered after user creation.
+5. **"Add role-based access control with admin and viewer roles"** — Creates roles and permissions via API, then generates a `usePermissions` hook and protected route wrappers.
 
 ---
 

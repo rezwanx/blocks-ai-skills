@@ -1,8 +1,31 @@
+---
+name: lmt
+description: "Use this skill for viewing service logs, filtering logs by date, streaming live logs, browsing distributed traces, or analyzing API performance and HTTP status distributions on SELISE Blocks."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # LMT Skill — Logging, Monitoring & Tracing
 
 ## Purpose
 
 Provides access to service logs, distributed traces, and performance analytics for SELISE Blocks projects. Used by developers and platform admins to debug, monitor, and analyze running services.
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Show me the last 100 logs for the auth service"
+- "Stream live logs while I test the login endpoint"
+- "Find all traces with errors from the past hour"
+- "Show API latency analytics for the data service"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 

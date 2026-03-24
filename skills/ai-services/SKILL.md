@@ -1,3 +1,10 @@
+---
+name: ai-services
+description: "Use this skill for creating AI agents, setting up knowledge bases (RAG), configuring LLM models, building tools (API/MCP), managing conversations, streaming chat, or querying LLMs directly on SELISE Blocks. Note: this API uses snake_case throughout."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # AI Services Skill
 
 ## Purpose
@@ -7,6 +14,23 @@ Handles all AI agent management, knowledge base ingestion, tool configuration, m
 > **Important:** This API uses **snake_case** (Python/FastAPI style) throughout. All request and response fields use `snake_case` — e.g., `project_key`, `agent_id`, `is_success`, `kb_ids`, `tool_ids`. Do NOT use camelCase when constructing requests or reading responses.
 
 Must run get-token before any action in a session.
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Create an AI customer support agent with a knowledge base"
+- "Upload product docs as a knowledge base for RAG"
+- "Configure GPT-4 as the model for my agent"
+- "Build a chat interface that streams responses from an agent"
+- "Set up an MCP tool so the agent can call external APIs"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 

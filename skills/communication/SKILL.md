@@ -1,3 +1,10 @@
+---
+name: communication
+description: "Use this skill for sending emails (template-based or ad-hoc), managing in-app notifications (send, read, mark-read), and creating/managing email templates on SELISE Blocks."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # Communication Skill
 
 ## Purpose
@@ -5,6 +12,22 @@
 Handles all email sending, in-app notifications, and email template management for SELISE Blocks via the Communication v1 API.
 
 Covers three sub-domains: Mail (send and retrieve emails), Notifier (push in-app notifications), and Template (create and manage email templates).
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Send a welcome email to new users using a template"
+- "Build a notification bell with unread count"
+- "Create an HTML email template for password resets"
+- "Show me all sent emails in the mailbox"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 

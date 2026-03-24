@@ -17,15 +17,15 @@ Read this file on every user request. Use the tables below to determine internal
 |-------------------------|------|
 | Set up a new project, install dependencies, create main.tsx / App.tsx / http client | `core/app-scaffold.md` |
 | Set up the app shell, sidebar, layout, header, profile menu, permissions hook | `core/app-layout.md` |
-| Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access/skill.md` |
-| Send email, push notification, in-app notification, messaging, email templates | `communication/skill.md` |
-| Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management/skill.md` |
-| Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization/skill.md` |
-| AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services/skill.md` |
-| View service logs, distributed traces, API performance analytics, live log streaming | `lmt/skill.md` |
+| Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access/SKILL.md` |
+| Send email, push notification, in-app notification, messaging, email templates | `communication/SKILL.md` |
+| Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management/SKILL.md` |
+| Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization/SKILL.md` |
+| AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services/SKILL.md` |
+| View service logs, distributed traces, API performance analytics, live log streaming | `lmt/SKILL.md` |
 | CI/CD, infrastructure, security scanning | `devsecops` *(not implemented)* |
 
-If the request spans multiple domains, handle one domain at a time starting with `identity-access` (authentication must always come first).
+If the request spans multiple domains, read `core/execution-context.md` for cross-domain orchestration rules and dependency ordering.
 
 ---
 
@@ -62,7 +62,7 @@ Before picking individual actions, check if the request maps to an existing flow
 | View service logs | `lmt/flows/view-logs-flow.md` |
 | Analyze traces and performance | `lmt/flows/view-traces-flow.md` |
 
-If no flow matches, fall back to the intent mapping table in `skill.md`.
+If no flow matches, fall back to the intent mapping table in `SKILL.md`.
 
 ---
 

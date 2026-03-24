@@ -465,3 +465,83 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 | `Public` | Anyone can read/write the schema |
 | `Private` | Only authenticated users can access |
 | `RoleBased` | Access controlled by access policies |
+
+---
+
+## GraphQL Queries
+
+All GraphQL requests go to: `POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql`
+
+Headers are the same as all authenticated requests (Bearer token + x-blocks-key + Content-Type: application/json).
+
+### Query (Read)
+
+```bash
+curl -X POST "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "query { products(page: 1, pageSize: 10) { data { _id name price category } totalCount } }"
+  }'
+```
+
+Response:
+```json
+{
+  "data": {
+    "products": {
+      "data": [
+        { "_id": "abc123", "name": "Widget", "price": 29.99, "category": "tools" }
+      ],
+      "totalCount": 1
+    }
+  }
+}
+```
+
+### Query with Filters
+
+```json
+{
+  "query": "query { products(page: 1, pageSize: 10, filter: { category: \"tools\", price_gte: 10 }) { data { _id name price } totalCount } }"
+}
+```
+
+Filter operators: `_eq`, `_ne`, `_gt`, `_gte`, `_lt`, `_lte`, `_in`, `_nin`, `_regex`
+
+### Mutation (Insert)
+
+```json
+{
+  "query": "mutation { createProducts(input: { name: \"New Widget\", price: 19.99, category: \"tools\" }) { _id name price } }"
+}
+```
+
+> Mutation name pattern: `create{CollectionName}` for insert, `update{CollectionName}` for update, `delete{CollectionName}` for delete. The collection name is PascalCase and matches the schema's `CollectionName`.
+
+### Mutation (Update)
+
+```json
+{
+  "query": "mutation { updateProducts(id: \"abc123\", input: { price: 24.99 }) { _id name price } }"
+}
+```
+
+### Mutation (Delete)
+
+```json
+{
+  "query": "mutation { deleteProducts(id: \"abc123\") { _id } }"
+}
+```
+
+### Frontend Usage (TanStack Query)
+
+```typescript
+// In generated hooks, use the graphql endpoint via the http client:
+const response = await httpClient.post(
+  `/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/graphql`,
+  { query: `query { products(page: 1, pageSize: 10) { data { _id name price } totalCount } }` }
+);
+```

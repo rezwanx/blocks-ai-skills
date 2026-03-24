@@ -21,7 +21,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Identity & Access
 
-- skills/identity-access/skill.md
+- skills/identity-access/SKILL.md
 - skills/identity-access/contracts.md
 - skills/identity-access/frontend.md
 
@@ -102,7 +102,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## AI Services
 
-- skills/ai-services/skill.md
+- skills/ai-services/SKILL.md
 - skills/ai-services/contracts.md
 - skills/ai-services/frontend.md
 
@@ -157,7 +157,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## LMT (Logging, Monitoring & Tracing)
 
-- skills/lmt/skill.md
+- skills/lmt/SKILL.md
 - skills/lmt/contracts.md
 - skills/lmt/frontend.md
 
@@ -178,7 +178,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Data Management
 
-- skills/data-management/skill.md
+- skills/data-management/SKILL.md
 - skills/data-management/contracts.md
 - skills/data-management/frontend.md
 
@@ -244,7 +244,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Localization
 
-- skills/localization/skill.md
+- skills/localization/SKILL.md
 - skills/localization/contracts.md
 - skills/localization/frontend.md
 
@@ -286,7 +286,7 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 ## Communication
 
-- skills/communication/skill.md
+- skills/communication/SKILL.md
 - skills/communication/contracts.md
 - skills/communication/frontend.md
 

@@ -34,6 +34,23 @@ Examples:
 
 ---
 
+## API Naming Conventions by Domain
+
+Each SELISE Blocks service uses a different naming convention. **Always match the exact convention for the domain you're calling.**
+
+| Domain | Service | Request/Response Fields | Example |
+|--------|---------|------------------------|---------|
+| identity-access | IDP | camelCase | `userName`, `isActive`, `roleId` |
+| data-management | UDS | **PascalCase** | `ProjectKey`, `SchemaId`, `CollectionName` |
+| ai-services | blocksai-api | **snake_case** | `project_key`, `agent_id`, `kb_ids` |
+| communication | communication | camelCase | `templateId`, `mailTo`, `subject` |
+| localization | uilm | camelCase | `languageCode`, `keyName`, `moduleName` |
+| lmt | lmt | camelCase | `serviceName`, `dateFrom`, `dateTo` |
+
+> **Critical:** Never mix conventions. Sending `projectKey` (camelCase) to UDS will fail — it expects `ProjectKey` (PascalCase). Sending `ProjectKey` to blocksai-api will fail — it expects `project_key` (snake_case). When in doubt, read the domain's `contracts.md`.
+
+---
+
 ## API Conventions
 
 * Use REST-style endpoints
@@ -79,7 +96,7 @@ Each feature must follow:
 
 ```
 feature/
-├── skill.md
+├── SKILL.md
 ├── contracts.md
 ├── frontend.md      (optional)
 ├── actions/

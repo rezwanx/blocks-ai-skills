@@ -135,6 +135,14 @@ Once authenticated and context loaded, confirm to the user:
 
 ---
 
+## Skill File Paths
+
+Skill files may be located in either `skills/` (if this repo is the project root) or `.claude/skills/` (if installed into another project via `install.sh`).
+
+**Resolution order:** When this document references `skills/...`, check `.claude/skills/` first, then fall back to `skills/`. Inside SKILL.md files, all paths use `../core/` to reach core files — this works regardless of whether skills are in `skills/` or `.claude/skills/`.
+
+---
+
 ## How to Use These Skills
 
 **Skills are internal routing knowledge — never present them as a menu or list of options.**
@@ -165,8 +173,8 @@ Read only the specific flow file (e.g. `skills/identity-access/flows/login-flow.
 - `skills/{domain}/contracts.md` — only when constructing request/response types
 - `skills/{domain}/frontend.md` — only when generating domain-specific frontend code
 
-**4. Read `skills/{domain}/skill.md` only if no flow matched**
-The intent map in skill.md maps requests to individual actions. Use it as a fallback when no flow covers the request.
+**4. Read `skills/{domain}/SKILL.md` only if no flow matched**
+The intent map in SKILL.md maps requests to individual actions. Use it as a fallback when no flow covers the request.
 
 ---
 

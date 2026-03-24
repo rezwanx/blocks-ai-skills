@@ -1,3 +1,10 @@
+---
+name: data-management
+description: "Use this skill for defining data schemas, querying/mutating data via GraphQL, uploading files (S3/DMS), managing access policies, setting field validations, migrating schemas, or configuring data sources on SELISE Blocks."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # Data Management Skill
 
 ## Purpose
@@ -5,6 +12,23 @@
 Handles all data schema definitions, database connections, file storage, data access control, and validation for SELISE Blocks via the UDS v1 API.
 
 Must run get-token (identity-access) before any action in a session.
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Define a schema for a products collection with name, price, and category fields"
+- "Query all orders via GraphQL with pagination"
+- "Upload a profile image to S3 and store the URL"
+- "Set up role-based access policies on the invoices schema"
+- "Add required validation to the email field"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 

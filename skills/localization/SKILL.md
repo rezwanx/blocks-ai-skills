@@ -1,8 +1,32 @@
+---
+name: localization
+description: "Use this skill for setting up languages, managing translation keys, AI-powered auto-translation, importing/exporting translation files, or configuring localization modules on SELISE Blocks."
+user-invocable: false
+blocks-version: "1.0.3"
+---
+
 # Localization Skill
 
 ## Purpose
 
 Handles all UI localization management for SELISE Blocks via the UILM v1 API. Covers language setup, translation module and key management, AI-assisted translation, file import/export, and webhook configuration.
+
+---
+
+## When to Use
+
+Example prompts that should route here:
+- "Set up English and German as project languages"
+- "Add translation keys for the login page"
+- "Auto-translate all missing German translations using AI"
+- "Import a JSON translation file for French"
+- "Export all translations for the dashboard module"
+
+---
+
+## Execution Context
+
+Before executing any action or flow from this skill, read `../core/execution-context.md` for the required supporting files, load order, and cross-domain orchestration rules.
 
 ---
 
