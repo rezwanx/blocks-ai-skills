@@ -9,7 +9,7 @@ Reload the GraphQL schema configuration for a project. Must be called after any 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/configurations/{projectKey}/reload
+POST $VITE_API_BASE_URL/uds/v1/configurations/reload
 ```
 
 ---
@@ -17,20 +17,12 @@ POST $VITE_API_BASE_URL/uds/v1/configurations/{projectKey}/reload
 ## curl
 
 ```bash
-curl --location --request POST "$VITE_API_BASE_URL/uds/v1/configurations/$VITE_PROJECT_SLUG/reload" \
+curl --location --request POST "$VITE_API_BASE_URL/uds/v1/configurations/reload" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
-No request body required.
-
----
-
-## Path Parameters
-
-| Parameter | Type | Required | Notes |
-|-----------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+No request body or path parameters required. The project is identified from the authentication context.
 
 ---
 
@@ -55,7 +47,6 @@ No request body required.
 | 400 | No data source registered for project | Call `add-data-source` first |
 | 401 | Invalid or expired token | Run get-token to refresh |
 | 403 | Missing `cloudadmin` role | Check user role in Cloud Portal → People |
-| 404 | Wrong projectKey | Verify `$VITE_PROJECT_SLUG` |
 | 500 | MongoDB connection failed | Check data source connection string via `get-data-source` |
 
 ---

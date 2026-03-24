@@ -200,6 +200,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/data-management/actions/update-schema-info.md
 - skills/data-management/actions/save-schema-fields.md
 - skills/data-management/actions/get-unadapted-changes.md
+- skills/data-management/actions/get-schemas-aggregation.md
+- skills/data-management/actions/get-schema-collections.md
+- skills/data-management/actions/get-schema-by-collection.md
 
 ### DataSource
 - skills/data-management/actions/get-data-source.md
@@ -233,10 +236,10 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/data-management/actions/get-dms-files.md
 - skills/data-management/actions/upload-to-dms.md
 - skills/data-management/actions/create-folder.md
+- skills/data-management/actions/delete-folder.md
 
 ### Configuration
 - skills/data-management/actions/reload-configuration.md
-- skills/data-management/actions/add-server-config.md
 
 ### DataManage
 - skills/data-management/actions/get-mock-data.md

@@ -31,7 +31,7 @@ Check if a connection already exists to avoid creating a duplicate.
 
 ```
 Action: get-data-source
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 **Branch:**
@@ -79,7 +79,7 @@ Apply the new database connection by reloading the GraphQL schema.
 
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 **Branch:**

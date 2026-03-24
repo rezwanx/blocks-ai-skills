@@ -1,15 +1,15 @@
-# Action: get-schema
+# Action: get-schema-by-collection
 
 ## Purpose
 
-Get a single schema by its ID, including all defined fields.
+Retrieve the details of a specific Entity-type schema by its collection name, including all field definitions. Use this when you know the collection name but not the schema ID.
 
 ---
 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/get-by-id
+GET $VITE_API_BASE_URL/uds/v1/schemas/info-by-name
 ```
 
 ---
@@ -17,7 +17,7 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/get-by-id
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$VITE_API_BASE_URL/uds/v1/schemas/info-by-name?schemaName=products&projectKey=$VITE_PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
@@ -26,9 +26,9 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&proje
 
 ## Query Parameters
 
-| Parameter | Type | Required | Notes |
-|-----------|------|----------|-------|
-| id | string | yes | Schema ID returned from define-schema or get-schemas |
+| Param | Type | Required | Notes |
+|-------|------|----------|-------|
+| schemaName | string | yes | The collection name (e.g. `products`, `orders`) |
 | projectKey | string | yes | `$VITE_PROJECT_SLUG` |
 
 ---
@@ -41,34 +41,26 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&proje
   "message": "Success",
   "httpStatusCode": 200,
   "data": {
-    "id": "schema-id-1",
-    "schemaName": "Product",
+    "name": "Product",
     "collectionName": "products",
-    "schemaType": "Collection",
     "description": "Product catalog",
+    "type": "Entity",
     "fields": [
       {
         "name": "title",
         "type": "String",
-        "isArray": false,
         "isRequired": true,
-        "description": "Product title",
-        "defaultValue": null
+        "isArray": false
       },
       {
         "name": "price",
         "type": "Number",
-        "isArray": false,
         "isRequired": true,
-        "description": "Product price",
-        "defaultValue": "0"
+        "isArray": false
       }
-    ],
-    "projectKey": "my-project",
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-02T00:00:00Z"
+    ]
   },
-  "errors": {}
+  "errors": []
 }
 ```
 
@@ -78,6 +70,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&proje
 
 | Status | Cause | Action |
 |--------|-------|--------|
+| 400 | Invalid collection name | Verify the collection name from `get-schema-collections` or `get-schemas` |
 | 401 | Invalid or expired token | Run get-token to refresh |
 | 403 | Missing `cloudadmin` role | Check user role in Cloud Portal → People |
-| 404 | Schema not found | Verify schema ID from get-schemas |
+| 404 | Collection not found | Verify the collection exists using `get-schema-collections` |

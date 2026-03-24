@@ -48,6 +48,9 @@ Use this table to route user requests. Check `flows/` first — if a flow covers
 | Add validation rules to fields / validate form inputs server-side | `actions/create-validation.md` |
 | Reload GraphQL after schema changes | `actions/reload-configuration.md` |
 | Get list of schemas | `actions/get-schemas.md` |
+| Get schemas with access level summary | `actions/get-schemas-aggregation.md` |
+| List all Entity-type schema collections | `actions/get-schema-collections.md` |
+| Get schema details by collection name | `actions/get-schema-by-collection.md` |
 | Get file metadata | `actions/get-files-info.md` |
 | Get a specific schema | `actions/get-schema.md` |
 | Delete a schema | `actions/delete-schema.md` |
@@ -74,7 +77,7 @@ Use this table to route user requests. Check `flows/` first — if a flow covers
 | Update file metadata | `actions/update-file-info.md` |
 | Upload file to DMS | `actions/upload-to-dms.md` |
 | Create a DMS folder | `actions/create-folder.md` |
-| Register a server config | `actions/add-server-config.md` |
+| Delete a DMS folder | `actions/delete-folder.md` |
 | Get test / mock data | `actions/get-mock-data.md` |
 | Delete mock data | `actions/delete-mock-data.md` |
 
@@ -114,6 +117,9 @@ All endpoints are prefixed with: `$VITE_API_BASE_URL/uds/v1`
 | update-schema-info | actions/update-schema-info.md | Update field definitions for a schema |
 | save-schema-fields | actions/save-schema-fields.md | Add or update a single field on a schema |
 | get-unadapted-changes | actions/get-unadapted-changes.md | Get pending schema changes not yet applied |
+| get-schemas-aggregation | actions/get-schemas-aggregation.md | List schemas with access level aggregation summary |
+| get-schema-collections | actions/get-schema-collections.md | List all Entity-type schema collections |
+| get-schema-by-collection | actions/get-schema-by-collection.md | Get schema details by collection name |
 
 ### DataSource
 
@@ -159,13 +165,13 @@ All endpoints are prefixed with: `$VITE_API_BASE_URL/uds/v1`
 | get-dms-files | actions/get-dms-files.md | List files and folders in DMS |
 | upload-to-dms | actions/upload-to-dms.md | Upload a file to the Document Management System |
 | create-folder | actions/create-folder.md | Create a folder in DMS |
+| delete-folder | actions/delete-folder.md | Delete a folder from DMS |
 
 ### Configuration
 
 | Action | File | Description |
 |--------|------|-------------|
 | reload-configuration | actions/reload-configuration.md | Reload GraphQL schema after schema changes |
-| add-server-config | actions/add-server-config.md | Register a server configuration |
 
 ### DataManage
 

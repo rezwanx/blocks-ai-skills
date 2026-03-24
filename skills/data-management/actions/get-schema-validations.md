@@ -9,7 +9,7 @@ Get all validation rules defined for a specific schema. Returns validations for 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-validations/schema/{schemaId}
+GET $VITE_API_BASE_URL/uds/v1/data-validations/by-schema-id
 ```
 
 ---
@@ -17,18 +17,19 @@ GET $VITE_API_BASE_URL/uds/v1/data-validations/schema/{schemaId}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/schema/$SCHEMA_ID" \
+curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/by-schema-id?schemaId=$SCHEMA_ID&projectKey=$VITE_PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
 ---
 
-## Path Parameters
+## Query Parameters
 
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | schemaId | string | yes | Schema ID from define-schema or get-schemas |
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
 
 ---
 

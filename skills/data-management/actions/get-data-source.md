@@ -9,7 +9,7 @@ Get the database connection configuration (data source) registered for a project
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-sources/{projectKey}/get
+GET $VITE_API_BASE_URL/uds/v1/data-sources/get
 ```
 
 ---
@@ -17,18 +17,12 @@ GET $VITE_API_BASE_URL/uds/v1/data-sources/{projectKey}/get
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-sources/$VITE_PROJECT_SLUG/get" \
+curl --location "$VITE_API_BASE_URL/uds/v1/data-sources/get" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
----
-
-## Path Parameters
-
-| Parameter | Type | Required | Notes |
-|-----------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+No path parameters required. The project is identified from the authentication context.
 
 ---
 
@@ -61,3 +55,4 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-sources/$VITE_PROJECT_SLUG/get" 
 | 401 | Invalid or expired token | Run get-token to refresh |
 | 403 | Missing `cloudadmin` role | Check user role in Cloud Portal → People |
 | 404 | No data source registered for this project | Call `add-data-source` to register one |
+| 500 | Internal server error | Verify project exists and is active |

@@ -37,7 +37,7 @@ x-blocks-key: $VITE_X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
-> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/ddoxpd/gateway`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
+> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/$VITE_PROJECT_SLUG/gateway`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
 
 The GraphQL schema is auto-generated from your schema definitions. Each collection gets:
 - A query to list records (with filter, sort, pagination)
@@ -64,7 +64,7 @@ If the schema exists → proceed. If not → run `define-schema-flow` first.
 If you have pending unadapted changes:
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 ---

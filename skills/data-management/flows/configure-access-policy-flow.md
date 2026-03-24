@@ -35,7 +35,7 @@ Before changing anything, check what policies currently exist.
 ```
 Action: get-access-policies
 Input:
-  schemaName = "<SchemaName>"  (path param)
+  schemaName = "<SchemaName>"  (query param)
   projectKey = $VITE_PROJECT_SLUG  (query param)
 ```
 
@@ -110,7 +110,7 @@ Confirm the policies were created correctly.
 ```
 Action: get-access-policies
 Input:
-  schemaName = "<SchemaName>"  (path param)
+  schemaName = "<SchemaName>"  (query param)
   projectKey = $VITE_PROJECT_SLUG  (query param)
 ```
 

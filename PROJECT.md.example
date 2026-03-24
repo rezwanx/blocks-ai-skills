@@ -25,7 +25,7 @@
 | MFA | email OTP |
 | CAPTCHA | reCaptcha |
 | Registration type | admin-created |
-| OIDC Client ID | d45f37a6-7f4a-4f38-9a13-06d74531d7ef |
+| OIDC Client ID | your-oidc-client-id-here |
 | OIDC Redirect URI | http://localhost:5173/auth/callback |
 
 ---

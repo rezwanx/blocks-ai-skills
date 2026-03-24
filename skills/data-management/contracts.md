@@ -130,6 +130,40 @@ Used to add or update a single field without replacing all fields.
 | search | string | no | Search by schema name |
 | projectKey | string | yes | `$VITE_PROJECT_SLUG` |
 
+### GetSchemasAggregationQueryParams
+
+| Param | Type | Required | Notes |
+|-------|------|----------|-------|
+| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| PageNo | integer | no | Default: 1 |
+| PageSize | integer | no | Default: 20 |
+| Keyword | string | no | General search keyword |
+| SchemaName | string | no | Filter by schema name |
+| CollectionName | string | no | Filter by collection name |
+| SchemaType | enum | no | `Entity` or `Dto` |
+| SortBy | string | no | Field name to sort by |
+| SortDescending | boolean | no | Sort direction — `true` for descending |
+
+### GetSchemaCollectionsQueryParams
+
+| Param | Type | Required | Notes |
+|-------|------|----------|-------|
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+
+### GetSchemaByCollectionQueryParams
+
+| Param | Type | Required | Notes |
+|-------|------|----------|-------|
+| schemaName | string | yes | Collection name (e.g. `products`) |
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+
+### SchemaType Enum
+
+| Value | Description |
+|-------|-------------|
+| `Entity` | Standard entity schema backed by a MongoDB collection |
+| `Dto` | Data transfer object schema (no backing collection) |
+
 ### GetUnadaptedChangesQueryParams
 
 | Param | Type | Required | Notes |
@@ -377,6 +411,22 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 }
 ```
 
+### DeleteFolderRequest
+
+```json
+{
+  "folderId": "string",
+  "configurationName": "string",
+  "projectKey": "string"
+}
+```
+
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| folderId | string | yes | ID of the folder to delete |
+| configurationName | string | no | Optional storage configuration name |
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+
 ### UpdateFileAdditionalInfoRequest
 
 ```json
@@ -412,31 +462,17 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 
 ## Configuration
 
-### ReloadConfigurationPathParams
+### ReloadConfiguration
 
-| Param | Type | Required | Notes |
-|-------|------|----------|-------|
-| projectKey | path | yes | `$VITE_PROJECT_SLUG` |
-
-### AddServerConfigRequest
-
-```json
-{
-  "ServerName": "string",
-  "ServerUrl": "string",
-  "ProjectKey": "string"
-}
-```
+No request body or path parameters required. The project is identified from the authentication context (Bearer token + x-blocks-key header).
 
 ---
 
 ## DataManage
 
-### GetMockDataQueryParams
+### GetMockData
 
-| Param | Type | Required | Notes |
-|-------|------|----------|-------|
-| projectKey | path | yes | `$VITE_PROJECT_SLUG` |
+No path parameters required. The project is identified from the authentication context (Bearer token + x-blocks-key header).
 
 ### DeleteMockDataRequest
 

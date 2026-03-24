@@ -9,7 +9,7 @@ Delete a validation rule set by its ID. This removes all validation rules associ
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/uds/v1/data-validations/{id}
+DELETE $VITE_API_BASE_URL/uds/v1/data-validations
 ```
 
 ---
@@ -17,18 +17,19 @@ DELETE $VITE_API_BASE_URL/uds/v1/data-validations/{id}
 ## curl
 
 ```bash
-curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/data-validations/$VALIDATION_ID" \
+curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/data-validations?validationId=$VALIDATION_ID&projectKey=$VITE_PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
 ---
 
-## Path Parameters
+## Query Parameters
 
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
-| id | string | yes | Validation ID to delete |
+| validationId | string | yes | Validation ID to delete |
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
 
 ---
 

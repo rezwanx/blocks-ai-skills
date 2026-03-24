@@ -9,7 +9,7 @@ Permanently delete a schema and all its field definitions by ID. This does not d
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/uds/v1/schemas/{id}
+DELETE $VITE_API_BASE_URL/uds/v1/schemas
 ```
 
 ---
@@ -17,18 +17,19 @@ DELETE $VITE_API_BASE_URL/uds/v1/schemas/{id}
 ## curl
 
 ```bash
-curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/schemas/$SCHEMA_ID" \
+curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/schemas?id=$SCHEMA_ID&projectKey=$VITE_PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
 ```
 
 ---
 
-## Path Parameters
+## Query Parameters
 
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | id | string | yes | Schema ID to delete |
+| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
 
 ---
 

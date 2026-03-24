@@ -55,38 +55,66 @@ const BASE = '/uds/v1'
 
 // Schema
 export const getSchemas = (params) => https.get(`${BASE}/schemas`, { params })
+export const getSchemaById = (params) => https.get(`${BASE}/schemas/get-by-id`, { params })
+export const getSchemasAggregation = (params) => https.get(`${BASE}/schemas/aggregation`, { params })
+export const getSchemaCollections = (params) => https.get(`${BASE}/schemas/info`, { params })
+export const getSchemaByCollection = (params) => https.get(`${BASE}/schemas/info-by-name`, { params })
 export const defineSchema = (payload) => https.post(`${BASE}/schemas/define`, payload)
-export const saveSchemaInfo = (payload) => https.post(`${BASE}/schemas/save-info`, payload)
-export const saveSchemaFields = (payload) => https.post(`${BASE}/schemas/save-fields`, payload)
-export const reloadConfiguration = (projectKey: string) =>
-  https.post(`${BASE}/configurations/${projectKey}/reload`)
+export const updateSchema = (payload) => https.put(`${BASE}/schemas/define`, payload)
+export const saveSchemaInfo = (payload) => https.post(`${BASE}/schemas/info`, payload)
+export const updateSchemaInfo = (payload) => https.put(`${BASE}/schemas/info`, payload)
+export const saveSchemaFields = (payload) => https.post(`${BASE}/schemas/fields`, payload)
+export const deleteSchema = (params) => https.delete(`${BASE}/schemas`, { params })
+export const getUnadaptedChanges = (params) => https.get(`${BASE}/schemas/unadapted-change-logs`, { params })
+export const reloadConfiguration = () =>
+  https.post(`${BASE}/configurations/reload`)
 
 // DataSource
-export const addDataSource = (payload) => https.post(`${BASE}/data-source/add`, payload)
-export const updateDataSource = (payload) => https.put(`${BASE}/data-source/update`, payload)
+export const getDataSource = () => https.get(`${BASE}/data-sources/get`)
+export const addDataSource = (payload) => https.post(`${BASE}/data-sources/add`, payload)
+export const updateDataSource = (payload) => https.put(`${BASE}/data-sources/update`, payload)
 
 // DataAccess
-export const changeSecurity = (payload) => https.post(`${BASE}/schemas/change-security`, payload)
-export const createAccessPolicy = (payload) => https.post(`${BASE}/access-policies`, payload)
+export const changeSecurity = (payload) => https.post(`${BASE}/data-access/security/change`, payload)
+export const createAccessPolicy = (payload) => https.post(`${BASE}/data-access/policy/create`, payload)
+export const updateAccessPolicy = (payload) => https.post(`${BASE}/data-access/policy/update`, payload)
+export const deleteAccessPolicy = (params) => https.delete(`${BASE}/data-access/policy/delete`, { params })
+export const getAccessPolicies = (params) => https.get(`${BASE}/data-access/policy/get`, { params })
 
 // DataValidation
-export const createValidation = (payload) => https.post(`${BASE}/validations`, payload)
-export const getSchemaValidations = (schemaId: string) =>
-  https.get(`${BASE}/validations/schema/${schemaId}`)
+export const getValidations = (params) => https.get(`${BASE}/data-validations`, { params })
+export const getValidationById = (params) => https.get(`${BASE}/data-validations/get-by-id`, { params })
+export const createValidation = (payload) => https.post(`${BASE}/data-validations`, payload)
+export const updateValidation = (payload) => https.put(`${BASE}/data-validations`, payload)
+export const deleteValidation = (params) => https.delete(`${BASE}/data-validations`, { params })
+export const getSchemaValidations = (params) =>
+  https.get(`${BASE}/data-validations/by-schema-id`, { params })
+export const getFieldValidation = (params) =>
+  https.get(`${BASE}/data-validations/by-schema-and-field`, { params })
 
 // Files — S3 pre-signed upload (two-step)
 export const getPreSignedUploadUrl = (payload) =>
-  https.post(`${BASE}/Files/GetPreSignedUploadUrl`, payload)
+  https.post(`${BASE}/Files/GetPreSignedUrlForUpload`, payload)
 export const uploadToS3 = (url: string, file: File) =>
   axios.put(url, file, { headers: { 'Content-Type': file.type } })  // direct S3 — no auth header
-export const updateFileInfo = (payload) => https.put(`${BASE}/Files/UpdateFileInfo`, payload)
+export const updateFileInfo = (payload) => https.post(`${BASE}/Files/updateFileAdditionalInfo`, payload)
 
-// Files — DMS upload
+// Files — DMS upload & management
 export const uploadToDms = (formData: FormData) =>
   https.post(`${BASE}/Files/UploadFile`, formData)  // axios auto-sets multipart Content-Type
-export const getDmsFiles = (payload) => https.post(`${BASE}/Files/GetFiles`, payload)
+export const uploadToLocalStorage = (formData: FormData) =>
+  https.post(`${BASE}/Files/UploadFileToLocalStorage`, formData)
+export const getFile = (params) => https.get(`${BASE}/Files/GetFile`, { params })
+export const getFiles = (payload) => https.post(`${BASE}/Files/GetFiles`, payload)
+export const getFilesInfo = (payload) => https.post(`${BASE}/Files/GetFilesInfo`, payload)
+export const getDmsFiles = (payload) => https.post(`${BASE}/Files/GetDmsFileAndFolder`, payload)
 export const createFolder = (payload) => https.post(`${BASE}/Files/CreateFolder`, payload)
-export const deleteFile = (payload) => https.delete(`${BASE}/Files/Delete`, { data: payload })
+export const deleteFile = (payload) => https.post(`${BASE}/Files/DeleteFile`, payload)
+export const deleteFolder = (payload) => https.post(`${BASE}/Files/DeleteFolder`, payload)
+
+// DataManage
+export const getMockData = () => https.get(`${BASE}/data-manage/mock-data`)
+export const deleteMockData = (payload) => https.post(`${BASE}/data-manage/mock-data`, payload)
 ```
 
 ---

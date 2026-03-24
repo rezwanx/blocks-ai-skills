@@ -133,7 +133,7 @@ If changes are listed → must reload before they take effect in GraphQL.
 
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 This regenerates the GraphQL schema. Takes 2–5 seconds. Any active GraphQL connections should be re-established after reload.

@@ -35,7 +35,7 @@ Check whether a database connection exists.
 
 ```
 Action: get-data-source
-Input:  projectKey = $VITE_PROJECT_SLUG
+Input:  (no parameters — project identified from auth context)
 ```
 
 **Branch:**
@@ -59,7 +59,7 @@ On success → continue to Step 1b.
 
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 On success → continue to Step 2.
@@ -163,7 +163,7 @@ Apply all schema changes to the live GraphQL API.
 
 ```
 Action: reload-configuration
-Input:  projectKey = $VITE_PROJECT_SLUG (path param)
+Input:  (no parameters — project identified from auth context)
 ```
 
 On success → schema is live and accessible through the GraphQL API.
