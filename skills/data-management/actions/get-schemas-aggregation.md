@@ -1,4 +1,4 @@
-# Action: get-schemas-aggregation
+claude# Action: get-schemas-aggregation
 
 ## Purpose
 
