@@ -10,10 +10,10 @@ When a skill is activated and you're about to execute actions or generate code, 
 
 1. **Before executing API calls:** Read `../core/runtime.md` — token handling, header construction, error retry logic
 2. **Before generating any code:** Read `../core/security.md` — SAST checklist, never hardcode credentials
-3. **Before generating frontend code:** Read `../core/frontend.md` — React + shadcn/ui + TanStack Query patterns
+3. **Before generating frontend code:** Read `../core/frontend-{FRONTEND_STACK}.md` — stack-specific component patterns and conventions
 4. **Before generating files:** Read `../core/conventions.md` — naming rules, file structure, module layout
-5. **When constructing request/response types:** Read `contracts.md` (in this skill's own directory) — TypeScript interfaces for this domain
-6. **When generating domain-specific UI:** Read `frontend.md` (in this skill's own directory) — component patterns for this domain
+5. **When constructing request/response types:** Read `contracts.md` (in this skill's own directory) — request/response schemas for this domain
+6. **When generating domain-specific UI:** Read `frontend-{FRONTEND_STACK}.md` (in this skill's own directory) — component patterns for this domain
 7. **When unsure whether to ask or proceed:** Read `../core/clarification.md` — decision rules for pre-flight questions
 8. **When reading/updating PROJECT.md:** Read `../core/context.md` — project context format
 

@@ -45,7 +45,7 @@ src/modules/data-management/
 
 ### `data-management.service.ts`
 
-Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold.md`). No manual token handling needed.
+Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold-react.md`). No manual token handling needed.
 
 ```ts
 import https from '@/lib/https'

@@ -1,7 +1,7 @@
 # LMT — Frontend Guide
 
 This file defines frontend patterns for the `lmt` (Logging, Monitoring & Tracing) skill.
-Always read `core/frontend.md` first, then apply the additions here.
+Always read `core/frontend-react.md` first, then apply the additions here.
 
 ---
 

@@ -1,7 +1,7 @@
 # Identity & Access — Frontend Guide
 
-This file extends `core/frontend.md` with auth-specific patterns for the identity-access skill.
-Always read `core/frontend.md` first, then apply the overrides and additions here.
+This file extends `core/frontend-react.md` with auth-specific patterns for the identity-access skill.
+Always read `core/frontend-react.md` first, then apply the overrides and additions here.
 
 ---
 
@@ -70,7 +70,7 @@ Rules:
 
 All API calls use the shared `https` client from `src/lib/https.ts`. It automatically attaches auth headers and refreshes the access token on 401 before retrying.
 
-See `core/app-scaffold.md` for the full implementation.
+See `core/app-scaffold-react.md` for the full implementation.
 
 ```typescript
 // Usage in service layer — no manual token handling needed

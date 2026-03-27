@@ -5,7 +5,7 @@ This file covers two distinct concerns:
 1. **App-level i18n** — how every feature in the app uses translation keys (mandatory for all features)
 2. **Localization admin UI** — the management pages for languages, modules, and keys
 
-Always read `core/frontend.md` first, then apply the additions here.
+Always read `core/frontend-react.md` first, then apply the additions here.
 
 ---
 
@@ -137,7 +137,7 @@ Server state (languages, modules, keys) is managed via React Query — no duplic
 
 ## HTTP Client
 
-Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold.md`). It handles auth headers and token refresh automatically.
+Use the shared `https` client from `src/lib/https.ts` (see `core/app-scaffold-react.md`). It handles auth headers and token refresh automatically.
 
 ```typescript
 import https from '@/lib/https'

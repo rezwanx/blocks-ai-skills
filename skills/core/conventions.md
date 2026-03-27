@@ -2,14 +2,24 @@
 
 ## Naming
 
+### Skill files (markdown)
+
 * Use kebab-case for folders and files
 * Use descriptive names (no abbreviations unless standard)
 
-Examples:
+Examples: `access-control`, `vector-database`, `create-record`
 
-* access-control
-* vector-database
-* create-record
+### Frontend files — stack-specific
+
+| Convention | React | Blazor (MudBlazor) | Blazor (Tailwind) |
+|-----------|-------|--------|--------|
+| Folders | kebab-case (`signin-email/`) | PascalCase (`SigninEmail/`) | PascalCase (`SigninEmail/`) |
+| Component files | kebab-case (`signin-email.tsx`) | PascalCase (`SigninEmail.razor`) | PascalCase (`SigninEmail.razor`) |
+| Service files | kebab-case (`auth.service.ts`) | PascalCase (`AuthService.cs`) | PascalCase (`AuthService.cs`) |
+| Type/model files | kebab-case (`auth.type.ts`) | PascalCase (`AuthModels.cs`) | PascalCase (`AuthModels.cs`) |
+| CSS/style files | kebab-case (`auth.module.css`) | PascalCase (`SigninEmail.razor.css`) | Tailwind utilities (no CSS files) |
+| Hook files | kebab-case (`use-auth.tsx`) | N/A — use service methods directly | N/A — use service methods directly |
+| Namespaces | N/A | `ProjectName.Modules.Auth.Pages` | `ProjectName.Modules.Auth.Pages` |
 
 ---
 
@@ -69,13 +79,23 @@ x-blocks-key: $VITE_X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
-### For generated app code (frontend/backend):
+### For generated app code — React:
 
 ```
-Authorization: Bearer ${accessToken}      ← from app state/storage
+Authorization: Bearer ${accessToken}      ← from Zustand store
 x-blocks-key: ${import.meta.env.VITE_X_BLOCKS_KEY}
 Content-Type: application/json
 ```
+
+### For generated app code — Blazor:
+
+```
+Authorization: Bearer ${accessToken}      ← auto-attached by TokenDelegatingHandler
+x-blocks-key: ${blocksKey}                ← auto-attached by TokenDelegatingHandler
+Content-Type: application/json
+```
+
+> In Blazor, headers are managed automatically by `TokenDelegatingHandler` — no manual header setup needed in service classes.
 
 ---
 
@@ -92,17 +112,57 @@ Never mix contexts. Never hardcode values from one context into the other.
 
 ## File Structure
 
+### Skill files (markdown)
+
 Each feature must follow:
 
 ```
 feature/
 ├── SKILL.md
 ├── contracts.md
-├── frontend.md      (optional)
+├── frontend-react.md      (optional — React frontend guide)
+├── frontend-blazor.md     (optional — Blazor frontend guide)
 ├── actions/
 │   └── verb-resource.md
 └── flows/
     └── flow-name.md
+```
+
+### Generated app structure — React
+
+```
+src/
+├── modules/{feature}/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   └── types/
+├── components/
+│   ├── ui-kit/
+│   └── core/
+├── state/store/
+├── hooks/
+└── lib/
+```
+
+### Generated app structure — Blazor
+
+```
+ProjectName/
+├── Modules/{Feature}/
+│   ├── Components/
+│   ├── Pages/
+│   ├── Services/
+│   └── Models/
+├── Components/
+│   ├── Shared/
+│   └── Core/
+├── Layout/
+├── Services/
+├── State/
+├── Models/
+└── Extensions/
 ```
 
 ---
@@ -138,7 +198,7 @@ Rules:
 - One flow = one complete user-facing scenario
 - Steps must be in execution order — never reorder
 - Every branch must be documented (success and failure)
-- Frontend output must follow `core/frontend.md` conventions
+- Frontend output must follow `core/frontend-{FRONTEND_STACK}.md` conventions
 
 ---
 

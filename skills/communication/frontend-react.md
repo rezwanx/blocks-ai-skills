@@ -36,7 +36,7 @@ src/modules/communication/
 
 ## Stack
 
-Follows `skills/core/frontend.md` conventions:
+Follows `skills/core/frontend-react.md` conventions:
 
 | Layer | Technology |
 |-------|-----------|

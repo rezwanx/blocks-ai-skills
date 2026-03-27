@@ -13,17 +13,25 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/core/decision.md
 - skills/core/runtime.md
 - skills/core/conventions.md
-- skills/core/frontend.md
+- skills/core/frontend-react.md
+- skills/core/frontend-blazor.md
 - skills/core/security.md
 - skills/core/prerequisites.md
-- skills/core/app-scaffold.md
-- skills/core/app-layout.md
+- skills/core/app-scaffold-react.md
+- skills/core/app-scaffold-blazor.md
+- skills/core/app-layout-react.md
+- skills/core/app-layout-blazor.md
+- skills/core/frontend-blazor-tailwind.md
+- skills/core/app-scaffold-blazor-tailwind.md
+- skills/core/app-layout-blazor-tailwind.md
 
 ## Identity & Access
 
 - skills/identity-access/SKILL.md
 - skills/identity-access/contracts.md
-- skills/identity-access/frontend.md
+- skills/identity-access/frontend-react.md
+- skills/identity-access/frontend-blazor.md
+- skills/identity-access/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/identity-access/flows/login-flow.md
@@ -104,7 +112,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/ai-services/SKILL.md
 - skills/ai-services/contracts.md
-- skills/ai-services/frontend.md
+- skills/ai-services/frontend-react.md
+- skills/ai-services/frontend-blazor.md
+- skills/ai-services/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/ai-services/flows/create-agent-flow.md
@@ -159,7 +169,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/lmt/SKILL.md
 - skills/lmt/contracts.md
-- skills/lmt/frontend.md
+- skills/lmt/frontend-react.md
+- skills/lmt/frontend-blazor.md
+- skills/lmt/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/lmt/flows/view-logs-flow.md
@@ -180,7 +192,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/data-management/SKILL.md
 - skills/data-management/contracts.md
-- skills/data-management/frontend.md
+- skills/data-management/frontend-react.md
+- skills/data-management/frontend-blazor.md
+- skills/data-management/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/data-management/flows/define-schema-flow.md
@@ -249,7 +263,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/localization/SKILL.md
 - skills/localization/contracts.md
-- skills/localization/frontend.md
+- skills/localization/frontend-react.md
+- skills/localization/frontend-blazor.md
+- skills/localization/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/localization/flows/language-setup.md
@@ -291,7 +307,9 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 
 - skills/communication/SKILL.md
 - skills/communication/contracts.md
-- skills/communication/frontend.md
+- skills/communication/frontend-react.md
+- skills/communication/frontend-blazor.md
+- skills/communication/frontend-blazor-tailwind.md
 
 ### Flows
 - skills/communication/flows/send-email-flow.md

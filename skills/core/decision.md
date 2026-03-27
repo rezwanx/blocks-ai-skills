@@ -15,8 +15,8 @@ Read this file on every user request. Use the tables below to determine internal
 
 | If the user wants to... | Read |
 |-------------------------|------|
-| Set up a new project, install dependencies, create main.tsx / App.tsx / http client | `core/app-scaffold.md` |
-| Set up the app shell, sidebar, layout, header, profile menu, permissions hook | `core/app-layout.md` |
+| Set up a new project, install dependencies, create entry point / http client | `core/app-scaffold-{FRONTEND_STACK}.md` |
+| Set up the app shell, sidebar, layout, header, profile menu, permissions hook | `core/app-layout-{FRONTEND_STACK}.md` |
 | Login, register, activate account, reset password, MFA, roles, permissions, users, organizations, sessions, CAPTCHA | `identity-access/SKILL.md` |
 | Send email, push notification, in-app notification, messaging, email templates | `communication/SKILL.md` |
 | Define data schemas, manage collections, upload/manage files, data sources, access policies, validation rules | `data-management/SKILL.md` |
@@ -26,6 +26,8 @@ Read this file on every user request. Use the tables below to determine internal
 | CI/CD, infrastructure, security scanning | `devsecops` *(not implemented)* |
 
 If the request spans multiple domains, read `core/execution-context.md` for cross-domain orchestration rules and dependency ordering.
+
+> **Stack file resolution:** Throughout this file, `{FRONTEND_STACK}` refers to the value of `FRONTEND_STACK` from `.env` — either `react` or `blazor`. Always resolve this before reading any frontend file. For example, `core/frontend-{FRONTEND_STACK}.md` becomes `core/frontend-blazor.md` when `FRONTEND_STACK=blazor`.
 
 ---
 
@@ -97,7 +99,7 @@ Every request must produce both:
 | Output | What it means |
 |--------|---------------|
 | **Backend** | API calls (curl via action files), token handling, error responses |
-| **Frontend** | React pages, components, hooks, Zod schemas, routing — following `core/frontend.md` |
+| **Frontend** | Pages, components, services, routing — following `core/frontend-{FRONTEND_STACK}.md` |
 
 If the user only wants backend or only wants frontend, confirm before limiting scope.
 
@@ -111,13 +113,25 @@ Before generating any component:
 4. Call `save-keys` to create any missing keys
 5. Use `t('key.name')` for every string in the generated component — no hardcoded text
 
-If this is the first feature in the project, also generate:
+If this is the first feature in the project, also generate the localization infrastructure for the chosen stack:
+
+**React (`FRONTEND_STACK=react`):**
 - `src/hooks/use-translation.tsx` — the app-level translation hook
 - `src/state/store/language/index.tsx` — persisted language store
 - `src/components/core/language-switcher/language-switcher.tsx` — the switcher component
 - Mount `<LanguageSwitcher />` in the app header/layout
 
-See `core/frontend.md` for the exact implementation of each.
+**Blazor (`FRONTEND_STACK=blazor`):**
+- `Services/LocalizationService.cs` — `ILocalizationService` implementation (from `app-scaffold-blazor.md`)
+- `Components/Core/LanguageSwitcher.razor` — MudBlazor language select dropdown
+- Mount `<LanguageSwitcher />` in the `AppHeader.razor`
+
+**Blazor + Tailwind (`FRONTEND_STACK=blazor-tailwind`):**
+- `Services/LocalizationService.cs` — `ILocalizationService` implementation (from `app-scaffold-blazor-tailwind.md`)
+- `Components/Core/LanguageSwitcher.razor` — plain `<select>` with Tailwind styling
+- Mount `<LanguageSwitcher />` in the `AppHeader.razor`
+
+See `core/frontend-{FRONTEND_STACK}.md` for the exact implementation of each.
 
 ---
 
@@ -131,8 +145,8 @@ See `core/frontend.md` for the exact implementation of each.
 6. Read the matched flow file in full
 7. Read the action files referenced by the flow
 8. Read `contracts.md` for request/response schemas
-9. **Check the reference implementation** — `https://github.com/SELISEdigitalplatforms/blocks-construct-react` — before generating any frontend code. Verify component names, module structure, and auth patterns against the actual codebase.
-10. **Use the shadcn/ui MCP** — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code.
-11. **Localization** — before writing any component: list strings → `get-keys-by-names` → reuse or `save-keys` → use `t()` for every string. If first feature: generate translation hook, language store, and language switcher.
+9. **Check the reference implementation** — For React: `https://github.com/SELISEdigitalplatforms/blocks-construct-react`. Verify component names, module structure, and auth patterns against the actual codebase. (No reference implementation for Blazor yet.)
+10. **Use the shadcn/ui MCP** (React only) — `https://ui.shadcn.com/docs/mcp` — to confirm correct import paths and props for any shadcn/ui component used in generated code. For Blazor, use MudBlazor documentation.
+11. **Localization** — before writing any component: list strings → `get-keys-by-names` → reuse or `save-keys` → use `t()` (React) or `Localizer["key"]` (Blazor) for every string. If first feature: generate localization infrastructure per stack.
 12. Execute or generate in the order defined by the flow
 13. Never skip steps or reorder them — the flow defines the correct sequence

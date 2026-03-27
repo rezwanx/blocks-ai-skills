@@ -26,6 +26,20 @@ Ask the user: **"Have all four cloud portal steps been completed?"**
 
 ---
 
+### Step 1b — Choose Frontend Stack
+
+Ask the user: **"Which frontend stack would you like to use — React, Blazor (MudBlazor), or Blazor (Tailwind CSS)?"**
+
+| Choice | Variable value | Stack |
+|--------|---------------|-------|
+| React | `FRONTEND_STACK=react` | React 19 + TypeScript + Vite + Tailwind + shadcn/ui |
+| Blazor (MudBlazor) | `FRONTEND_STACK=blazor` | .NET 10 Blazor WASM + MudBlazor |
+| Blazor (Tailwind) | `FRONTEND_STACK=blazor-tailwind` | .NET 10 Blazor WASM + Tailwind CSS (no component library) |
+
+Store this choice in `.env` as `FRONTEND_STACK`. This determines which frontend skill files are loaded for the rest of the session.
+
+---
+
 ### Step 2 — Check Environment Variables
 
 Only **4 values** are required from the user. Everything else is auto-set or discovered.
@@ -64,9 +78,12 @@ Ask for only these if missing or empty:
 | `VITE_CAPTCHA_SITE_KEY` | Only if captcha is enabled (confirmed by user or detected during login) |
 | `VITE_CAPTCHA_TYPE` | Same — `reCaptcha` or `hCaptcha` |
 
-Write the `.env` with all known values immediately. Leave captcha blank until confirmed:
+Write the `.env` with all known values immediately. Include `FRONTEND_STACK` from Step 1b. Leave captcha blank until confirmed:
 
 ```
+# Frontend stack selection — "react" or "blazor"
+FRONTEND_STACK=<value from Step 1b>
+
 # Vite environment variables
 VITE_API_BASE_URL=https://api.seliseblocks.com
 VITE_X_BLOCKS_KEY=<value>
@@ -166,12 +183,14 @@ Read only the specific flow file (e.g. `skills/identity-access/flows/login-flow.
 - `skills/core/clarification.md` — only when unsure whether to ask or proceed
 - `skills/core/runtime.md` — only when executing API calls
 - `skills/core/conventions.md` — only when generating files or naming things
-- `skills/core/frontend.md` — only when generating frontend code
+- `skills/core/frontend-{FRONTEND_STACK}.md` — only when generating frontend code (resolve `{FRONTEND_STACK}` from `.env`)
 - `skills/core/security.md` — only when generating any code (quick checklist)
-- `skills/core/app-scaffold.md` — only when setting up a new project from scratch
-- `skills/core/app-layout.md` — only when building the app shell or layout
+- `skills/core/app-scaffold-{FRONTEND_STACK}.md` — only when setting up a new project from scratch
+- `skills/core/app-layout-{FRONTEND_STACK}.md` — only when building the app shell or layout
 - `skills/{domain}/contracts.md` — only when constructing request/response types
-- `skills/{domain}/frontend.md` — only when generating domain-specific frontend code
+- `skills/{domain}/frontend-{FRONTEND_STACK}.md` — only when generating domain-specific frontend code
+
+> **Stack file resolution:** Replace `{FRONTEND_STACK}` with the value of `FRONTEND_STACK` from `.env` (either `react` or `blazor`). For example, if `FRONTEND_STACK=blazor`, read `skills/core/frontend-blazor.md` instead of `skills/core/frontend-react.md`.
 
 **4. Read `skills/{domain}/SKILL.md` only if no flow matched**
 The intent map in SKILL.md maps requests to individual actions. Use it as a fallback when no flow covers the request.
