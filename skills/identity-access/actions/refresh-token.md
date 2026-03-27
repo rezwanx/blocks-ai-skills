@@ -22,8 +22,7 @@ curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
   --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=refresh_token" \
-  --data-urlencode "refresh_token=$REFRESH_TOKEN" \
-  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "refresh_token=$REFRESH_TOKEN"
 ```
 
 ---
@@ -34,7 +33,6 @@ curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
 |-----------|-------|------|
 | x-blocks-key | $X_BLOCKS_KEY | fixed |
 | grant_type | refresh_token | fixed |
-| client_id | $BLOCKS_OIDC_CLIENT_ID | fixed |
 | refresh_token | $REFRESH_TOKEN | runtime value |
 
 ---

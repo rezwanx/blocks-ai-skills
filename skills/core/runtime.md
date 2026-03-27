@@ -18,7 +18,6 @@ The following variables must be available:
 * API_BASE_URL
 * X_BLOCKS_KEY
 * PROJECT_SLUG
-* BLOCKS_OIDC_CLIENT_ID
 * USERNAME
 * PASSWORD
 * ACCESS_TOKEN (populated after authentication)
@@ -39,8 +38,7 @@ curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
   --data-urlencode "username=$USERNAME" \
-  --data-urlencode "password=$PASSWORD" \
-  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "password=$PASSWORD"
 ```
 
 Store the returned `access_token` as `$ACCESS_TOKEN` and `refresh_token` as `$REFRESH_TOKEN`.
@@ -69,8 +67,7 @@ RESPONSE=$(curl --silent "$API_BASE_URL/idp/v1/Authentication/Token" \
   --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=refresh_token" \
-  --data-urlencode "refresh_token=$REFRESH_TOKEN" \
-  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID")
+  --data-urlencode "refresh_token=$REFRESH_TOKEN")
 
 export ACCESS_TOKEN=$(echo $RESPONSE | jq -r '.access_token')
 export REFRESH_TOKEN=$(echo $RESPONSE | jq -r '.refresh_token')

@@ -335,3 +335,30 @@ Base URL: `https://raw.githubusercontent.com/rezwanx/blocks-ai-skills/main`
 - skills/communication/actions/get-templates.md
 - skills/communication/actions/clone-template.md
 - skills/communication/actions/delete-template.md
+
+## Utilities
+
+- skills/utilities/SKILL.md
+- skills/utilities/contracts.md
+- skills/utilities/frontend-react.md
+- skills/utilities/frontend-blazor.md
+- skills/utilities/frontend-blazor-tailwind.md
+
+### Flows
+- skills/utilities/flows/setup-scheduled-task-flow.md
+- skills/utilities/flows/manage-webhooks-flow.md
+
+### ScheduledTask
+- skills/utilities/actions/create-scheduled-task.md
+- skills/utilities/actions/get-scheduled-tasks.md
+- skills/utilities/actions/update-scheduled-task.md
+- skills/utilities/actions/delete-scheduled-task.md
+
+### Webhook
+- skills/utilities/actions/create-webhook.md
+- skills/utilities/actions/get-webhooks.md
+- skills/utilities/actions/delete-webhook.md
+
+### Config
+- skills/utilities/actions/get-config.md
+- skills/utilities/actions/update-config.md

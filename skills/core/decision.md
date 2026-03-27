@@ -23,7 +23,9 @@ Read this file on every user request. Use the tables below to determine internal
 | Translate content, manage languages, locale keys, import/export translations, auto-translate | `localization/SKILL.md` |
 | AI agents, knowledge base, RAG, vector search, LLM queries, streaming chat, AI models, tools | `ai-services/SKILL.md` |
 | View service logs, distributed traces, API performance analytics, live log streaming | `lmt/SKILL.md` |
-| CI/CD, infrastructure, security scanning | `devsecops` *(not implemented)* |
+| Build, deploy, monitor services, check build status, deployment history, rollback | `deployment/SKILL.md` |
+| Create workflows, automate tasks, webhook triggers, email triggers, workflow execution | `workflow/SKILL.md` |
+| Scheduled tasks, cron jobs, webhooks, project configuration | `utilities/SKILL.md` |
 
 If the request spans multiple domains, read `core/execution-context.md` for cross-domain orchestration rules and dependency ordering.
 
@@ -63,6 +65,12 @@ Before picking individual actions, check if the request maps to an existing flow
 | Configure AI models | `ai-services/flows/manage-models.md` |
 | View service logs | `lmt/flows/view-logs-flow.md` |
 | Analyze traces and performance | `lmt/flows/view-traces-flow.md` |
+| Create an automated workflow | `workflow/flows/create-workflow-flow.md` |
+| Manage/list/activate workflows | `workflow/flows/manage-workflows-flow.md` |
+| Deploy code / trigger build | `deployment/flows/deploy-code-flow.md` |
+| Manage services / view deployments | `deployment/flows/manage-services-flow.md` |
+| Set up a scheduled task / cron job | `utilities/flows/setup-scheduled-task-flow.md` |
+| Manage webhooks | `utilities/flows/manage-webhooks-flow.md` |
 
 If no flow matches, fall back to the intent mapping table in `SKILL.md`.
 

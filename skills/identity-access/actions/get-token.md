@@ -23,8 +23,7 @@ curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
   --data-urlencode "username=$USERNAME" \
-  --data-urlencode "password=$PASSWORD" \
-  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "password=$PASSWORD"
 ```
 
 ---
@@ -35,7 +34,6 @@ curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
 |-----------|-------|------|
 | x-blocks-key | $X_BLOCKS_KEY | fixed |
 | grant_type | password | fixed |
-| client_id | $BLOCKS_OIDC_CLIENT_ID | fixed |
 | username | $USERNAME | dynamic |
 | password | $PASSWORD | dynamic |
 
@@ -68,7 +66,7 @@ Authorization: Bearer $ACCESS_TOKEN
 
 ## On Failure
 
-* 400 — malformed request, wrong client_id, or invalid grant_type
+* 400 — malformed request or invalid grant_type
 * 401 — wrong USERNAME or PASSWORD
 * 403 — account missing `cloudadmin` role — assign it in Cloud Portal → People
 * 404 — environment not created or project not active — verify in Cloud Portal → Environments
