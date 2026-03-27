@@ -9,7 +9,7 @@ Rollback a translation key to a specific previous version from its timeline hist
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/RollBack
+POST $API_BASE_URL/uilm/v1/Key/RollBack
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/RollBack
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/RollBack" \
+curl --location "$API_BASE_URL/uilm/v1/Key/RollBack" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "keyId": "<KEY_ID>",
     "timelineId": "<TIMELINE_ENTRY_ID>",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/RollBack" \
 |-------|------|----------|-------|
 | keyId | string | yes | ID of the key to roll back |
 | timelineId | string | yes | ID of the timeline entry to restore |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

@@ -15,7 +15,7 @@ Not required. This action is public.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/ResetPassword
+POST $API_BASE_URL/idp/v1/Iam/ResetPassword
 ```
 
 ---
@@ -23,13 +23,13 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/ResetPassword
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/ResetPassword" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Iam/ResetPassword" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "code": "recovery_code",
     "newPassword": "new_password",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -41,7 +41,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/ResetPassword" \
 |-------|------|----------|-------|
 | code | string | yes | Recovery code from email |
 | newPassword | string | yes | New password to set |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

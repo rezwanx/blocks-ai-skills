@@ -15,7 +15,7 @@ Not required. This action is public.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Captcha/Create
+POST $API_BASE_URL/idp/v1/Captcha/Create
 ```
 
 ---
@@ -23,8 +23,8 @@ POST $VITE_API_BASE_URL/idp/v1/Captcha/Create
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Captcha/Create" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Captcha/Create" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "configurationName": "default"

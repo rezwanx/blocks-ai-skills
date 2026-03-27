@@ -51,7 +51,7 @@ Input:
   email             = user's email
   userCreationType  = "SelfService"
   allowedLogInType  = ["Email"]
-  projectKey        = VITE_X_BLOCKS_KEY
+  projectKey        = X_BLOCKS_KEY
 ```
 
 ```
@@ -76,7 +76,7 @@ Before showing the password form, validate the code is still valid.
 Action: validate-activation-code
 Input:
   code       = code from URL
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -95,7 +95,7 @@ Action: activate-user
 Input:
   code             = code from URL
   password         = user's chosen password
-  projectKey       = VITE_X_BLOCKS_KEY
+  projectKey       = X_BLOCKS_KEY
   captchaCode      = captcha token (if enabled)
   preventPostEvent = false
 ```
@@ -117,7 +117,7 @@ If the activation email expires or was not received, allow resend.
 Action: resend-activation
 Input:
   email      = user's email
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ---
@@ -135,7 +135,7 @@ Input:
   userCreationType = "AdminCreated"
   allowedLogInType = ["Email"]
   mfaEnabled       = true/false based on pre-flight answer
-  projectKey       = VITE_X_BLOCKS_KEY
+  projectKey       = X_BLOCKS_KEY
   organizationId   = org ID if applicable
 ```
 

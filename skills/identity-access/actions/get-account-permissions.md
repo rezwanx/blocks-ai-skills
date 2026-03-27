@@ -9,7 +9,7 @@ Get all permissions assigned to the currently authenticated account (directly or
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccountPermissions
+GET $API_BASE_URL/idp/v1/Iam/GetAccountPermissions
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccountPermissions
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetAccountPermissions" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetAccountPermissions" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

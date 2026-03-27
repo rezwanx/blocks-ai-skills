@@ -72,7 +72,7 @@ import { useLanguageStore } from '@/state/store/language'
 const I18nProvider = ({ children }: { children: React.ReactNode }) => {
   const { currentLanguage } = useLanguageStore()
   const { isLoading } = useGetUilmFile({
-    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    projectKey: import.meta.env.PROJECT_SLUG,
     languageCode: currentLanguage,
   })
 
@@ -402,7 +402,7 @@ const fetchPermissions = async (projectKey: string): Promise<Permission[]> => {
 
 export const usePermissions = () => {
   const { user, isAuthenticated, setUser } = useAuthStore()
-  const projectKey = import.meta.env.VITE_X_BLOCKS_KEY
+  const projectKey = import.meta.env.X_BLOCKS_KEY
 
   const { data: permissions } = useQuery({
     queryKey: ['permissions', projectKey],
@@ -493,16 +493,16 @@ export const OidcCallbackPage = () => {
         const params = new URLSearchParams()
         params.append('grant_type', 'authorization_code')
         params.append('code', code)
-        params.append('client_id', import.meta.env.VITE_BLOCKS_OIDC_CLIENT_ID)
-        params.append('redirect_uri', import.meta.env.VITE_BLOCKS_OIDC_REDIRECT_URI)
+        params.append('client_id', import.meta.env.BLOCKS_OIDC_CLIENT_ID)
+        params.append('redirect_uri', import.meta.env.BLOCKS_OIDC_REDIRECT_URI)
 
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_BASE_URL}/idp/v1/Authentication/Token`,
+          `${import.meta.env.API_BASE_URL}/idp/v1/Authentication/Token`,
           params,
           {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
-              'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
+              'x-blocks-key': import.meta.env.X_BLOCKS_KEY,
             },
           }
         )

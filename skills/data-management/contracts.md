@@ -4,7 +4,7 @@
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
@@ -57,7 +57,7 @@ UDS uses a slightly different response wrapper from other Blocks APIs:
 |-------|------|----------|-------|
 | CollectionName | string | yes | MongoDB collection name — lowercase, no spaces |
 | SchemaName | string | yes | Display name for the schema |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaType | enum | yes | `Collection` (multi-document) or `SingleObject` (single config doc) |
 | Description | string | no | Optional human-readable description |
 
@@ -92,7 +92,7 @@ Used to set or replace all fields on a schema.
 | Fields[].IsRequired | boolean | no | Whether the field is required |
 | Fields[].Description | string | no | Field description |
 | Fields[].DefaultValue | string | no | Default value as a string |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### SaveSchemaFieldsRequest
 
@@ -128,13 +128,13 @@ Used to add or update a single field without replacing all fields.
 | page | integer | no | Default: 1 |
 | pageSize | integer | no | Default: 20 |
 | search | string | no | Search by schema name |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ### GetSchemasAggregationQueryParams
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | PageNo | integer | no | Default: 1 |
 | PageSize | integer | no | Default: 20 |
 | Keyword | string | no | General search keyword |
@@ -148,14 +148,14 @@ Used to add or update a single field without replacing all fields.
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ### GetSchemaByCollectionQueryParams
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | schemaName | string | yes | Collection name (e.g. `products`) |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ### SchemaType Enum
 
@@ -168,7 +168,7 @@ Used to add or update a single field without replacing all fields.
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 
@@ -190,7 +190,7 @@ Used to add or update a single field without replacing all fields.
 | ItemId | string | yes | Unique identifier — use a UUID or project slug |
 | ConnectionString | string | yes | MongoDB connection string (e.g. `mongodb+srv://...`) |
 | DatabaseName | string | yes | MongoDB database name |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### UpdateDataSourceRequest
 
@@ -209,7 +209,7 @@ Used to add or update a single field without replacing all fields.
 | ItemId | string | yes | ID of existing connection |
 | ConnectionString | string | yes | Updated MongoDB connection string |
 | DatabaseName | string | yes | Updated database name |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | IsActive | boolean | yes | Set to `false` to disable the connection |
 
 ---
@@ -230,7 +230,7 @@ Used to add or update a single field without replacing all fields.
 |-------|------|----------|-------|
 | SchemaName | string | yes | The schema's `SchemaName` (not ID) |
 | SecurityType | enum | yes | `Public`: open access, `Private`: authenticated only, `RoleBased`: policy-driven |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### CreateAccessPolicyRequest
 
@@ -250,7 +250,7 @@ Used to add or update a single field without replacing all fields.
 | PolicyName | string | yes | Unique name for this policy |
 | AllowedRoles | array | yes | Role slugs that this policy grants access to |
 | Operations | array | yes | Permitted operations: `Read`, `Create`, `Update`, `Delete` |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### UpdateAccessPolicyRequest
 
@@ -288,7 +288,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaId | string | yes | ID of the schema containing the field |
 | FieldName | string | yes | Exact field name as defined in the schema |
 | Validations | array | yes | One or more validation rules |
@@ -315,7 +315,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 |-------|------|----------|-------|
 | page | integer | no | Default: 1 |
 | pageSize | integer | no | Default: 20 |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 
@@ -337,7 +337,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 | FileName | string | yes | Original file name including extension |
 | ContentType | string | yes | MIME type (e.g. `image/png`, `application/pdf`) |
 | FolderPath | string | no | Target folder path in S3 |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### GetPreSignedUrlResponse
 
@@ -366,7 +366,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 | Tags | string | no | Comma-separated tags |
 | AccessModifier | string | yes | `Public` or `Private` |
 | ConfigurationName | string | no | Storage configuration name |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### GetDmsFilesRequest
 
@@ -382,7 +382,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | ParentDirectoryId | string | no | Parent folder ID — omit or set `null` for root |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | Page | integer | no | Default: 1 |
 | PageSize | integer | no | Default: 20 |
 
@@ -400,7 +400,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 |-------|------|----------|-------|
 | Name | string | yes | Folder display name |
 | ParentDirectoryId | string | no | Parent folder ID — omit for root level |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ### DeleteFileRequest
 
@@ -425,7 +425,7 @@ Same shape as `CreateAccessPolicyRequest`. The `PolicyName` identifies which pol
 |-------|------|----------|-------|
 | folderId | string | yes | ID of the folder to delete |
 | configurationName | string | no | Optional storage configuration name |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ### UpdateFileAdditionalInfoRequest
 
@@ -506,16 +506,16 @@ No path parameters required. The project is identified from the authentication c
 
 ## GraphQL Queries
 
-All GraphQL requests go to: `POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql`
+All GraphQL requests go to: `POST $API_BASE_URL/uds/v1/$PROJECT_SLUG/graphql`
 
 Headers are the same as all authenticated requests (Bearer token + x-blocks-key + Content-Type: application/json).
 
 ### Query (Read)
 
 ```bash
-curl -X POST "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql" \
+curl -X POST "$API_BASE_URL/uds/v1/$PROJECT_SLUG/graphql" \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  -H "x-blocks-key: $X_BLOCKS_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { products(page: 1, pageSize: 10) { data { _id name price category } totalCount } }"
@@ -577,7 +577,7 @@ Filter operators: `_eq`, `_ne`, `_gt`, `_gte`, `_lt`, `_lte`, `_in`, `_nin`, `_r
 ```typescript
 // In generated hooks, use the graphql endpoint via the http client:
 const response = await httpClient.post(
-  `/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/graphql`,
+  `/uds/v1/${import.meta.env.PROJECT_SLUG}/graphql`,
   { query: `query { products(page: 1, pageSize: 10) { data { _id name price } totalCount } }` }
 );
 ```

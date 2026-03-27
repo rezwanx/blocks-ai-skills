@@ -15,7 +15,7 @@ Validate an activation code before submitting the full activation form. Use this
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/ValidateActivationCode
+POST $API_BASE_URL/idp/v1/Iam/ValidateActivationCode
 ```
 
 ---
@@ -23,12 +23,12 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/ValidateActivationCode
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/ValidateActivationCode" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Iam/ValidateActivationCode" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "code": "activation_code",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -39,7 +39,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/ValidateActivationCode" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | code | string | yes | Activation code from email |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

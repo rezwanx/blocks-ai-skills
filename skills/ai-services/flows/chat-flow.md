@@ -72,7 +72,7 @@ Input:
   agent_id    = target agent ID
   limit       = 20
   offset      = 0
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Output: list of sessions with title and message_count
 ```
@@ -94,7 +94,7 @@ Action: chat-sse
 Endpoint: POST /chat/{session_id}
 Input:
   message     = user's message text
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Response: SSE stream of tokens until "data: [DONE]"
 ```
@@ -155,7 +155,7 @@ Endpoint: POST /ai-agent/chat/{session_id}
 Input:
   message     = user's message text
   session_id  = session_id from Step 2
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Response: complete response string in "response" field
 ```

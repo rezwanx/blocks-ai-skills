@@ -9,7 +9,7 @@ Retrieve all unread notifications for the current user scoped to a specific subs
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/communication/v1/Notifier/GetUnreadNotificationsBySubscriptionFilter
+GET $API_BASE_URL/communication/v1/Notifier/GetUnreadNotificationsBySubscriptionFilter
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/communication/v1/Notifier/GetUnreadNotificationsBySubscri
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetUnreadNotificationsBySubscriptionFilter?subscriptionFilter=order-updates&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Notifier/GetUnreadNotificationsBySubscriptionFilter?subscriptionFilter=order-updates&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetUnreadNotificat
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | subscriptionFilter | string | yes | Filter key to scope results — must match the filter used when sending notifications |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -62,7 +62,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetUnreadNotificat
 | 200 with `isSuccess: false` | Missing or invalid `subscriptionFilter` | Inspect `errors` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

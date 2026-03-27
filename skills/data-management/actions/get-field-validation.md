@@ -9,7 +9,7 @@ Get the validation rules for a specific field on a specific schema. Use this to 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-validations/by-schema-and-field
+GET $API_BASE_URL/uds/v1/data-validations/by-schema-and-field
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/data-validations/by-schema-and-field
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/by-schema-and-field?schemaId=$SCHEMA_ID&fieldName=$FIELD_NAME&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/data-validations/by-schema-and-field?schemaId=$SCHEMA_ID&fieldName=$FIELD_NAME&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/by-schema-and-field?
 |-----------|------|----------|-------|
 | schemaId | string | yes | Schema ID from define-schema or get-schemas |
 | fieldName | string | yes | Exact field name as defined in the schema (case-sensitive) |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

@@ -9,7 +9,7 @@ Retrieve a single distributed trace by its trace ID, including all spans in the 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/lmt/v1/Trace/GetTrace?traceId={traceId}&projectKey={projectKey}
+GET $API_BASE_URL/lmt/v1/Trace/GetTrace?traceId={traceId}&projectKey={projectKey}
 ```
 
 ---
@@ -18,9 +18,9 @@ GET $VITE_API_BASE_URL/lmt/v1/Trace/GetTrace?traceId={traceId}&projectKey={proje
 
 ```bash
 curl --location \
-  "$VITE_API_BASE_URL/lmt/v1/Trace/GetTrace?traceId=abc123xyz&projectKey=$VITE_X_BLOCKS_KEY" \
+  "$API_BASE_URL/lmt/v1/Trace/GetTrace?traceId=abc123xyz&projectKey=$X_BLOCKS_KEY" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -30,7 +30,7 @@ curl --location \
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | traceId | string | yes | The distributed trace ID |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

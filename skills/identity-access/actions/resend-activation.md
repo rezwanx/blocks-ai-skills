@@ -9,7 +9,7 @@ Resend the activation email to a user who hasn't activated yet.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/ResendActivation
+POST $API_BASE_URL/idp/v1/Iam/ResendActivation
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/ResendActivation
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/ResendActivation" \
+curl --location "$API_BASE_URL/idp/v1/Iam/ResendActivation" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "email": "user@example.com",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 

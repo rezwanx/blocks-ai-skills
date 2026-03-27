@@ -9,7 +9,7 @@ Retrieve full details for a single AI model configuration by its ID.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/blocksai-api/v1/models/{model_id}
+GET $API_BASE_URL/blocksai-api/v1/models/{model_id}
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/blocksai-api/v1/models/{model_id}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/mdl_abc123" \
+curl --location "$API_BASE_URL/blocksai-api/v1/models/mdl_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

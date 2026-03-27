@@ -47,10 +47,10 @@ Input:  (no parameters — project identified from auth context)
 ```
 Action: add-data-source
 Input:
-  ItemId           = "$VITE_PROJECT_SLUG-db"
+  ItemId           = "$PROJECT_SLUG-db"
   ConnectionString = "<mongodb+srv://...>"
   DatabaseName     = "<database-name>"
-  ProjectKey       = $VITE_PROJECT_SLUG
+  ProjectKey       = $PROJECT_SLUG
 ```
 
 On success → continue to Step 4.
@@ -65,7 +65,7 @@ Input:
   ItemId           = "<existing ItemId from get-data-source>"
   ConnectionString = "<new or same connection string>"
   DatabaseName     = "<new or same database name>"
-  ProjectKey       = $VITE_PROJECT_SLUG
+  ProjectKey       = $PROJECT_SLUG
   IsActive         = true
 ```
 

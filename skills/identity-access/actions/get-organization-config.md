@@ -9,7 +9,7 @@ Get the configuration settings for a specific organization.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganizationConfig
+GET $API_BASE_URL/idp/v1/Iam/GetOrganizationConfig
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganizationConfig
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetOrganizationConfig?organizationId=ORG_ID" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetOrganizationConfig?organizationId=ORG_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

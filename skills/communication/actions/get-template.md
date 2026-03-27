@@ -9,7 +9,7 @@ Retrieve a single email template by its ID. Use this to load an existing templat
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/communication/v1/Template/Get
+GET $API_BASE_URL/communication/v1/Template/Get
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/communication/v1/Template/Get
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Get?itemId=template-id-123&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Template/Get?itemId=template-id-123&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Get?itemId=templat
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | itemId | string | yes | ID of the template to retrieve — from `get-templates` |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -61,7 +61,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Get?itemId=templat
 | 200 with `isSuccess: false` | Template not found for the given `itemId` | Verify the ID from `get-templates` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

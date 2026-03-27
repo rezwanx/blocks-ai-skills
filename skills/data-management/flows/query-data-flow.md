@@ -27,17 +27,17 @@ User wants to read or write data from a schema that has already been defined.
 After `reload-configuration`, SELISE Blocks exposes a **GraphQL endpoint** that reflects your defined schemas. All CRUD operations on your data go through this endpoint — NOT through any REST action in this skill.
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway
+POST $API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway
 ```
 
 Headers required:
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
-> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/$VITE_PROJECT_SLUG/gateway`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
+> **IMPORTANT:** The project slug is part of the URL **path** — e.g. `/uds/v1/$PROJECT_SLUG/gateway`. Do NOT pass it as a query parameter (`?projectKey=...`). The `x-blocks-key` header is also required on every request.
 
 The GraphQL schema is auto-generated from your schema definitions. Each collection gets:
 - A query to list records (with filter, sort, pagination)
@@ -56,7 +56,7 @@ Check that the schema exists and configuration has been reloaded.
 
 ```
 Action: get-schema
-Input:  id = schemaId, ProjectKey = $VITE_PROJECT_SLUG
+Input:  id = schemaId, ProjectKey = $PROJECT_SLUG
 ```
 
 If the schema exists → proceed. If not → run `define-schema-flow` first.
@@ -76,9 +76,9 @@ Use the GraphQL endpoint directly. The query name follows the pattern `get{Schem
 #### List records
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
+curl --location "$API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "query { getProducts(page: 1, pageSize: 20) { items { _id name price createdAt } totalCount } }"
@@ -88,9 +88,9 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
 #### Get single record by ID
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
+curl --location "$API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "query { getProduct(id: \"RECORD_ID\") { _id name price description } }"
@@ -110,9 +110,9 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
 ### Step 3 — Create Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
+curl --location "$API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "mutation { createProduct(input: { name: \"Widget\", price: 9.99, description: \"A great widget\" }) { _id name price } }"
@@ -124,9 +124,9 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
 ### Step 4 — Update Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
+curl --location "$API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "mutation { updateProduct(id: \"RECORD_ID\", input: { price: 12.99 }) { _id name price } }"
@@ -138,9 +138,9 @@ curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
 ### Step 5 — Delete Data (Mutation)
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/gateway" \
+curl --location "$API_BASE_URL/uds/v1/$PROJECT_SLUG/gateway" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "mutation { deleteProduct(id: \"RECORD_ID\") { success } }"
@@ -176,7 +176,7 @@ import { setContext } from '@apollo/client/link/context'
 
 // Project slug is part of the URL path — x-blocks-key header is also required
 const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/gateway`,
+  uri: `${import.meta.env.API_BASE_URL}/uds/v1/${import.meta.env.PROJECT_SLUG}/gateway`,
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -185,7 +185,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: accessToken ? `Bearer ${accessToken}` : '',
-      'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
+      'x-blocks-key': import.meta.env.X_BLOCKS_KEY,
     },
   }
 })

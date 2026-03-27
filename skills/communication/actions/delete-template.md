@@ -9,7 +9,7 @@ Permanently delete an email template by its ID. This action is irreversible — 
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/communication/v1/Template/Delete
+DELETE $API_BASE_URL/communication/v1/Template/Delete
 ```
 
 ---
@@ -17,9 +17,9 @@ DELETE $VITE_API_BASE_URL/communication/v1/Template/Delete
 ## curl
 
 ```bash
-curl --location --request DELETE "$VITE_API_BASE_URL/communication/v1/Template/Delete?itemId=template-id-123&projectKey=$VITE_PROJECT_SLUG" \
+curl --location --request DELETE "$API_BASE_URL/communication/v1/Template/Delete?itemId=template-id-123&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location --request DELETE "$VITE_API_BASE_URL/communication/v1/Template/D
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | itemId | string | yes | ID of the template to delete — from `get-templates` |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -62,7 +62,7 @@ The template is permanently deleted.
 | 200 with `isSuccess: false` | Template not found for the given `itemId` | Verify the ID from `get-templates` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

@@ -9,7 +9,7 @@ Get a specific user by ID.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetUser
+GET $API_BASE_URL/idp/v1/Iam/GetUser
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetUser
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUser?userId=USER_ID" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetUser?userId=USER_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

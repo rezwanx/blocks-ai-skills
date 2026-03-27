@@ -65,7 +65,7 @@ Use this table to route user requests. Check `flows/` first — if a flow covers
 
 ## Base Path
 
-All endpoints are prefixed with: `$VITE_API_BASE_URL/communication/v1`
+All endpoints are prefixed with: `$API_BASE_URL/communication/v1`
 
 ---
 

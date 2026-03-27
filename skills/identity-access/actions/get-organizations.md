@@ -9,7 +9,7 @@ List all organizations.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganizations
+GET $API_BASE_URL/idp/v1/Iam/GetOrganizations
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganizations
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetOrganizations" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetOrganizations" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

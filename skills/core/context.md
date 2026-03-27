@@ -41,9 +41,9 @@ Use this exact template:
 |-------|-------|
 | Name | [project name] |
 | Description | [one-line description] |
-| Project Slug | [VITE_PROJECT_SLUG value] |
-| Primary Color | [VITE_PRIMARY_COLOR value] |
-| Secondary Color | [VITE_SECONDARY_COLOR value] |
+| Project Slug | [PROJECT_SLUG value] |
+| Primary Color | [PRIMARY_COLOR value] |
+| Secondary Color | [SECONDARY_COLOR value] |
 
 ---
 
@@ -55,8 +55,8 @@ Use this exact template:
 | MFA | [none \| email OTP \| TOTP \| both] |
 | CAPTCHA | [none \| reCaptcha \| hCaptcha] |
 | Registration type | [self-registration \| admin-created] |
-| OIDC Client ID | [VITE_BLOCKS_OIDC_CLIENT_ID value] |
-| OIDC Redirect URI | [VITE_BLOCKS_OIDC_REDIRECT_URI value] |
+| OIDC Client ID | [BLOCKS_OIDC_CLIENT_ID value] |
+| OIDC Redirect URI | [BLOCKS_OIDC_REDIRECT_URI value] |
 
 ---
 

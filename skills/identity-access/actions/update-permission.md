@@ -9,7 +9,7 @@ Update an existing permission's definition.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/UpdatePermission
+POST $API_BASE_URL/idp/v1/Iam/UpdatePermission
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/UpdatePermission
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/UpdatePermission" \
+curl --location "$API_BASE_URL/idp/v1/Iam/UpdatePermission" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "permissionId": "PERMISSION_ID",
     "name": "updated-name",
     "description": "updated description",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 

@@ -9,7 +9,7 @@ Permanently delete a chat session and its message history.
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions/{session_id}
+DELETE $API_BASE_URL/blocksai-api/v1/conversation/llm-sessions/{session_id}
 ```
 
 ---
@@ -18,9 +18,9 @@ DELETE $VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions/{session_id}
 
 ```bash
 curl --location --request DELETE \
-  "$VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions/sess_xyz789" \
+  "$API_BASE_URL/blocksai-api/v1/conversation/llm-sessions/sess_xyz789" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

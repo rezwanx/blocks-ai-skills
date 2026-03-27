@@ -4,7 +4,7 @@
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 

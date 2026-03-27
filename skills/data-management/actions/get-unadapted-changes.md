@@ -9,7 +9,7 @@ Get the list of pending schema changes that have been defined but not yet applie
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/unadapted-change-logs
+GET $API_BASE_URL/uds/v1/schemas/unadapted-change-logs
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/unadapted-change-logs
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/unadapted-change-logs?projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/schemas/unadapted-change-logs?projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -28,7 +28,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/unadapted-change-logs?project
 
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 
@@ -64,4 +64,4 @@ If `data.total` is greater than 0, call `reload-configuration` to apply pending 
 |--------|-------|--------|
 | 401 | Invalid or expired token | Run get-token to refresh |
 | 403 | Missing `cloudadmin` role | Check user role in Cloud Portal → People |
-| 404 | Wrong projectKey or API URL | Verify `$VITE_PROJECT_SLUG` and `$VITE_API_BASE_URL` |
+| 404 | Wrong projectKey or API URL | Verify `$PROJECT_SLUG` and `$API_BASE_URL` |

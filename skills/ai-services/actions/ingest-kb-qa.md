@@ -9,7 +9,7 @@ Ingest structured Q&A pairs into a knowledge base folder for optimized question-
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/kb/qa
+POST $API_BASE_URL/blocksai-api/v1/kb/qa
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/kb/qa
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/qa" \
+curl --location "$API_BASE_URL/blocksai-api/v1/kb/qa" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "pairs": [
@@ -33,7 +33,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/qa" \
       }
     ],
     "kb_folder_id": "kbf_abc123",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -47,7 +47,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/qa" \
 | `pairs[].question` | string | yes | The question |
 | `pairs[].answer` | string | yes | The answer to the question |
 | `kb_folder_id` | string | yes | Target KB folder ID |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

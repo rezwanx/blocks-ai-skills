@@ -9,7 +9,7 @@ Permanently delete an AI agent and all its associated configuration.
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/blocksai-api/v1/agents/delete/{agent_id}
+DELETE $API_BASE_URL/blocksai-api/v1/agents/delete/{agent_id}
 ```
 
 ---
@@ -18,9 +18,9 @@ DELETE $VITE_API_BASE_URL/blocksai-api/v1/agents/delete/{agent_id}
 
 ```bash
 curl --location --request DELETE \
-  "$VITE_API_BASE_URL/blocksai-api/v1/agents/delete/agt_abc123" \
+  "$API_BASE_URL/blocksai-api/v1/agents/delete/agt_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

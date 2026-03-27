@@ -9,7 +9,7 @@ Get a single schema by its ID, including all defined fields.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/get-by-id
+GET $API_BASE_URL/uds/v1/schemas/get-by-id
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/get-by-id
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/get-by-id?id=$SCHEMA_ID&proje
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | id | string | yes | Schema ID returned from define-schema or get-schemas |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

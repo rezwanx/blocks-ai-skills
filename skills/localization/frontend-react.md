@@ -22,7 +22,7 @@ On app boot, fetch the UILM file for the stored language before rendering protec
 const I18nProvider = ({ children }: { children: React.ReactNode }) => {
   const { currentLanguage } = useLanguageStore()
   const { data: translations, isLoading } = useGetUilmFile({
-    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    projectKey: import.meta.env.PROJECT_SLUG,
     languageCode: currentLanguage,
   })
 

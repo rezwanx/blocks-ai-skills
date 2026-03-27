@@ -9,7 +9,7 @@ Generate a pre-signed S3 URL for uploading a file directly to object storage. Th
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload
+POST $API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "FileName": "product-image.png",
     "ContentType": "image/png",
     "FolderPath": "products/images",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetPreSignedUrlForUpload" \
 | FileName | string | yes | Original file name including extension |
 | ContentType | string | yes | MIME type (e.g. `image/png`, `application/pdf`, `video/mp4`) |
 | FolderPath | string | no | Target folder path in S3 (e.g. `products/images`) |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

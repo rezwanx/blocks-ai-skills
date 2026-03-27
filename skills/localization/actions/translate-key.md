@@ -9,7 +9,7 @@ AI-translate a specific key into a target language. Use when you want to transla
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/TranslateKey
+POST $API_BASE_URL/uilm/v1/Key/TranslateKey
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/TranslateKey
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/TranslateKey" \
+curl --location "$API_BASE_URL/uilm/v1/Key/TranslateKey" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "keyId": "<KEY_ID>",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "languageCode": "de"
   }'
 ```
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/TranslateKey" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | keyId | string | yes | ID of the key to translate |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | languageCode | string | yes | Target language code (e.g. "de", "fr") |
 
 ---

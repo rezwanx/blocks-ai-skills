@@ -29,7 +29,7 @@ List available models for the project.
 
 ```
 Action: get-models
-Input:  project_key = $VITE_PROJECT_SLUG
+Input:  project_key = $PROJECT_SLUG
 ```
 
 If no models exist → run `manage-models` flow first to configure one.
@@ -46,7 +46,7 @@ Action: query-lmt
 Input:
   model_id    = model_id from Step 1
   message     = the user's prompt string
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Output:
   response    → the model's reply string
@@ -54,14 +54,14 @@ Output:
 ```
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
+curl --location "$API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "model_id": "'"$MODEL_ID"'",
     "message": "What is the capital of France?",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -78,15 +78,15 @@ Endpoint: POST /ai-agent/query-lmt/stream
 
 ```bash
 curl --location --no-buffer \
-  "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream" \
+  "$API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --header "Accept: text/event-stream" \
   --data '{
     "model_id": "'"$MODEL_ID"'",
     "message": "Write a short poem about the ocean.",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 

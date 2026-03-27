@@ -9,7 +9,7 @@ Create a new role in the system.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/CreateRole
+POST $API_BASE_URL/idp/v1/Iam/CreateRole
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/CreateRole
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/CreateRole" \
+curl --location "$API_BASE_URL/idp/v1/Iam/CreateRole" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "role-name",
     "description": "Role description",
     "slug": "role-slug",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/CreateRole" \
 | name | string | yes | Human-readable role name |
 | description | string | no | |
 | slug | string | yes | Unique identifier, kebab-case |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

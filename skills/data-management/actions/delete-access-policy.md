@@ -9,7 +9,7 @@ Remove a data access policy by its item ID. After deletion, the roles that were 
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/uds/v1/data-access/policy/delete
+DELETE $API_BASE_URL/uds/v1/data-access/policy/delete
 ```
 
 ---
@@ -17,9 +17,9 @@ DELETE $VITE_API_BASE_URL/uds/v1/data-access/policy/delete
 ## curl
 
 ```bash
-curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/data-access/policy/delete?itemId=$POLICY_ITEM_ID&projectKey=$VITE_PROJECT_SLUG" \
+curl --location --request DELETE "$API_BASE_URL/uds/v1/data-access/policy/delete?itemId=$POLICY_ITEM_ID&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location --request DELETE "$VITE_API_BASE_URL/uds/v1/data-access/policy/d
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | itemId | string | yes | Policy item ID returned from `create-access-policy` or `get-access-policies` |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

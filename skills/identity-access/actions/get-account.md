@@ -9,7 +9,7 @@ Get the profile and details of the currently authenticated account (the user mak
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccount
+GET $API_BASE_URL/idp/v1/Iam/GetAccount
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccount
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetAccount" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetAccount" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

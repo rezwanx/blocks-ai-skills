@@ -37,7 +37,7 @@ Before making any changes, capture the current field definitions.
 
 ```
 Action: get-schema
-Input:  id = $SCHEMA_ID, ProjectKey = $VITE_PROJECT_SLUG
+Input:  id = $SCHEMA_ID, ProjectKey = $PROJECT_SLUG
 ```
 
 Store the full field list. This is your rollback reference.
@@ -56,7 +56,7 @@ Input:
   FieldType  = "String" (or appropriate type)
   IsArray    = false
   IsRequired = false
-  ProjectKey = $VITE_PROJECT_SLUG
+  ProjectKey = $PROJECT_SLUG
 ```
 
 Safe to call on a live schema with existing data. Existing documents will return `null` for the new field until populated.
@@ -72,7 +72,7 @@ Input:
   FieldName  = "existingFieldName"
   FieldType  = (keep same type)
   IsRequired = true  ← change here
-  ProjectKey = $VITE_PROJECT_SLUG
+  ProjectKey = $PROJECT_SLUG
 ```
 
 > Do NOT change `FieldType` on a field that has existing data with a different type in MongoDB. This will break reads for any document where the stored type doesn't match.
@@ -104,7 +104,7 @@ Input:
   SchemaId   = $SCHEMA_ID
   FieldName  = "priceV2"   ← new name for the migrated field
   FieldType  = "Number"
-  ProjectKey = $VITE_PROJECT_SLUG
+  ProjectKey = $PROJECT_SLUG
 ```
 
 **Phase 2 — Migrate data via GraphQL:**
@@ -122,7 +122,7 @@ After any schema modification:
 
 ```
 Action: get-unadapted-changes
-Input:  projectKey = $VITE_PROJECT_SLUG
+Input:  projectKey = $PROJECT_SLUG
 ```
 
 If changes are listed → must reload before they take effect in GraphQL.
@@ -146,7 +146,7 @@ Query the updated schema:
 
 ```
 Action: get-schema
-Input:  id = $SCHEMA_ID, ProjectKey = $VITE_PROJECT_SLUG
+Input:  id = $SCHEMA_ID, ProjectKey = $PROJECT_SLUG
 ```
 
 Confirm the new field appears. Then run a test GraphQL query to confirm the new field is queryable.

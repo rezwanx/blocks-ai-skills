@@ -9,7 +9,7 @@ Update the validation rules for a field. Replaces the existing validation rules 
 ## Endpoint
 
 ```
-PUT $VITE_API_BASE_URL/uds/v1/data-validations
+PUT $API_BASE_URL/uds/v1/data-validations
 ```
 
 ---
@@ -17,12 +17,12 @@ PUT $VITE_API_BASE_URL/uds/v1/data-validations
 ## curl
 
 ```bash
-curl --location --request PUT "$VITE_API_BASE_URL/uds/v1/data-validations" \
+curl --location --request PUT "$API_BASE_URL/uds/v1/data-validations" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "SchemaId": "$SCHEMA_ID",
     "FieldName": "username",
     "Validations": [
@@ -58,7 +58,7 @@ Same shape as `create-validation` (POST). The SchemaId and FieldName together id
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaId | string | yes | Schema ID containing the field |
 | FieldName | string | yes | Field name whose validations should be updated |
 | Validations | array | yes | Complete updated set of validation rules — replaces existing |

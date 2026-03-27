@@ -9,7 +9,7 @@ View the file generation history for a project. Each entry records when a compil
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uilm/v1/Key/GetLanguageFileGenerationHistory?projectKey=$VITE_X_BLOCKS_KEY&pageNumber=1&pageSize=20
+GET $API_BASE_URL/uilm/v1/Key/GetLanguageFileGenerationHistory?projectKey=$X_BLOCKS_KEY&pageNumber=1&pageSize=20
 ```
 
 ---
@@ -18,9 +18,9 @@ GET $VITE_API_BASE_URL/uilm/v1/Key/GetLanguageFileGenerationHistory?projectKey=$
 
 ```bash
 curl --location \
-  "$VITE_API_BASE_URL/uilm/v1/Key/GetLanguageFileGenerationHistory?projectKey=$VITE_X_BLOCKS_KEY&pageNumber=1&pageSize=20" \
+  "$API_BASE_URL/uilm/v1/Key/GetLanguageFileGenerationHistory?projectKey=$X_BLOCKS_KEY&pageNumber=1&pageSize=20" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location \
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | pageNumber | integer | yes | Starts at 1 |
 | pageSize | integer | yes | Number of entries per page |
 

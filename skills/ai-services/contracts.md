@@ -8,7 +8,7 @@
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
@@ -52,7 +52,7 @@ All mutating endpoints return this shape:
 |-------|------|----------|-------------|
 | `name` | string | yes | Display name for the agent |
 | `description` | string | yes | What this agent is designed to do |
-| `project_key` | string | yes | Project identifier from `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier from `$PROJECT_SLUG` |
 
 ---
 

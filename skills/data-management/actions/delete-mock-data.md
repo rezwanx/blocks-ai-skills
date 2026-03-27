@@ -9,7 +9,7 @@ Delete mock / test data for a specific schema. Use this to clean up seeded test 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/data-manage/mock-data
+POST $API_BASE_URL/uds/v1/data-manage/mock-data
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uds/v1/data-manage/mock-data
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-manage/mock-data" \
+curl --location "$API_BASE_URL/uds/v1/data-manage/mock-data" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "SchemaName": "Product"
   }'
 ```
@@ -33,7 +33,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-manage/mock-data" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaName | string | yes | Schema whose mock data should be deleted |
 
 ---

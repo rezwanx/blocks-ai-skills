@@ -9,7 +9,7 @@ Send a message to an AI agent workspace and receive a complete (non-streaming) r
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/chat/{w_id}
+POST $API_BASE_URL/blocksai-api/v1/ai-agent/chat/{w_id}
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/chat/{w_id}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/chat/sess_xyz789" \
+curl --location "$API_BASE_URL/blocksai-api/v1/ai-agent/chat/sess_xyz789" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "message": "What is your return policy?",
     "session_id": "sess_xyz789",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -44,7 +44,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/chat/sess_xyz789" \
 |-------|------|----------|-------------|
 | `message` | string | yes | The user's message to send to the agent |
 | `session_id` | string | yes | Active session ID from `initiate-conversation` |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

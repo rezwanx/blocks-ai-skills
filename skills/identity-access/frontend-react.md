@@ -117,14 +117,14 @@ Rules:
 
 ## CAPTCHA Integration
 
-CAPTCHA is optional per project. Always check `VITE_CAPTCHA_SITE_KEY` before rendering.
+CAPTCHA is optional per project. Always check `CAPTCHA_SITE_KEY` before rendering.
 
 ```typescript
 // Only render CAPTCHA if the env variable is set
-const captchaEnabled = !!import.meta.env.VITE_CAPTCHA_SITE_KEY
+const captchaEnabled = !!import.meta.env.CAPTCHA_SITE_KEY
 ```
 
-Supported providers (via `VITE_CAPTCHA_TYPE`):
+Supported providers (via `CAPTCHA_TYPE`):
 - `reCaptcha` — Google reCAPTCHA v2
 - `hCaptcha` — hCaptcha
 

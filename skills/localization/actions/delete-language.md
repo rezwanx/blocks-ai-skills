@@ -9,7 +9,7 @@ Delete a language from a project by its ID.
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/uilm/v1/Language/Delete?itemId=<id>&projectKey=$VITE_X_BLOCKS_KEY
+DELETE $API_BASE_URL/uilm/v1/Language/Delete?itemId=<id>&projectKey=$X_BLOCKS_KEY
 ```
 
 ---
@@ -18,9 +18,9 @@ DELETE $VITE_API_BASE_URL/uilm/v1/Language/Delete?itemId=<id>&projectKey=$VITE_X
 
 ```bash
 curl --location --request DELETE \
-  "$VITE_API_BASE_URL/uilm/v1/Language/Delete?itemId=<LANGUAGE_ID>&projectKey=$VITE_X_BLOCKS_KEY" \
+  "$API_BASE_URL/uilm/v1/Language/Delete?itemId=<LANGUAGE_ID>&projectKey=$X_BLOCKS_KEY" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -30,7 +30,7 @@ curl --location --request DELETE \
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | itemId | string | yes | ID of the language to delete |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

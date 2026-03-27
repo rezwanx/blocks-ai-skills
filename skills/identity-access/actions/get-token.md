@@ -10,7 +10,7 @@ Run this at the start of every session before calling any other API.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/Token
+POST $API_BASE_URL/idp/v1/Authentication/Token
 ```
 
 ---
@@ -18,13 +18,13 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/Token
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
   --data-urlencode "username=$USERNAME" \
   --data-urlencode "password=$PASSWORD" \
-  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
 ```
 
 ---
@@ -33,9 +33,9 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
 
 | Parameter | Value | Type |
 |-----------|-------|------|
-| x-blocks-key | $VITE_X_BLOCKS_KEY | fixed |
+| x-blocks-key | $X_BLOCKS_KEY | fixed |
 | grant_type | password | fixed |
-| client_id | $VITE_BLOCKS_OIDC_CLIENT_ID | fixed |
+| client_id | $BLOCKS_OIDC_CLIENT_ID | fixed |
 | username | $USERNAME | dynamic |
 | password | $PASSWORD | dynamic |
 

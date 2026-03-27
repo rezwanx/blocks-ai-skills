@@ -43,7 +43,7 @@ If using template mode, confirm the template exists before sending.
 
 ```
 Action: get-templates
-Input:  projectKey = $VITE_PROJECT_SLUG
+Input:  projectKey = $PROJECT_SLUG
 Output: list of templates with name, purpose, language
 ```
 
@@ -66,7 +66,7 @@ Input:
     "firstName": "Jane",
     "activationLink": "https://app.example.com/activate?code=abc123"
   }
-  projectKey     = $VITE_PROJECT_SLUG
+  projectKey     = $PROJECT_SLUG
 ```
 
 On `isSuccess: true` → confirm to user that the email was queued.
@@ -86,7 +86,7 @@ Input:
   body       = "<p>Full HTML or plain text body.</p>"
   purpose    = "transactional" (optional label)
   language   = "en"
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 ```
 
 On `isSuccess: true` → confirm email was queued.
@@ -111,7 +111,7 @@ After either branch succeeds, confirm to the developer:
 | `isSuccess: false` with `to` error | Missing or invalid recipient email | Check `to` field formatting (must be valid email array) |
 | `401` | `ACCESS_TOKEN` expired | Re-run `get-token` |
 | `403` | Missing `cloudadmin` role | Verify role in Cloud Portal → People |
-| `404` | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| `404` | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

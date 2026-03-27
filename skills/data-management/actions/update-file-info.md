@@ -9,7 +9,7 @@ Update the metadata for an existing file — change its display name, tags, acce
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo
+POST $API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo" \
+curl --location "$API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "FileId": "$FILE_ID",
@@ -27,7 +27,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo" \
     "MetaData": "{\"altText\": \"Hero product shot\", \"category\": \"marketing\"}",
     "Tags": ["product", "hero", "marketing"],
     "AccessModifier": "Public",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -42,7 +42,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/updateFileAdditionalInfo" \
 | MetaData | string | no | JSON string with custom key-value metadata |
 | Tags | array | no | Array of tag strings |
 | AccessModifier | string | yes | `Public` or `Private` |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

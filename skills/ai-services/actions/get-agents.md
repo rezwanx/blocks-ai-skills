@@ -9,7 +9,7 @@ List AI agents for a project with optional search, status filter, and pagination
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/agents/queries
+POST $API_BASE_URL/blocksai-api/v1/agents/queries
 ```
 
 ---
@@ -17,16 +17,16 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/agents/queries
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/queries" \
+curl --location "$API_BASE_URL/blocksai-api/v1/agents/queries" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "limit": 20,
     "offset": 0,
     "search": "",
     "status": "active",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -40,7 +40,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/queries" \
 | `offset` | integer | no | Pagination offset. Default: `0` |
 | `search` | string | no | Search term to filter agents by name or description |
 | `status` | string | no | Filter by status: `active`, `inactive`, `archived`. Omit to return all |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 
@@ -71,4 +71,4 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/queries" \
 - `400` — Invalid filter values or malformed request body
 - `401` — Invalid or expired `ACCESS_TOKEN` — run `get-token` again
 - `403` — Account lacks permission to list agents in this project
-- `404` — Project not found — verify `VITE_PROJECT_SLUG`
+- `404` — Project not found — verify `PROJECT_SLUG`

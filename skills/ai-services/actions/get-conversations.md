@@ -9,7 +9,7 @@ List all chat sessions for an agent with optional filter and pagination.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions
+POST $API_BASE_URL/blocksai-api/v1/conversation/llm-sessions
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions" \
+curl --location "$API_BASE_URL/blocksai-api/v1/conversation/llm-sessions" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "agent_id": "agt_abc123",
     "limit": 20,
     "offset": 0,
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/conversation/llm-sessions" \
 | `agent_id` | string | yes | ID of the agent whose sessions to list |
 | `limit` | integer | no | Max results per page. Default: `20` |
 | `offset` | integer | no | Pagination offset. Default: `0` |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

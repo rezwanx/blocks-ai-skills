@@ -4,7 +4,7 @@
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
@@ -56,7 +56,7 @@ Used for ad-hoc emails where you supply the full subject and body directly — n
 | purpose | string | no | Identifies the email category (e.g. `"welcome"`, `"invoice"`) |
 | language | string | no | BCP 47 language code, defaults to `"en"` |
 | attachments | array | no | File attachment list — leave empty if unused |
-| projectKey | string | yes | Project identifier from `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Project identifier from `$PROJECT_SLUG` |
 
 ---
 

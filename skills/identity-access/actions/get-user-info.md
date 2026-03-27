@@ -9,7 +9,7 @@ Get the profile and claims of the currently authenticated user.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Authentication/GetUserInfo
+GET $API_BASE_URL/idp/v1/Authentication/GetUserInfo
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Authentication/GetUserInfo
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GetUserInfo" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/GetUserInfo" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

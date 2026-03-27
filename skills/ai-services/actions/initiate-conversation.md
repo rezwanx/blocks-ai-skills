@@ -9,7 +9,7 @@ Start a new chat session or reconnect to an existing one for an agent, returning
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/blocksai-api/v1/conversation/initiate?agent_id={agent_id}
+GET $API_BASE_URL/blocksai-api/v1/conversation/initiate?agent_id={agent_id}
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/blocksai-api/v1/conversation/initiate?agent_id={agent_id}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/conversation/initiate?agent_id=agt_abc123" \
+curl --location "$API_BASE_URL/blocksai-api/v1/conversation/initiate?agent_id=agt_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

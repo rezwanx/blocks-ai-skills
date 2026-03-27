@@ -40,7 +40,7 @@ Before starting, confirm:
 Action: generate-otp
 Input:
   userId     = target user's ID
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
   mfaType    = "OTP"
 ```
 
@@ -61,7 +61,7 @@ Action: verify-otp
 Input:
   userId     = target user's ID
   otp        = code entered by user
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -78,7 +78,7 @@ On 400     → Invalid or expired OTP, allow retry
 Action: resend-otp
 Input:
   userId     = target user's ID
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -113,7 +113,7 @@ Action: verify-otp
 Input:
   userId     = target user's ID
   otp        = 6-digit TOTP code
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -131,7 +131,7 @@ To remove MFA from a user account:
 Action: disable-user-mfa
 Input:
   userId     = target user's ID
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ---

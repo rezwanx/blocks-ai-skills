@@ -15,7 +15,7 @@ Not required. This action is public.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/Recover
+POST $API_BASE_URL/idp/v1/Iam/Recover
 ```
 
 ---
@@ -23,12 +23,12 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/Recover
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Recover" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Iam/Recover" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "email": "user@example.com",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -39,7 +39,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Recover" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | email | string | yes | User's registered email |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

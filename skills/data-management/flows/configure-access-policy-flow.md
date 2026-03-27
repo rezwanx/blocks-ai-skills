@@ -36,7 +36,7 @@ Before changing anything, check what policies currently exist.
 Action: get-access-policies
 Input:
   schemaName = "<SchemaName>"  (query param)
-  projectKey = $VITE_PROJECT_SLUG  (query param)
+  projectKey = $PROJECT_SLUG  (query param)
 ```
 
 **Branch:**
@@ -52,7 +52,7 @@ Action: change-security
 Input:
   SchemaName   = "<SchemaName>"
   SecurityType = "Public" | "Private" | "RoleBased"
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 **Branch:**
@@ -74,7 +74,7 @@ Input:
   PolicyName   = "admin-full-access"
   AllowedRoles = ["admin"]
   Operations   = ["Read", "Create", "Update", "Delete"]
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 **Editor — read and write, no delete:**
@@ -85,7 +85,7 @@ Input:
   PolicyName   = "editor-write"
   AllowedRoles = ["editor"]
   Operations   = ["Read", "Create", "Update"]
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 **Viewer — read only:**
@@ -96,7 +96,7 @@ Input:
   PolicyName   = "viewer-read-only"
   AllowedRoles = ["viewer"]
   Operations   = ["Read"]
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 Repeat for each distinct role/operation combination the user specified.
@@ -111,7 +111,7 @@ Confirm the policies were created correctly.
 Action: get-access-policies
 Input:
   schemaName = "<SchemaName>"  (query param)
-  projectKey = $VITE_PROJECT_SLUG  (query param)
+  projectKey = $PROJECT_SLUG  (query param)
 ```
 
 Review the response with the user:

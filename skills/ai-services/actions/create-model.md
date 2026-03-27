@@ -9,7 +9,7 @@ Create a new AI model configuration with provider credentials, making it availab
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/models/
+POST $API_BASE_URL/blocksai-api/v1/models/
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/models/
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/" \
+curl --location "$API_BASE_URL/blocksai-api/v1/models/" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "GPT-4o Production",
@@ -27,7 +27,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/" \
     "model_name": "gpt-4o",
     "api_key": "sk-...",
     "base_url": "",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -42,7 +42,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/" \
 | `model_name` | string | yes | The model identifier from the provider (e.g., `gpt-4o`, `claude-3-5-sonnet-20241022`) |
 | `api_key` | string | yes | API key for authenticating with the provider |
 | `base_url` | string | no | Custom base URL. Required for `AzureOpenAI` (Azure endpoint URL) and `Ollama` (local server URL) |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ### Provider and Model Name Examples
 
@@ -76,5 +76,5 @@ The `item_id` is the `model_id`. Use it in `update-agent-ai-config` to assign th
 - `400` — Missing required fields or invalid `provider` value
 - `401` — Invalid or expired `ACCESS_TOKEN` — run `get-token` again
 - `403` — Account lacks permission to create model configurations
-- `404` — Project not found — verify `VITE_PROJECT_SLUG`
+- `404` — Project not found — verify `PROJECT_SLUG`
 - `422` — API key validation failed — check the `api_key` value

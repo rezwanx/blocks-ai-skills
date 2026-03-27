@@ -9,7 +9,7 @@ Retrieve all notifications (read and unread) for the current user with paginatio
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/communication/v1/Notifier/GetNotifications
+GET $API_BASE_URL/communication/v1/Notifier/GetNotifications
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/communication/v1/Notifier/GetNotifications
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetNotifications?page=1&pageSize=20&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Notifier/GetNotifications?page=1&pageSize=20&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetNotifications?p
 |-----------|------|----------|-------|
 | page | integer | yes | 1-based page number |
 | pageSize | integer | yes | Records per page (recommended: 20) |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -72,7 +72,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/GetNotifications?p
 | 200 with `isSuccess: false` | Invalid pagination params or missing projectKey | Inspect `errors` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

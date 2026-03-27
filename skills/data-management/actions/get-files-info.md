@@ -9,7 +9,7 @@ Get metadata (name, size, content type, tags, access modifier) for multiple file
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/GetFilesInfo
+POST $API_BASE_URL/uds/v1/Files/GetFilesInfo
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/GetFilesInfo
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFilesInfo" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetFilesInfo" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "FileIds": ["file-id-1", "file-id-2"],
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -34,7 +34,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFilesInfo" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | FileIds | array | yes | Array of file IDs to retrieve metadata for |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

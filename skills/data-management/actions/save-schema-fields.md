@@ -9,7 +9,7 @@ Add or update a single field on a schema without replacing the entire field list
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/schemas/fields
+POST $API_BASE_URL/uds/v1/schemas/fields
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/uds/v1/schemas/fields
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/fields" \
+curl --location "$API_BASE_URL/uds/v1/schemas/fields" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "SchemaId": "$SCHEMA_ID",
@@ -27,7 +27,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/fields" \
     "FieldType": "String",
     "IsArray": false,
     "IsRequired": true,
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -42,7 +42,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/fields" \
 | FieldType | enum | yes | `String`, `Number`, `Boolean`, `Date`, `ObjectId`, `Object`, `Array` |
 | IsArray | boolean | yes | Set `true` if this field holds an array of the given type |
 | IsRequired | boolean | yes | Whether the field must be present on document create |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

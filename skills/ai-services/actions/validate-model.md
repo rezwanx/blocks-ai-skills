@@ -9,7 +9,7 @@ Validate a model configuration's API key and connectivity by sending a test requ
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/models/{model_id}/validate
+POST $API_BASE_URL/blocksai-api/v1/models/{model_id}/validate
 ```
 
 ---
@@ -18,9 +18,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/models/{model_id}/validate
 
 ```bash
 curl --location --request POST \
-  "$VITE_API_BASE_URL/blocksai-api/v1/models/mdl_abc123/validate" \
+  "$API_BASE_URL/blocksai-api/v1/models/mdl_abc123/validate" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

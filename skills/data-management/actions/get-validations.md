@@ -9,7 +9,7 @@ List all validation rules across a project with pagination.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-validations
+GET $API_BASE_URL/uds/v1/data-validations
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/data-validations
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-validations?page=1&pageSize=20&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/data-validations?page=1&pageSize=20&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-validations?page=1&pageSize=20&p
 |-----------|------|----------|-------|
 | page | integer | no | Default: 1 |
 | pageSize | integer | no | Default: 20 |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 
@@ -78,4 +78,4 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-validations?page=1&pageSize=20&p
 |--------|-------|--------|
 | 401 | Invalid or expired token | Run get-token to refresh |
 | 403 | Missing `cloudadmin` role | Check user role in Cloud Portal → People |
-| 404 | Wrong projectKey or API URL | Verify `$VITE_PROJECT_SLUG` |
+| 404 | Wrong projectKey or API URL | Verify `$PROJECT_SLUG` |

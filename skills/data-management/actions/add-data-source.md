@@ -9,7 +9,7 @@ Register a new MongoDB database connection for a project. This must be done befo
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/data-sources/add
+POST $API_BASE_URL/uds/v1/data-sources/add
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/uds/v1/data-sources/add
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-sources/add" \
+curl --location "$API_BASE_URL/uds/v1/data-sources/add" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "ItemId": "my-project-db",
     "ConnectionString": "mongodb+srv://user:password@cluster.mongodb.net",
     "DatabaseName": "my_database",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-sources/add" \
 | ItemId | string | yes | Unique identifier for this connection — use a slug (e.g. `my-project-db`) |
 | ConnectionString | string | yes | Full MongoDB connection string including credentials |
 | DatabaseName | string | yes | Name of the MongoDB database to use |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

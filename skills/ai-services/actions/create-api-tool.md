@@ -9,7 +9,7 @@ Create or update an API tool that an AI agent can call, with defined actions, au
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/tools/api
+POST $API_BASE_URL/blocksai-api/v1/tools/api
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/tools/api
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/tools/api" \
+curl --location "$API_BASE_URL/blocksai-api/v1/tools/api" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "Weather API",
@@ -49,7 +49,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/tools/api" \
         ]
       }
     ],
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -70,7 +70,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/tools/api" \
 | `actions[].path` | string | yes | Path relative to `base_url` |
 | `actions[].description` | string | yes | What this action does (used by the AI to choose the right action) |
 | `actions[].parameters` | object[] | no | Parameter schema for this action |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 
@@ -94,5 +94,5 @@ The `item_id` is the `tool_id`. Use it in `update-agent-ai-config` to attach thi
 - `400` — Missing required fields, invalid `auth_type`, or malformed `actions` array
 - `401` — Invalid or expired `ACCESS_TOKEN` — run `get-token` again
 - `403` — Account lacks permission to create tools in this project
-- `404` — Project not found — verify `VITE_PROJECT_SLUG`
+- `404` — Project not found — verify `PROJECT_SLUG`
 - `409` — A tool with the same name already exists in this project

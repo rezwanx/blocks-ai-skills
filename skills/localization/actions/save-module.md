@@ -9,7 +9,7 @@ Create or update a translation module. Modules group related translation keys (e
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Module/Save
+POST $API_BASE_URL/uilm/v1/Module/Save
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uilm/v1/Module/Save
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Module/Save" \
+curl --location "$API_BASE_URL/uilm/v1/Module/Save" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "auth",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Module/Save" \
 |-------|------|----------|-------|
 | id | string | no | Omit to create, include to update |
 | name | string | yes | Module name (e.g. "auth", "common") |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

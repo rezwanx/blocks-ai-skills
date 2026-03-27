@@ -9,7 +9,7 @@ Crawl a URL and index its content into a knowledge base folder.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/kb/link
+POST $API_BASE_URL/blocksai-api/v1/kb/link
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/kb/link
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/link" \
+curl --location "$API_BASE_URL/blocksai-api/v1/kb/link" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "url": "https://docs.example.com/api-reference",
     "kb_folder_id": "kbf_abc123",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/link" \
 |-------|------|----------|-------------|
 | `url` | string | yes | Fully qualified URL to crawl and index (must be publicly accessible) |
 | `kb_folder_id` | string | yes | Target KB folder ID |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

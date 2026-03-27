@@ -50,7 +50,7 @@ Input:
   ItemId           = "<project-slug>-db"
   ConnectionString = "<mongodb+srv connection string>"
   DatabaseName     = "<database name>"
-  ProjectKey       = $VITE_PROJECT_SLUG
+  ProjectKey       = $PROJECT_SLUG
 ```
 
 On success → continue to Step 1b.
@@ -73,7 +73,7 @@ Action: define-schema
 Input:
   CollectionName = "<collection-name>"
   SchemaName     = "<SchemaName>"
-  ProjectKey     = $VITE_PROJECT_SLUG
+  ProjectKey     = $PROJECT_SLUG
   SchemaType     = "Collection" | "SingleObject"
   Description    = "<optional description>"
 ```
@@ -90,7 +90,7 @@ On success → store `data.id` as `$SCHEMA_ID`. Continue to Step 3.
 Action: save-schema-info
 Input:
   SchemaId   = $SCHEMA_ID
-  ProjectKey = $VITE_PROJECT_SLUG
+  ProjectKey = $PROJECT_SLUG
   Fields     = [
     { Name, Type, IsArray, IsRequired, Description, DefaultValue },
     ...
@@ -108,7 +108,7 @@ If the user specified validation rules, call `create-validation` for each field 
 ```
 Action: create-validation
 Input:
-  ProjectKey  = $VITE_PROJECT_SLUG
+  ProjectKey  = $PROJECT_SLUG
   SchemaId    = $SCHEMA_ID
   FieldName   = "<field-name>"
   Validations = [
@@ -130,7 +130,7 @@ Action: change-security
 Input:
   SchemaName   = "<SchemaName>"
   SecurityType = "Public" | "Private" | "RoleBased"
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 **Branch:**
@@ -150,7 +150,7 @@ Input:
   PolicyName   = "<policy-name>"
   AllowedRoles = ["<role-slug>", ...]
   Operations   = ["Read", "Create", "Update", "Delete"]
-  ProjectKey   = $VITE_PROJECT_SLUG
+  ProjectKey   = $PROJECT_SLUG
 ```
 
 Repeat for each distinct policy (e.g. admin full access, viewer read-only).

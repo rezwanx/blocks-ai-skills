@@ -94,16 +94,16 @@ Examples: `data-table`, `confirmation-modal`, `otp-input`, `captcha`, `app-sideb
 Colors are driven by two env variables:
 
 ```
-VITE_PRIMARY_COLOR=#15969B
-VITE_SECONDARY_COLOR=#5194B8
+PRIMARY_COLOR=#15969B
+SECONDARY_COLOR=#5194B8
 ```
 
 These are resolved to HSL CSS custom properties at runtime via `src/styles/theme/`:
 
 ```css
 :root {
-  --primary: <hsl from VITE_PRIMARY_COLOR>;
-  --secondary: <hsl from VITE_SECONDARY_COLOR>;
+  --primary: <hsl from PRIMARY_COLOR>;
+  --secondary: <hsl from SECONDARY_COLOR>;
 }
 ```
 
@@ -241,7 +241,7 @@ import { useGetUilmFile } from '@/modules/localization/hooks/use-localization'
 export const useTranslation = () => {
   const { currentLanguage } = useLanguageStore()
   const { data: translations, isLoading } = useGetUilmFile({
-    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    projectKey: import.meta.env.PROJECT_SLUG,
     languageCode: currentLanguage,
   })
 
@@ -291,7 +291,7 @@ import { Globe } from 'lucide-react'
 export const LanguageSwitcher = () => {
   const { currentLanguage, setLanguage } = useLanguageStore()
   const { data: languages } = useGetLanguages({
-    projectKey: import.meta.env.VITE_PROJECT_SLUG,
+    projectKey: import.meta.env.PROJECT_SLUG,
   })
 
   if (!languages?.length) return null

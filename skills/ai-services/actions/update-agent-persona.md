@@ -9,7 +9,7 @@ Update an agent's display name, description, and persona (personality/behavior i
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/agents/update-persona
+POST $API_BASE_URL/blocksai-api/v1/agents/update-persona
 ```
 
 ---
@@ -17,16 +17,16 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/agents/update-persona
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/update-persona" \
+curl --location "$API_BASE_URL/blocksai-api/v1/agents/update-persona" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "agent_id": "agt_abc123",
     "name": "Customer Support Agent",
     "description": "Handles customer inquiries and support tickets",
     "persona": "You are a helpful, professional support agent. Always be polite and empathetic. Keep responses concise and actionable.",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -40,7 +40,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/update-persona" \
 | `name` | string | yes | Updated display name |
 | `description` | string | yes | Updated description |
 | `persona` | string | no | Personality and behavioral instructions for the agent |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

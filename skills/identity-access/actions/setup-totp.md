@@ -9,7 +9,7 @@ Setup a TOTP authenticator app (Google Authenticator, Microsoft Authenticator) f
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp
+GET $API_BASE_URL/idp/v1/Mfa/SetUpTotp
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Mfa/SetUpTotp?userId=USER_ID" \
+curl --location "$API_BASE_URL/idp/v1/Mfa/SetUpTotp?userId=USER_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

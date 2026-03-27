@@ -16,22 +16,22 @@ const apiKey = 'sk-abc123'
 const token = 'eyJhbGci...'
 
 // ✅ environment variable
-const apiKey = import.meta.env.VITE_X_BLOCKS_KEY
+const apiKey = import.meta.env.X_BLOCKS_KEY
 ```
 
-### Never put private values in VITE_ variables
+### Never put private values in client-exposed variables
 
-`VITE_` prefixed variables are bundled into the client and exposed in the browser. Only public, non-sensitive values belong there.
+Environment variables used in frontend code are bundled into the client and exposed in the browser. Only public, non-sensitive values belong there.
 
 ```bash
-# ✅ safe in VITE_ — public keys, non-sensitive config
-VITE_API_BASE_URL=https://api.seliseblocks.com
-VITE_X_BLOCKS_KEY=your_blocks_key
-VITE_CAPTCHA_SITE_KEY=your_public_captcha_key
+# ✅ safe — public keys, non-sensitive config
+API_BASE_URL=https://api.seliseblocks.com
+X_BLOCKS_KEY=your_blocks_key
+CAPTCHA_SITE_KEY=your_public_captcha_key
 
-# ❌ never in VITE_ — server secrets, private keys
-VITE_DB_PASSWORD=...
-VITE_SECRET_KEY=...
+# ❌ never expose — server secrets, private keys
+DB_PASSWORD=...
+SECRET_KEY=...
 ```
 
 ### Never log tokens
@@ -259,7 +259,7 @@ npm info <package-name>  # check last publish date and maintainers
 Run through this before finalising any generated file:
 
 - [ ] No hardcoded tokens, API keys, or passwords
-- [ ] No `VITE_` variables containing private/server-side secrets
+- [ ] No client-exposed variables containing private/server-side secrets
 - [ ] All form inputs validated with Zod before API submission
 - [ ] No `dangerouslySetInnerHTML` without DOMPurify
 - [ ] No `eval()` or `new Function()`

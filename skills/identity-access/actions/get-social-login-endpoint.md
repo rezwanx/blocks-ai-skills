@@ -10,7 +10,7 @@ Redirect the user to this URL to begin the OAuth flow.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint
+POST $API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint
 ```
 
 ---
@@ -18,13 +18,13 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "provider": "Google",
-    "redirectUri": "'$VITE_BLOCKS_OIDC_REDIRECT_URI'",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "redirectUri": "'$BLOCKS_OIDC_REDIRECT_URI'",
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -35,8 +35,8 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GetSocialLogInEndPoint
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | provider | string | yes | Social provider name (e.g. `Google`, `Microsoft`, `LinkedIn`, `GitHub`) |
-| redirectUri | string | yes | Use $VITE_BLOCKS_OIDC_REDIRECT_URI |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| redirectUri | string | yes | Use $BLOCKS_OIDC_REDIRECT_URI |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

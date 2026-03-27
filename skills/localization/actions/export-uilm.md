@@ -9,7 +9,7 @@ Export translation modules as downloadable files. Pass one or more module IDs to
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/UilmExport
+POST $API_BASE_URL/uilm/v1/Key/UilmExport
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/UilmExport
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/UilmExport" \
+curl --location "$API_BASE_URL/uilm/v1/Key/UilmExport" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "moduleIds": ["<MODULE_ID_1>", "<MODULE_ID_2>"]
   }'
 ```
@@ -33,7 +33,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/UilmExport" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleIds | array of strings | yes | IDs of modules to export |
 
 ---

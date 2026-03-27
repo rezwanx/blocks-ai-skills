@@ -9,7 +9,7 @@ Delete a knowledge base entry (document, text block, Q&A set, or link) by its ID
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/blocksai-api/v1/kb/delete/{kb_id}
+DELETE $API_BASE_URL/blocksai-api/v1/kb/delete/{kb_id}
 ```
 
 ---
@@ -18,9 +18,9 @@ DELETE $VITE_API_BASE_URL/blocksai-api/v1/kb/delete/{kb_id}
 
 ```bash
 curl --location --request DELETE \
-  "$VITE_API_BASE_URL/blocksai-api/v1/kb/delete/kb_doc_abc123" \
+  "$API_BASE_URL/blocksai-api/v1/kb/delete/kb_doc_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

@@ -9,7 +9,7 @@ Batch create or update multiple translation keys in a single request. Use this w
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/SaveKeys
+POST $API_BASE_URL/uilm/v1/Key/SaveKeys
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/SaveKeys
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/SaveKeys" \
+curl --location "$API_BASE_URL/uilm/v1/Key/SaveKeys" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "moduleId": "<MODULE_ID>",
     "keys": [
       {
@@ -48,7 +48,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/SaveKeys" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleId | string | yes | ID of the target module |
 | keys | array | yes | Array of key objects |
 | keys[].keyName | string | yes | Dot-notation key name |

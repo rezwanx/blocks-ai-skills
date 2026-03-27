@@ -9,7 +9,7 @@ Retrieve a list of all Entity-type schema collections with basic info. Use this 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/info
+GET $API_BASE_URL/uds/v1/schemas/info
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/info
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/info?projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/schemas/info?projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -28,7 +28,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/info?projectKey=$VITE_PROJECT
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

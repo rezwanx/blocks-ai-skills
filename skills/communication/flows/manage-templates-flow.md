@@ -36,7 +36,7 @@ Always fetch the current template list first to check what already exists.
 Action: get-templates
 Input:
   search     = (optional, to narrow results)
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 Output:
   templates[]  → list of existing templates with name, purpose, language, itemId
   totalCount   → total number of templates
@@ -57,7 +57,7 @@ Input:
   templateBody    = "<h1>Hello {{firstName}},</h1><p>Welcome to {{appName}}. Click <a href=\"{{activationLink}}\">here</a> to activate your account.</p>"
   language        = "en"
   purpose         = "welcome"
-  projectKey      = $VITE_PROJECT_SLUG
+  projectKey      = $PROJECT_SLUG
   (omit itemId to create)
 ```
 
@@ -74,7 +74,7 @@ First, load the full template to populate the editor:
 Action: get-template
 Input:
   itemId     = "template-id-123"
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 Output:
   template.templateSubject
   template.templateBody
@@ -93,7 +93,7 @@ Input:
   templateBody    = "<h1>Hi {{firstName}},</h1><p>Updated message here.</p>"
   language        = "en"
   purpose         = "welcome"
-  projectKey      = $VITE_PROJECT_SLUG
+  projectKey      = $PROJECT_SLUG
 ```
 
 On `isSuccess: true` → changes saved. Invalidate template cache.
@@ -110,7 +110,7 @@ Action: clone-template
 Input:
   itemId     = "template-id-123"
   newName    = "Welcome Email (French)"
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 ```
 
 On `isSuccess: true` → clone created. Run `get-templates` to find the new `itemId`, then edit it (Step 3) to update `purpose`, `language`, and body.
@@ -142,7 +142,7 @@ Show a confirmation dialog before proceeding.
 Action: delete-template
 Input:
   itemId     = "template-id-123"
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 ```
 
 On `isSuccess: true` → template deleted. Invalidate template list cache and navigate back to the templates list.
@@ -174,7 +174,7 @@ Template body is full HTML. Best practices:
 | `isSuccess: false` with `templateBody` error | Body is empty | Supply a valid HTML body |
 | `401` | `ACCESS_TOKEN` expired | Re-run `get-token` |
 | `403` | Missing `cloudadmin` role | Verify role in Cloud Portal → People |
-| `404` | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| `404` | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

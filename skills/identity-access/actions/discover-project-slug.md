@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Automatically discover and set `VITE_PROJECT_SLUG` after authentication, so the user never needs to provide it manually.
+Automatically discover and set `PROJECT_SLUG` after authentication, so the user never needs to provide it manually.
 
 ---
 
@@ -34,16 +34,16 @@ Look for any of these claim keys (case-insensitive):
 - `project_slug`
 - `TenantSlug`
 
-If a matching claim is found → use its value as `VITE_PROJECT_SLUG`.
+If a matching claim is found → use its value as `PROJECT_SLUG`.
 
 ### Method 2 — Call GetUserInfo
 
 If the JWT does not contain a recognisable project/tenant claim, call the user-info endpoint:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GetUserInfo" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/GetUserInfo" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 Inspect the response for any field containing the project slug (e.g. `tenant`, `project`, `slug`, or nested under `claims`).
@@ -58,7 +58,7 @@ If neither method yields a slug, ask:
 
 ## On Success
 
-1. Write the discovered value into `.env` as `VITE_PROJECT_SLUG=<value>`
+1. Write the discovered value into `.env` as `PROJECT_SLUG=<value>`
 2. Confirm to the user: _"Auto-detected project slug: `<value>`"_
 
 ---

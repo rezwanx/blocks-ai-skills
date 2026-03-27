@@ -15,7 +15,7 @@ Not required. This action is public.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/Activate
+POST $API_BASE_URL/idp/v1/Iam/Activate
 ```
 
 ---
@@ -23,13 +23,13 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/Activate
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Activate" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Iam/Activate" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "code": "activation_code",
     "password": "new_password",
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "mailPurpose": "string",
     "captchaCode": "string",
     "preventPostEvent": false
@@ -44,7 +44,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Activate" \
 |-------|------|----------|-------|
 | code | string | yes | Activation code from email |
 | password | string | yes | New password to set |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | mailPurpose | string | no | |
 | captchaCode | string | no | Required if captcha enabled |
 | preventPostEvent | boolean | no | Default false |

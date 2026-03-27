@@ -9,7 +9,7 @@ Import a JSON translation file into a module for a specific language. The file m
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/UilmImport
+POST $API_BASE_URL/uilm/v1/Key/UilmImport
 ```
 
 Content-Type: `multipart/form-data`
@@ -19,11 +19,11 @@ Content-Type: `multipart/form-data`
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/UilmImport" \
+curl --location "$API_BASE_URL/uilm/v1/Key/UilmImport" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --form "file=@/path/to/en.json" \
-  --form "projectKey=$VITE_X_BLOCKS_KEY" \
+  --form "projectKey=$X_BLOCKS_KEY" \
   --form "moduleId=<MODULE_ID>" \
   --form "languageCode=en"
 ```
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/UilmImport" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | file | binary | yes | Flat key-value JSON file |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleId | string | yes | Target module ID |
 | languageCode | string | yes | Language the file is for (e.g. "en") |
 

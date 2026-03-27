@@ -33,7 +33,7 @@ Input:
   startTime  = start of time window
   endTime    = end of time window
   serviceName = chosen service
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Review status code distribution. If 500 percentage is high, filter traces for status 500 in next step.
@@ -51,7 +51,7 @@ Input:
   sort.property    = "duration"
   sort.isDescending = true
   pageSize = 50
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Sort by `duration` descending to surface slowest requests first.
@@ -66,7 +66,7 @@ Click a trace to view the full span tree:
 Action: get-trace
 Input:
   traceId = selected trace's traceId
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Review parent→child span relationships to identify:
@@ -85,7 +85,7 @@ Input:
   startTime  = start of window
   endTime    = end of window
   serviceName = chosen service
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Review p95 and p99 latencies. Any endpoint with p99 > 1000ms warrants investigation.

@@ -9,7 +9,7 @@ Assign one or more roles to a user. Replaces existing role assignments.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/SetRoles
+POST $API_BASE_URL/idp/v1/Iam/SetRoles
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/SetRoles
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/SetRoles" \
+curl --location "$API_BASE_URL/idp/v1/Iam/SetRoles" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "userId": "USER_ID",
     "roles": ["role-slug-1", "role-slug-2"],
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/SetRoles" \
 |-------|------|----------|-------|
 | userId | string | yes | Target user ID |
 | roles | array | yes | Array of role slugs to assign |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

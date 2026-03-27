@@ -9,7 +9,7 @@ Retrieve paginated distributed traces with optional filtering by date range, ser
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/lmt/v1/Trace/GetTraces
+POST $API_BASE_URL/lmt/v1/Trace/GetTraces
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/lmt/v1/Trace/GetTraces
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetTraces" \
+curl --location "$API_BASE_URL/lmt/v1/Trace/GetTraces" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "filter": {
@@ -31,7 +31,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetTraces" \
     "page": 1,
     "pageSize": 50,
     "sort": { "property": "startTime", "isDescending": true },
-    "projectKey": "'"$VITE_X_BLOCKS_KEY"'"
+    "projectKey": "'"$X_BLOCKS_KEY"'"
   }'
 ```
 
@@ -50,7 +50,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetTraces" \
 | sort.property | string | no | `startTime`, `duration`, `statusCode` |
 | sort.isDescending | boolean | no | Default: true |
 | search | string | no | Search in operation name |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

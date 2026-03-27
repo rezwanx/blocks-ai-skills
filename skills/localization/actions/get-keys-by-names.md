@@ -9,7 +9,7 @@ Retrieve specific translation keys by their key name strings. Useful when you kn
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/GetsByKeyNames
+POST $API_BASE_URL/uilm/v1/Key/GetsByKeyNames
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/GetsByKeyNames
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/GetsByKeyNames" \
+curl --location "$API_BASE_URL/uilm/v1/Key/GetsByKeyNames" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "moduleId": "<MODULE_ID>",
     "keyNames": ["login.title", "login.button.submit"]
   }'
@@ -34,7 +34,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/GetsByKeyNames" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleId | string | yes | Module the keys belong to |
 | keyNames | array of strings | yes | List of key name strings to fetch |
 

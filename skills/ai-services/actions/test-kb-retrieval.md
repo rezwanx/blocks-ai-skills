@@ -9,7 +9,7 @@ Test retrieval quality for an agent's knowledge base by running a query and seei
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/kb/retrieval-test/{agent_id}
+POST $API_BASE_URL/blocksai-api/v1/kb/retrieval-test/{agent_id}
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/kb/retrieval-test/{agent_id}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/retrieval-test/agt_abc123" \
+curl --location "$API_BASE_URL/blocksai-api/v1/kb/retrieval-test/agt_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "query": "What is the return policy?",
     "top_k": 5,
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -44,7 +44,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/retrieval-test/agt_abc123
 |-------|------|----------|-------------|
 | `query` | string | yes | The test query to run against the knowledge base |
 | `top_k` | integer | no | Number of top results to return. Default: `5` |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

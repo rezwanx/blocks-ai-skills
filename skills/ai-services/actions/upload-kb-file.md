@@ -9,7 +9,7 @@ Upload a file (PDF, DOCX, TXT, MD, CSV) to a knowledge base folder for indexing 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/kb/file
+POST $API_BASE_URL/blocksai-api/v1/kb/file
 ```
 
 > This endpoint uses `multipart/form-data` — do NOT set `Content-Type: application/json`.
@@ -19,11 +19,11 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/kb/file
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/file" \
+curl --location "$API_BASE_URL/blocksai-api/v1/kb/file" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --form "file=@/path/to/document.pdf" \
-  --form "project_key=$VITE_PROJECT_SLUG" \
+  --form "project_key=$PROJECT_SLUG" \
   --form "kb_folder_id=kbf_abc123" \
   --form "chunk_size=512"
 ```
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/file" \
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `file` | binary | yes | File to upload. Supported: PDF, DOCX, TXT, MD, CSV |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 | `kb_folder_id` | string | no | Target KB folder ID. If omitted, placed in default folder |
 | `chunk_size` | integer | no | Token chunk size for indexing. Default: `512` |
 

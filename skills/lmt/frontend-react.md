@@ -149,7 +149,7 @@ const useLiveLogs = (serviceName: string, projectKey: string) => {
   useEffect(() => {
     if (!serviceName) return
 
-    const url = new URL(`${import.meta.env.VITE_API_BASE_URL}/lmt/v1/Log/Live`)
+    const url = new URL(`${import.meta.env.API_BASE_URL}/lmt/v1/Log/Live`)
     url.searchParams.set('serviceName', serviceName)
     url.searchParams.set('projectKey', projectKey)
 

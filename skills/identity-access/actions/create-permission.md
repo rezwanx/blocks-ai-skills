@@ -9,7 +9,7 @@ Create a new permission definition.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/CreatePermission
+POST $API_BASE_URL/idp/v1/Iam/CreatePermission
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/CreatePermission
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/CreatePermission" \
+curl --location "$API_BASE_URL/idp/v1/Iam/CreatePermission" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "permission-name",
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/CreatePermission" \
     "tags": [],
     "dependentPermissions": [],
     "isBuiltIn": false,
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -48,7 +48,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/CreatePermission" \
 | tags | array | no | |
 | dependentPermissions | array | no | Permission names this depends on |
 | isBuiltIn | boolean | no | Default false |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

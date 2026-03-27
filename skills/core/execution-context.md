@@ -37,7 +37,7 @@ Each SELISE Blocks service uses a different response wrapper and naming conventi
 ### Special Cases
 
 - **get-token and refresh-token** use `Content-Type: application/x-www-form-urlencoded` (NOT JSON). All other endpoints use `application/json`.
-- **GraphQL endpoint** includes the project slug in the URL path: `POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql`
+- **GraphQL endpoint** includes the project slug in the URL path: `POST $API_BASE_URL/uds/v1/$PROJECT_SLUG/graphql`
 
 ---
 

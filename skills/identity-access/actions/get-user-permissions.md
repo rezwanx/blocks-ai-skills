@@ -9,7 +9,7 @@ Get all permissions assigned to a specific user (directly or via roles).
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetUserPermissions
+GET $API_BASE_URL/idp/v1/Iam/GetUserPermissions
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetUserPermissions
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUserPermissions?userId=USER_ID" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetUserPermissions?userId=USER_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

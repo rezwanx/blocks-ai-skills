@@ -9,7 +9,7 @@ Permanently delete a tool from the project.
 ## Endpoint
 
 ```
-DELETE $VITE_API_BASE_URL/blocksai-api/v1/tools/{tool_id}
+DELETE $API_BASE_URL/blocksai-api/v1/tools/{tool_id}
 ```
 
 ---
@@ -18,9 +18,9 @@ DELETE $VITE_API_BASE_URL/blocksai-api/v1/tools/{tool_id}
 
 ```bash
 curl --location --request DELETE \
-  "$VITE_API_BASE_URL/blocksai-api/v1/tools/tool_abc123" \
+  "$API_BASE_URL/blocksai-api/v1/tools/tool_abc123" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

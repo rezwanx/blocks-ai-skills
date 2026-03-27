@@ -41,7 +41,7 @@ Input:
   FileName      = "<original-filename.ext>"
   ContentType   = "<mime-type>"  (e.g. "image/png", "application/pdf")
   FolderPath    = "<optional/folder/path>"
-  ProjectKey    = $VITE_PROJECT_SLUG
+  ProjectKey    = $PROJECT_SLUG
 ```
 
 On success → store `data.url` as `$PRESIGNED_URL` and `data.fileId` as `$FILE_ID`.
@@ -84,7 +84,7 @@ Input:
   MetaData       = "<JSON string with custom fields>"
   Tags           = ["<tag1>", "<tag2>"]
   AccessModifier = "Public" | "Private"
-  ProjectKey     = $VITE_PROJECT_SLUG
+  ProjectKey     = $PROJECT_SLUG
 ```
 
 On success → upload complete.
@@ -101,7 +101,7 @@ If the user wants to upload into a specific folder, check or create it first.
 Action: get-dms-files
 Input:
   ParentDirectoryId = null   (check root for existing folders)
-  ProjectKey        = $VITE_PROJECT_SLUG
+  ProjectKey        = $PROJECT_SLUG
   Page              = 1
   PageSize          = 50
 ```
@@ -117,7 +117,7 @@ Action: create-folder
 Input:
   Name              = "<folder-name>"
   ParentDirectoryId = "<parent-id or omit for root>"
-  ProjectKey        = $VITE_PROJECT_SLUG
+  ProjectKey        = $PROJECT_SLUG
 ```
 
 Store `data.id` as `$PARENT_FOLDER_ID`. Continue to Step B2.
@@ -135,7 +135,7 @@ Fields:
   ParentDirectoryId = $PARENT_FOLDER_ID  (omit for root)
   Tags              = "<comma-separated-tags>"
   AccessModifier    = "Public" | "Private"
-  ProjectKey        = $VITE_PROJECT_SLUG
+  ProjectKey        = $PROJECT_SLUG
 ```
 
 Track upload progress via `XMLHttpRequest` `upload.onprogress`.
@@ -156,7 +156,7 @@ Fields:
   Name           = "<display-name>"
   Tags           = "<comma-separated-tags>"
   AccessModifier = "Public" | "Private"
-  ProjectKey     = $VITE_PROJECT_SLUG
+  ProjectKey     = $PROJECT_SLUG
 ```
 
 On success → upload complete. Store returned `data.id` if further operations needed.

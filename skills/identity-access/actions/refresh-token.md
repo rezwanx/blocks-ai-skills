@@ -10,7 +10,7 @@ Triggered when any API call returns 401.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/Token
+POST $API_BASE_URL/idp/v1/Authentication/Token
 ```
 
 ---
@@ -18,12 +18,12 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/Token
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
-  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
 ```
 
 ---
@@ -32,9 +32,9 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
 
 | Parameter | Value | Type |
 |-----------|-------|------|
-| x-blocks-key | $VITE_X_BLOCKS_KEY | fixed |
+| x-blocks-key | $X_BLOCKS_KEY | fixed |
 | grant_type | refresh_token | fixed |
-| client_id | $VITE_BLOCKS_OIDC_CLIENT_ID | fixed |
+| client_id | $BLOCKS_OIDC_CLIENT_ID | fixed |
 | refresh_token | $REFRESH_TOKEN | runtime value |
 
 ---

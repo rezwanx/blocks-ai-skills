@@ -9,7 +9,7 @@ Reload the GraphQL schema configuration for a project. Must be called after any 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/configurations/reload
+POST $API_BASE_URL/uds/v1/configurations/reload
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/uds/v1/configurations/reload
 ## curl
 
 ```bash
-curl --location --request POST "$VITE_API_BASE_URL/uds/v1/configurations/reload" \
+curl --location --request POST "$API_BASE_URL/uds/v1/configurations/reload" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 No request body or path parameters required. The project is identified from the authentication context.

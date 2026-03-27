@@ -9,7 +9,7 @@ Send an email to a registered user using a pre-configured email template. The te
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/communication/v1/Mail/Send
+POST $API_BASE_URL/communication/v1/Mail/Send
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/communication/v1/Mail/Send
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Mail/Send" \
+curl --location "$API_BASE_URL/communication/v1/Mail/Send" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "userId": "user-id-here",
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Mail/Send" \
       "activationLink": "https://app.example.com/activate?code=abc123"
     },
     "attachments": [],
-    "projectKey": "'"$VITE_PROJECT_SLUG"'"
+    "projectKey": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -45,7 +45,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Mail/Send" \
 | language | string | no | BCP 47 code — used to pick the right language variant of the template; defaults to `"en"` |
 | bodyDataContext | object | no | Key/value pairs injected into `{{variableName}}` placeholders in the template |
 | attachments | array | no | Leave as empty array if unused |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -102,7 +102,7 @@ With `bodyDataContext`:
 | 200 with `isSuccess: false` | User not found, or no template matches the purpose/language | Inspect `errors`; verify the template exists via `get-templates` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

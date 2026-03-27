@@ -9,7 +9,7 @@ List all AI model configurations in a project.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/blocksai-api/v1/models/
+GET $API_BASE_URL/blocksai-api/v1/models/
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/blocksai-api/v1/models/
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/?project_key=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/blocksai-api/v1/models/?project_key=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -28,7 +28,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/?project_key=$VITE_PR
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 
@@ -69,4 +69,4 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/?project_key=$VITE_PR
 
 - `401` — Invalid or expired `ACCESS_TOKEN` — run `get-token` again
 - `403` — Account lacks permission to list models in this project
-- `404` — Project not found — verify `VITE_PROJECT_SLUG`
+- `404` — Project not found — verify `PROJECT_SLUG`

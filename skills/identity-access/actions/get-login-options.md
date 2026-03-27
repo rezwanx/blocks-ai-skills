@@ -9,7 +9,7 @@ Get available login methods configured for the project (e.g. email/password, soc
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Authentication/GetLoginOptions
+GET $API_BASE_URL/idp/v1/Authentication/GetLoginOptions
 ```
 
 ---
@@ -17,8 +17,8 @@ GET $VITE_API_BASE_URL/idp/v1/Authentication/GetLoginOptions
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GetLoginOptions" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+curl --location "$API_BASE_URL/idp/v1/Authentication/GetLoginOptions" \
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

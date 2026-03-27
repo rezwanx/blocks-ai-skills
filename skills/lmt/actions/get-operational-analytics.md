@@ -9,7 +9,7 @@ Get API-level performance metrics for a service: call count, average/p95/p99 lat
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics
+POST $API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics
 ```
 
 ---
@@ -17,16 +17,16 @@ POST $VITE_API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics" \
+curl --location "$API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "startTime": "2024-01-01T00:00:00Z",
     "endTime": "2024-01-31T23:59:59Z",
     "serviceName": "identity-service",
     "operationName": "",
-    "projectKey": "'"$VITE_X_BLOCKS_KEY"'"
+    "projectKey": "'"$X_BLOCKS_KEY"'"
   }'
 ```
 
@@ -40,7 +40,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetOperationalAnalytics" \
 | endTime | ISO datetime | yes | Analytics window end |
 | serviceName | string | yes | Service to analyze |
 | operationName | string | no | Narrow to one endpoint; omit for all |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

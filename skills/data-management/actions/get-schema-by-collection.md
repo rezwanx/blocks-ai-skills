@@ -9,7 +9,7 @@ Retrieve the details of a specific Entity-type schema by its collection name, in
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/info-by-name
+GET $API_BASE_URL/uds/v1/schemas/info-by-name
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/info-by-name
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/info-by-name?schemaName=products&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/schemas/info-by-name?schemaName=products&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/info-by-name?schemaName=produ
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | schemaName | string | yes | The collection name (e.g. `products`, `orders`) |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

@@ -30,7 +30,7 @@ Collect user's email address. If CAPTCHA is enabled, show CAPTCHA widget when th
 Action: recover-user
 Input:
   email      = user's registered email
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
   captchaCode = captcha token (if enabled)
 ```
 
@@ -69,7 +69,7 @@ Action: reset-password
 Input:
   code        = code from URL
   newPassword = user's new password
-  projectKey  = VITE_X_BLOCKS_KEY
+  projectKey  = X_BLOCKS_KEY
 ```
 
 Password constraints: min 8 chars, must include uppercase, lowercase, number, special character.

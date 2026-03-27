@@ -9,7 +9,7 @@ Retrieve service logs filtered by a specific date range. Optimized for date-boun
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/lmt/v1/Log/GetLogsByDate
+POST $API_BASE_URL/lmt/v1/Log/GetLogsByDate
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/lmt/v1/Log/GetLogsByDate
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogsByDate" \
+curl --location "$API_BASE_URL/lmt/v1/Log/GetLogsByDate" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "serviceName": "identity-service",
@@ -32,7 +32,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogsByDate" \
     "pageSize": 50,
     "sort": { "property": "timestamp", "isDescending": true },
     "search": "",
-    "projectKey": "'"$VITE_X_BLOCKS_KEY"'"
+    "projectKey": "'"$X_BLOCKS_KEY"'"
   }'
 ```
 
@@ -51,7 +51,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogsByDate" \
 | sort.property | string | no | `timestamp`, `level` |
 | sort.isDescending | boolean | no | Default: true |
 | search | string | no | Full-text search |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

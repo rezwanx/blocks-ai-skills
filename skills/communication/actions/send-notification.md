@@ -9,7 +9,7 @@ Send an in-app notification to one or more users. Recipients can be targeted by 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/communication/v1/Notifier/Notify
+POST $API_BASE_URL/communication/v1/Notifier/Notify
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/communication/v1/Notifier/Notify
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/Notify" \
+curl --location "$API_BASE_URL/communication/v1/Notifier/Notify" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "userIds": ["user-id-abc"],
@@ -27,7 +27,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/Notify" \
     "subscriptionFilters": [],
     "denormalizedPayload": "{\"message\": \"Your order has been shipped.\", \"orderId\": \"ORD-001\"}",
     "configuratoinName": "",
-    "projectKey": "'"$VITE_PROJECT_SLUG"'"
+    "projectKey": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -42,7 +42,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/Notify" \
 | subscriptionFilters | string[] | no | Target users subscribed to these filter keys |
 | denormalizedPayload | string | yes | Notification content — typically a JSON string or plain text |
 | configuratoinName | string | no | Server-side notification config name — note the API typo (intentional) |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 > At least one of `userIds`, `roles`, or `subscriptionFilters` must be provided to target recipients.
 
@@ -108,4 +108,4 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Notifier/Notify" \
 | 200 with `isSuccess: false` | No recipients found, or missing required fields | Inspect `errors`; verify user IDs and roles exist |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |

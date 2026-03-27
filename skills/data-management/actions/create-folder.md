@@ -9,7 +9,7 @@ Create a new folder in the Document Management System (DMS). Folders can be nest
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/CreateFolder
+POST $API_BASE_URL/uds/v1/Files/CreateFolder
 ```
 
 ---
@@ -19,27 +19,27 @@ POST $VITE_API_BASE_URL/uds/v1/Files/CreateFolder
 Create root folder:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/CreateFolder" \
+curl --location "$API_BASE_URL/uds/v1/Files/CreateFolder" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "Name": "Product Images",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
 Create nested folder:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/CreateFolder" \
+curl --location "$API_BASE_URL/uds/v1/Files/CreateFolder" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "Name": "Thumbnails",
     "ParentDirectoryId": "folder-id-abc123",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -51,7 +51,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/CreateFolder" \
 |-------|------|----------|-------|
 | Name | string | yes | Folder display name |
 | ParentDirectoryId | string | no | Parent folder ID — omit or set `null` for root level |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

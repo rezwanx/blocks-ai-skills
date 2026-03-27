@@ -9,7 +9,7 @@ Get all data access policies defined for a specific schema. Use this to review w
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-access/policy/get
+GET $API_BASE_URL/uds/v1/data-access/policy/get
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/data-access/policy/get
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-access/policy/get?schemaName=$SCHEMA_NAME&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/data-access/policy/get?schemaName=$SCHEMA_NAME&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-access/policy/get?schemaName=$SC
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | schemaName | string | yes | The schema's `SchemaName` (not ID) |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

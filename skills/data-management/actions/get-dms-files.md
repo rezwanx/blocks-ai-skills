@@ -9,7 +9,7 @@ List files and folders in the Document Management System (DMS) for a given paren
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder
+POST $API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder
 ```
 
 ---
@@ -19,13 +19,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder
 List root level:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "ParentDirectoryId": null,
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "Page": 1,
     "PageSize": 20
   }'
@@ -34,13 +34,13 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
 List items in a folder:
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "ParentDirectoryId": "folder-id-abc123",
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "Page": 1,
     "PageSize": 20
   }'
@@ -53,7 +53,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetDmsFileAndFolder" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | ParentDirectoryId | string | no | Parent folder ID — set `null` for root level |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | Page | integer | no | Default: 1 |
 | PageSize | integer | no | Default: 20 |
 

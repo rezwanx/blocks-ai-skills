@@ -9,7 +9,7 @@ Regenerate the compiled translation JSON file for a language and module. Must be
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/GenerateUilmFile
+POST $API_BASE_URL/uilm/v1/Key/GenerateUilmFile
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/GenerateUilmFile
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/GenerateUilmFile" \
+curl --location "$API_BASE_URL/uilm/v1/Key/GenerateUilmFile" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "moduleId": "<MODULE_ID>",
     "languageCode": "en"
   }'
@@ -34,7 +34,7 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/GenerateUilmFile" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleId | string | yes | ID of the module to regenerate |
 | languageCode | string | yes | ISO 639-1 language code |
 

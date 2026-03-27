@@ -30,7 +30,7 @@ Call `get-modules` to show available modules. Confirm which module the user want
 
 ```
 Action: get-modules
-Input:  projectKey = $VITE_X_BLOCKS_KEY
+Input:  projectKey = $X_BLOCKS_KEY
 Output: list of modules with IDs
 ```
 
@@ -48,7 +48,7 @@ Action: save-key
 Input:
   keyName    = "login.title"
   moduleId   = <chosen moduleId>
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   translations = [
     { languageCode: "en", value: "Welcome Back" },
     { languageCode: "de", value: "Willkommen zurück" }
@@ -59,7 +59,7 @@ Input:
 ```
 Action: save-keys
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   moduleId   = <chosen moduleId>
   keys = [ { keyName, translations[] }, ... ]
 ```
@@ -73,7 +73,7 @@ Call `translate-all` for the module. This fills in any missing translation value
 ```
 Action: translate-all
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   moduleId   = <chosen moduleId>
 ```
 
@@ -88,7 +88,7 @@ First retrieve the key ID if not already known:
 ```
 Action: get-keys-by-names
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   moduleId   = <chosen moduleId>
   keyNames   = ["keyName"]
 ```
@@ -99,7 +99,7 @@ Then call `translate-key`:
 Action: translate-key
 Input:
   keyId        = <key ID from above>
-  projectKey   = $VITE_X_BLOCKS_KEY
+  projectKey   = $X_BLOCKS_KEY
   languageCode = <target language code>
 ```
 
@@ -112,7 +112,7 @@ Call `get-keys` to confirm all keys and translations are correct.
 ```
 Action: get-keys
 Input:
-  projectKey  = $VITE_X_BLOCKS_KEY
+  projectKey  = $X_BLOCKS_KEY
   moduleId    = <chosen moduleId>
   pageNumber  = 1
   pageSize    = 20
@@ -129,7 +129,7 @@ If the user wants to download the updated translation file, call `generate-uilm-
 ```
 Action: generate-uilm-file
 Input:
-  projectKey   = $VITE_X_BLOCKS_KEY
+  projectKey   = $X_BLOCKS_KEY
   moduleId     = <chosen moduleId>
   languageCode = <target language code>
 
@@ -137,7 +137,7 @@ Action: get-uilm-file
 Input:
   language   = <target language code>
   moduleId   = <chosen moduleId>
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
 ```
 
 ---

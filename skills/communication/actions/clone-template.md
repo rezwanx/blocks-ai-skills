@@ -9,7 +9,7 @@ Create a copy of an existing email template under a new name. The cloned templat
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/communication/v1/Template/Clone
+POST $API_BASE_URL/communication/v1/Template/Clone
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/communication/v1/Template/Clone
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Clone" \
+curl --location "$API_BASE_URL/communication/v1/Template/Clone" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "itemId": "template-id-123",
     "newName": "Welcome Email (Copy)",
-    "projectKey": "'"$VITE_PROJECT_SLUG"'"
+    "projectKey": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Clone" \
 |-------|------|----------|-------|
 | itemId | string | yes | ID of the source template to clone — from `get-templates` |
 | newName | string | yes | Name for the cloned template — must be unique within the project |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -70,7 +70,7 @@ The cloned template is created. Use `get-templates` to find the new template's `
 | 200 with `isSuccess: false` | Source template not found, or `newName` already taken | Inspect `errors` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

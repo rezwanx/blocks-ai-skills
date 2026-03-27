@@ -28,17 +28,17 @@ The user account used for all operations must have the **`cloudadmin`** role.
 1. Log in to https://cloud.seliseblocks.com
 2. Navigate to Projects
 3. Create a new project with a name and slug
-4. Copy the project slug → this becomes `VITE_PROJECT_SLUG` in your `.env`
-5. Copy the Blocks Key → this becomes `VITE_X_BLOCKS_KEY` in your `.env`
+4. Copy the project slug → this becomes `PROJECT_SLUG` in your `.env`
+5. Copy the Blocks Key → this becomes `X_BLOCKS_KEY` in your `.env`
 
-> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Using values from different projects will cause authentication and API failures.
+> `X_BLOCKS_KEY`, `PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Using values from different projects will cause authentication and API failures.
 
 **Error Guidance:**
 
 | Symptom | Likely Cause | Fix |
 |---------|-------------|-----|
 | Cannot create project | Insufficient permissions | Ensure your account has `cloudadmin` role |
-| `VITE_X_BLOCKS_KEY` not working | Wrong key copied | Re-copy the Blocks Key from the project settings page |
+| `X_BLOCKS_KEY` not working | Wrong key copied | Re-copy the Blocks Key from the project settings page |
 | 401 on all API calls | Project not active | Verify project status is Active in the portal |
 
 ---
@@ -106,7 +106,7 @@ The user account used for all operations must have the **`cloudadmin`** role.
 Before starting any development, confirm all items are complete:
 
 - [ ] Project created in cloud portal
-- [ ] `VITE_PROJECT_SLUG` and `VITE_X_BLOCKS_KEY` copied from that project's settings
+- [ ] `PROJECT_SLUG` and `X_BLOCKS_KEY` copied from that project's settings
 - [ ] Environment created for the project
 - [ ] User account added to **the same project** with `cloudadmin` role
 - [ ] `USERNAME` and `PASSWORD` in `.env` match that account
@@ -121,18 +121,18 @@ Run this to confirm your credentials and role are correct:
 
 ```bash
 curl --location "https://api.seliseblocks.com/idp/v1/Authentication/Token" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
   --data-urlencode "username=$USERNAME" \
   --data-urlencode "password=$PASSWORD" \
-  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
 ```
 
 | Response | Meaning |
 |----------|---------|
 | `200` with `access_token` | All prerequisites met — ready to proceed |
 | `400` | Wrong `grant_type`, `client_id`, or malformed request |
-| `401` | Wrong `USERNAME`, `PASSWORD`, or `VITE_X_BLOCKS_KEY` |
+| `401` | Wrong `USERNAME`, `PASSWORD`, or `X_BLOCKS_KEY` |
 | `403` | Account missing `cloudadmin` role |
 | `404` | Environment not created or project not active |

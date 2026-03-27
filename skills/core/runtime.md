@@ -15,10 +15,10 @@
 
 The following variables must be available:
 
-* VITE_API_BASE_URL
-* VITE_X_BLOCKS_KEY
-* VITE_PROJECT_SLUG
-* VITE_BLOCKS_OIDC_CLIENT_ID
+* API_BASE_URL
+* X_BLOCKS_KEY
+* PROJECT_SLUG
+* BLOCKS_OIDC_CLIENT_ID
 * USERNAME
 * PASSWORD
 * ACCESS_TOKEN (populated after authentication)
@@ -34,13 +34,13 @@ Authentication is a two-step runtime process:
 Before calling any API, obtain an access token using the get-token action:
 
 ```
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/Token" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=password" \
   --data-urlencode "username=$USERNAME" \
   --data-urlencode "password=$PASSWORD" \
-  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID"
+  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID"
 ```
 
 Store the returned `access_token` as `$ACCESS_TOKEN` and `refresh_token` as `$REFRESH_TOKEN`.
@@ -65,12 +65,12 @@ Long-running flows (e.g. bulk KB ingestion, schema creation with many fields) ma
 
 ```bash
 # Refresh pattern (run on any 401):
-RESPONSE=$(curl --silent "$VITE_API_BASE_URL/idp/v1/Authentication/Token" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+RESPONSE=$(curl --silent "$API_BASE_URL/idp/v1/Authentication/Token" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
-  --data-urlencode "client_id=$VITE_BLOCKS_OIDC_CLIENT_ID")
+  --data-urlencode "client_id=$BLOCKS_OIDC_CLIENT_ID")
 
 export ACCESS_TOKEN=$(echo $RESPONSE | jq -r '.access_token')
 export REFRESH_TOKEN=$(echo $RESPONSE | jq -r '.refresh_token')
@@ -84,13 +84,13 @@ If the refresh also returns 401 → both tokens are expired. Re-authenticate fro
 ## API Execution Rules
 
 * Use curl for all backend API calls
-* Use "$VITE_API_BASE_URL" as prefix for all endpoints
-* Always include `Authorization: Bearer $ACCESS_TOKEN` and `x-blocks-key: $VITE_X_BLOCKS_KEY`
+* Use "$API_BASE_URL" as prefix for all endpoints
+* Always include `Authorization: Bearer $ACCESS_TOKEN` and `x-blocks-key: $X_BLOCKS_KEY`
 * **Content-Type exceptions:**
   - `get-token` and `refresh-token`: Use `Content-Type: application/x-www-form-urlencoded` with `--data-urlencode`
   - File uploads (multipart): Omit `Content-Type` — let the HTTP client set it with the correct boundary
   - All other POST/PUT requests: Use `Content-Type: application/json`
-* **GraphQL endpoint:** `POST $VITE_API_BASE_URL/uds/v1/$VITE_PROJECT_SLUG/graphql` — the project slug goes in the URL **path**, not as a query parameter
+* **GraphQL endpoint:** `POST $API_BASE_URL/uds/v1/$PROJECT_SLUG/graphql` — the project slug goes in the URL **path**, not as a query parameter
 
 ---
 

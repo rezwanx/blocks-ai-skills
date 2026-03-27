@@ -9,7 +9,7 @@ Retrieve a paginated list of schema definitions along with an aggregation summar
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/schemas/aggregation
+GET $API_BASE_URL/uds/v1/schemas/aggregation
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/schemas/aggregation
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/aggregation?ProjectKey=$VITE_PROJECT_SLUG&PageNo=1&PageSize=20" \
+curl --location "$API_BASE_URL/uds/v1/schemas/aggregation?ProjectKey=$PROJECT_SLUG&PageNo=1&PageSize=20" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -28,7 +28,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/aggregation?ProjectKey=$VITE_
 
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | PageNo | integer | no | Default: 1 |
 | PageSize | integer | no | Default: 20 |
 | Keyword | string | no | General search keyword |

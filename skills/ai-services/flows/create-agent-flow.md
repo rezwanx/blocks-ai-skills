@@ -32,7 +32,7 @@ Before creating the agent, check if there are usable models already configured.
 
 ```
 Action: get-models
-Input:  project_key = $VITE_PROJECT_SLUG
+Input:  project_key = $PROJECT_SLUG
 Output: list of existing model configurations
 ```
 
@@ -51,7 +51,7 @@ Action: create-agent
 Input:
   name         = agent name from user
   description  = what the agent does
-  project_key  = $VITE_PROJECT_SLUG
+  project_key  = $PROJECT_SLUG
 
 Output:
   item_id → agent_id (store this)
@@ -72,7 +72,7 @@ Input:
   name        = same as creation name
   description = same as creation description
   persona     = behavioral instructions (tone, constraints, format preferences)
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 ```
 
 **Persona guidance:**
@@ -111,7 +111,7 @@ Input:
   system_prompt = high-level instructions (complements persona)
   kb_ids        = [kb_folder_id, ...] from Step 4 (empty array if none)
   tool_ids      = [tool_id, ...] from tool creation (empty array if none)
-  project_key   = $VITE_PROJECT_SLUG
+  project_key   = $PROJECT_SLUG
 ```
 
 **Temperature guidance:**
@@ -134,7 +134,7 @@ Action: change-agent-status
 Input:
   agent_id    = agent_id from Step 2
   status      = "active"
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 ```
 
 ---
@@ -149,7 +149,7 @@ Input:
   agent_id    = agent_id from Step 2
   query       = a test question relevant to the KB content
   top_k       = 5
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Expected: results with scores above 0.7
 ```
@@ -185,7 +185,7 @@ Prerequisite: agent must be in "active" status with a model configured
 |------|-------|-------|--------|
 | Step 1 | No models found | No model configurations exist | Run `manage-models` flow first |
 | Step 2 | `409` | Agent name already taken | Use a different name or get-agents to find the existing one |
-| Step 2 | `404` | Project not found | Verify `VITE_PROJECT_SLUG` |
+| Step 2 | `404` | Project not found | Verify `PROJECT_SLUG` |
 | Step 4 | KB ingestion fails | Unsupported file type or network error | Check file format and retry |
 | Step 5 | `404` on `model_id` | Model was deleted after listing | Re-run Step 1 to get a fresh model list |
 | Step 5 | `404` on `kb_ids` | KB folder or entry not found | Verify KB IDs from setup-knowledge-base flow |

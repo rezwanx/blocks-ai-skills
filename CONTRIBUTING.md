@@ -22,7 +22,7 @@ skills/
 2. **Create** `skills/<domain>/actions/<action-name>.md`
 3. **Include these sections:**
    - HTTP method + URL
-   - Required headers (with `$VITE_X_BLOCKS_KEY` and `Bearer $ACCESS_TOKEN`)
+   - Required headers (with `$X_BLOCKS_KEY` and `Bearer $ACCESS_TOKEN`)
    - Request body (with real field names and types)
    - Example curl command
    - Success response (real JSON example)
@@ -38,14 +38,14 @@ skills/
 
 ## Endpoint
 
-`POST $VITE_API_BASE_URL/<service>/v1/<path>`
+`POST $API_BASE_URL/<service>/v1/<path>`
 
 ## Headers
 
 | Header | Value |
 |--------|-------|
 | `Content-Type` | `application/json` |
-| `x-blocks-key` | `$VITE_X_BLOCKS_KEY` |
+| `x-blocks-key` | `$X_BLOCKS_KEY` |
 | `Authorization` | `Bearer $ACCESS_TOKEN` |
 
 ## Request Body
@@ -57,9 +57,9 @@ skills/
 ## Example
 
 \`\`\`bash
-curl -X POST "$VITE_API_BASE_URL/<service>/v1/<path>" \
+curl -X POST "$API_BASE_URL/<service>/v1/<path>" \
   -H "Content-Type: application/json" \
-  -H "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  -H "x-blocks-key: $X_BLOCKS_KEY" \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -d '{"field": "value"}'
 \`\`\`

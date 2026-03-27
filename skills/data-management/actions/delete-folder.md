@@ -9,7 +9,7 @@ Delete a folder from the Document Management System (DMS). Use this to remove em
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/DeleteFolder
+POST $API_BASE_URL/uds/v1/Files/DeleteFolder
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/DeleteFolder
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/DeleteFolder" \
+curl --location "$API_BASE_URL/uds/v1/Files/DeleteFolder" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "folderId": "folder-id-here",
-    "projectKey": "$VITE_PROJECT_SLUG"
+    "projectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/DeleteFolder" \
 |-------|------|----------|-------|
 | folderId | string | yes | ID of the folder to delete |
 | configurationName | string | no | Optional storage configuration name |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

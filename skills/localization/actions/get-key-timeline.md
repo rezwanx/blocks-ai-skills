@@ -9,7 +9,7 @@ Get the edit history (version timeline) for a translation key. Each entry repres
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uilm/v1/Key/GetTimeline?keyId=<KEY_ID>&pageNumber=1&pageSize=20
+GET $API_BASE_URL/uilm/v1/Key/GetTimeline?keyId=<KEY_ID>&pageNumber=1&pageSize=20
 ```
 
 ---
@@ -18,9 +18,9 @@ GET $VITE_API_BASE_URL/uilm/v1/Key/GetTimeline?keyId=<KEY_ID>&pageNumber=1&pageS
 
 ```bash
 curl --location \
-  "$VITE_API_BASE_URL/uilm/v1/Key/GetTimeline?keyId=<KEY_ID>&pageNumber=1&pageSize=20" \
+  "$API_BASE_URL/uilm/v1/Key/GetTimeline?keyId=<KEY_ID>&pageNumber=1&pageSize=20" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

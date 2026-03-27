@@ -9,7 +9,7 @@ AI-translate all untranslated keys in a module. The system detects keys missing 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uilm/v1/Key/TranslateAll
+POST $API_BASE_URL/uilm/v1/Key/TranslateAll
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uilm/v1/Key/TranslateAll
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uilm/v1/Key/TranslateAll" \
+curl --location "$API_BASE_URL/uilm/v1/Key/TranslateAll" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "moduleId": "<MODULE_ID>"
   }'
 ```
@@ -33,14 +33,14 @@ curl --location "$VITE_API_BASE_URL/uilm/v1/Key/TranslateAll" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | moduleId | string | yes | ID of the module to translate |
 | targetLanguages | string[] | no | Culture codes to translate into (e.g. `["de", "fr", "es"]`). Omit to translate into ALL configured languages. |
 
 **Example with explicit target languages:**
 ```bash
 --data '{
-  "projectKey": "'$VITE_X_BLOCKS_KEY'",
+  "projectKey": "'$X_BLOCKS_KEY'",
   "moduleId": "<MODULE_ID>",
   "targetLanguages": ["de", "fr", "es"]
 }'

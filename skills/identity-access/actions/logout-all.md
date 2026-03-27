@@ -9,7 +9,7 @@ Logout all active sessions for the current user.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll
+POST $API_BASE_URL/idp/v1/Authentication/LogoutAll
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/LogoutAll" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/LogoutAll" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

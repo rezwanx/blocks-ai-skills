@@ -15,7 +15,7 @@ Not required. This action is public.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/IsEmailAvaiable
+GET $API_BASE_URL/idp/v1/Iam/IsEmailAvaiable
 ```
 
 > **Note:** The endpoint path uses `Avaiable` (missing `l`) — this matches the backend API spelling exactly. Do not correct it.
@@ -25,8 +25,8 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/IsEmailAvaiable
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/IsEmailAvaiable?email=user@example.com" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+curl --location "$API_BASE_URL/idp/v1/Iam/IsEmailAvaiable?email=user@example.com" \
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

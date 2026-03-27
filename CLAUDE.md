@@ -42,18 +42,19 @@ Store this choice in `.env` as `FRONTEND_STACK`. This determines which frontend 
 
 ### Step 2 — Check Environment Variables
 
-Only **4 values** are required from the user. Everything else is auto-set or discovered.
+Only **5 values** are required from the user. Everything else is auto-set or conditional.
 
-> All four must come from the same SELISE Blocks project:
-> `VITE_X_BLOCKS_KEY` and `VITE_BLOCKS_OIDC_CLIENT_ID` from Cloud Portal → Project settings.
+> All five must come from the same SELISE Blocks project:
+> `API_BASE_URL`, `X_BLOCKS_KEY`, and `PROJECT_SLUG` from Cloud Portal → Project settings.
 > `USERNAME` and `PASSWORD` from a user added to that project with the `cloudadmin` role.
 
 Ask for only these if missing or empty:
 
 | Variable | Where to find it |
 |----------|-----------------|
-| `VITE_X_BLOCKS_KEY` | Cloud Portal → Project settings |
-| `VITE_BLOCKS_OIDC_CLIENT_ID` | Cloud Portal → Project → Auth settings |
+| `API_BASE_URL` | Cloud Portal → Project settings (API endpoint) |
+| `X_BLOCKS_KEY` | Cloud Portal → Project settings |
+| `PROJECT_SLUG` | Cloud Portal → Project settings |
 | `USERNAME` | Cloud Portal → People (must have `cloudadmin` role) |
 | `PASSWORD` | Same account as USERNAME |
 
@@ -61,46 +62,42 @@ Ask for only these if missing or empty:
 
 | Variable | Value | Reason |
 |----------|-------|--------|
-| `VITE_API_BASE_URL` | `https://api.seliseblocks.com` | Always the same |
-| `VITE_BLOCKS_OIDC_REDIRECT_URI` | `http://localhost:5173/auth/callback` | Standard local dev default |
-| `VITE_PRIMARY_COLOR` | `#15969B` | Default theme — user can change later |
-| `VITE_SECONDARY_COLOR` | `#5194B8` | Default theme — user can change later |
+| `BLOCKS_OIDC_REDIRECT_URI` | `http://localhost:5173/auth/callback` | Standard local dev default |
+| `PRIMARY_COLOR` | `#15969B` | Default theme — user can change later |
+| `SECONDARY_COLOR` | `#5194B8` | Default theme — user can change later |
 | `GENERATE_SOURCEMAP` | `false` | Always false for production builds |
 
-**Discovered automatically after authentication (Step 3):**
-
-`VITE_PROJECT_SLUG` is auto-discovered after `get-token` succeeds — see `skills/identity-access/actions/discover-project-slug.md`. The user should never need to provide this manually.
-
-**Conditional — ask only if needed:**
+**Conditional — ask only when a specific flow needs it:**
 
 | Variable | When to ask |
 |----------|------------|
-| `VITE_CAPTCHA_SITE_KEY` | Only if captcha is enabled (confirmed by user or detected during login) |
-| `VITE_CAPTCHA_TYPE` | Same — `reCaptcha` or `hCaptcha` |
+| `BLOCKS_OIDC_CLIENT_ID` | Only when implementing a login/auth flow that requires it |
+| `CAPTCHA_SITE_KEY` | Only if captcha is enabled (confirmed by user or detected during login) |
+| `CAPTCHA_TYPE` | Same — `reCaptcha` or `hCaptcha` |
 
-Write the `.env` with all known values immediately. Include `FRONTEND_STACK` from Step 1b. Leave captcha blank until confirmed:
+Write the `.env` with all known values immediately. Include `FRONTEND_STACK` from Step 1b. Leave conditional values blank until needed:
 
 ```
 # Frontend stack selection — "react" or "blazor"
 FRONTEND_STACK=<value from Step 1b>
 
-# Vite environment variables
-VITE_API_BASE_URL=https://api.seliseblocks.com
-VITE_X_BLOCKS_KEY=<value>
-VITE_PROJECT_SLUG=<auto-discovered in Step 3b>
+# Environment variables
+API_BASE_URL=<value>
+X_BLOCKS_KEY=<value>
+PROJECT_SLUG=<value>
 
-VITE_CAPTCHA_SITE_KEY=
-VITE_CAPTCHA_TYPE=
+CAPTCHA_SITE_KEY=
+CAPTCHA_TYPE=
 
-VITE_BLOCKS_OIDC_CLIENT_ID=<value>
-VITE_BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
+BLOCKS_OIDC_CLIENT_ID=
+BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
 
 # Build configuration
 GENERATE_SOURCEMAP=false
 
 # Theme Colors - Can be in hex or hsl format (e.g., #1B9A8B or hsl(174, 69%, 41%))
-VITE_PRIMARY_COLOR=#15969B
-VITE_SECONDARY_COLOR=#5194B8
+PRIMARY_COLOR=#15969B
+SECONDARY_COLOR=#5194B8
 
 # CLI/Claude credentials — for direct API operations only
 # Frontend gets these from the login form, NOT from here
@@ -114,23 +111,21 @@ REFRESH_TOKEN=
 
 ---
 
-### Step 3 — Authenticate and Discover Project Slug
+### Step 3 — Authenticate
 
-**3a.** Run the get-token action (`skills/identity-access/actions/get-token.md`) to obtain `ACCESS_TOKEN` and `REFRESH_TOKEN`.
+Run the get-token action (`skills/identity-access/actions/get-token.md`) to obtain `ACCESS_TOKEN` and `REFRESH_TOKEN`.
 
 **If get-token fails, diagnose using this table:**
 
 | HTTP Status | Meaning | Action |
 |-------------|---------|--------|
-| `200` ✅ | Success | Store tokens and proceed to 3b |
-| `400` | Malformed request or wrong `client_id` | Check `VITE_BLOCKS_OIDC_CLIENT_ID` and `VITE_X_BLOCKS_KEY` |
+| `200` ✅ | Success | Store tokens and proceed to Step 4 |
+| `400` | Malformed request | Check `X_BLOCKS_KEY` |
 | `401` | Wrong `USERNAME` or `PASSWORD` | Re-enter credentials — check the account in Cloud Portal → People |
 | `403` | Account missing `cloudadmin` role | Ask admin to assign `cloudadmin` role in Cloud Portal → People |
 | `404` | Environment not created or project not active | Verify the project and environment exist in the Cloud Portal |
 
 Do **not** proceed with any task until get-token returns `200`.
-
-**3b.** Immediately after get-token succeeds, run the discover-project-slug action (`skills/identity-access/actions/discover-project-slug.md`) to auto-detect and write `VITE_PROJECT_SLUG` to `.env`. This must happen before any other API calls.
 
 ---
 

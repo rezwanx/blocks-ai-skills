@@ -32,7 +32,7 @@ Action: save-language
 Input:
   name       = language display name (e.g. "English")
   code       = ISO 639-1 code (e.g. "en")
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
 ```
 
 Repeat for each language. Continue to Step 2 after all languages are saved.
@@ -47,7 +47,7 @@ Call `set-default-language` with the language ID returned (or retrieved via `get
 Action: set-default-language
 Input:
   languageId = ID of the default language
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
 ```
 
 > If the user hasn't specified a default, ask before proceeding.
@@ -62,7 +62,7 @@ For each module name provided, call `save-module`.
 Action: save-module
 Input:
   name       = module name (e.g. "auth", "common", "dashboard")
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
 ```
 
 Repeat for each module.

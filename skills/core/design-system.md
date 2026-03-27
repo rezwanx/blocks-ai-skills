@@ -6,8 +6,8 @@ Colors are configured via environment variables and can be customized per projec
 
 | Token | Default | Env Variable |
 |-------|---------|-------------|
-| Primary | `#15969B` | `VITE_PRIMARY_COLOR` |
-| Secondary | `#5194B8` | `VITE_SECONDARY_COLOR` |
+| Primary | `#15969B` | `PRIMARY_COLOR` |
+| Secondary | `#5194B8` | `SECONDARY_COLOR` |
 
 Use CSS custom properties in components:
 ```css

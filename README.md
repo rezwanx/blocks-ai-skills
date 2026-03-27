@@ -120,10 +120,10 @@ Four steps must be completed manually in the [SELISE Blocks Cloud Portal](https:
 ### 1. Create a Project
 Cloud Portal → Projects → Create Project
 
-Copy the **Project Slug** → `VITE_PROJECT_SLUG`
-Copy the **Blocks Key** → `VITE_X_BLOCKS_KEY`
+Copy the **Project Slug** → `PROJECT_SLUG`
+Copy the **Blocks Key** → `X_BLOCKS_KEY`
 
-> `VITE_X_BLOCKS_KEY`, `VITE_PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Mixing values from different projects will cause authentication failures.
+> `X_BLOCKS_KEY`, `PROJECT_SLUG`, `USERNAME`, and `PASSWORD` must all come from this same project. Mixing values from different projects will cause authentication failures.
 
 ### 2. Create an Environment
 Cloud Portal → Projects → [Your Project] → Environments → Create
@@ -144,7 +144,7 @@ Cloud Portal → Projects → [Your Project] → Repositories → Attach
 |-------------|-------------|-----|
 | `401` | Wrong credentials | Check `USERNAME` / `PASSWORD` in Cloud Portal → People |
 | `403` | Missing `cloudadmin` role | Assign role in Cloud Portal → People |
-| `404` | Wrong API URL | Re-check `VITE_API_BASE_URL` from Environments |
+| `404` | Wrong API URL | Re-check `API_BASE_URL` from Environments |
 | All APIs fail | Project not set up | Complete all 4 portal steps above |
 
 ---
@@ -155,26 +155,26 @@ Create a `.env` file in your project root:
 
 ```bash
 # Vite environment variables
-VITE_API_BASE_URL=https://api.seliseblocks.com
-VITE_X_BLOCKS_KEY=your_blocks_key        # Cloud Portal → Project settings
-VITE_PROJECT_SLUG=your_project_slug      # Cloud Portal → Project settings (same project)
+API_BASE_URL=https://api.seliseblocks.com
+X_BLOCKS_KEY=your_blocks_key        # Cloud Portal → Project settings
+PROJECT_SLUG=your_project_slug      # Cloud Portal → Project settings (same project)
 
-VITE_CAPTCHA_SITE_KEY=your_captcha_site_key
-VITE_CAPTCHA_TYPE=reCaptcha
+CAPTCHA_SITE_KEY=your_captcha_site_key
+CAPTCHA_TYPE=reCaptcha
 
-VITE_BLOCKS_OIDC_CLIENT_ID=your_oidc_client_id
-VITE_BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
+BLOCKS_OIDC_CLIENT_ID=your_oidc_client_id
+BLOCKS_OIDC_REDIRECT_URI=http://localhost:5173/auth/callback
 
 # Build configuration
 GENERATE_SOURCEMAP=false
 
 # Theme Colors — hex or hsl format
-VITE_PRIMARY_COLOR=#15969B
-VITE_SECONDARY_COLOR=#5194B8
+PRIMARY_COLOR=#15969B
+SECONDARY_COLOR=#5194B8
 
 # CLI/Claude credentials — for direct API operations only
 # The frontend gets these from the login form, not from here
-# Must be a user added to the SAME project as VITE_X_BLOCKS_KEY / VITE_PROJECT_SLUG
+# Must be a user added to the SAME project as X_BLOCKS_KEY / PROJECT_SLUG
 USERNAME=your_cloudadmin_email
 PASSWORD=your_cloudadmin_password
 

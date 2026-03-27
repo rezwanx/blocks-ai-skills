@@ -9,7 +9,7 @@ Create a new schema (collection or single object) for the project. This register
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/schemas/define
+POST $API_BASE_URL/uds/v1/schemas/define
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/uds/v1/schemas/define
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/schemas/define" \
+curl --location "$API_BASE_URL/uds/v1/schemas/define" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "CollectionName": "products",
     "SchemaName": "Product",
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "SchemaType": "Collection",
     "Description": "Product catalog schema"
   }'
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/schemas/define" \
 |-------|------|----------|-------|
 | CollectionName | string | yes | MongoDB collection name — use lowercase, no spaces (e.g. `products`) |
 | SchemaName | string | yes | Human-readable display name (e.g. `Product`) |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaType | enum | yes | `Collection` for multi-document, `SingleObject` for single config document |
 | Description | string | no | Optional description |
 

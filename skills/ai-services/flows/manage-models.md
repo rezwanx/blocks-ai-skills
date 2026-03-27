@@ -33,7 +33,7 @@ Check what models are already configured to avoid duplicates.
 
 ```
 Action: get-models
-Input:  project_key = $VITE_PROJECT_SLUG
+Input:  project_key = $PROJECT_SLUG
 Output: list of existing model configurations
 ```
 
@@ -77,7 +77,7 @@ Input:
   model_name = chosen model from Step 2
   api_key    = user's API key for the provider
   base_url   = (required for AzureOpenAI and Ollama, empty for others)
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 
 Output:
   item_id → model_id (store this)
@@ -123,7 +123,7 @@ Action: update-agent-ai-config
 Input:
   agent_id    = target agent ID
   model_id    = model_id from Step 3
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
   (include all other current config fields — fetch with get-agent first)
 ```
 

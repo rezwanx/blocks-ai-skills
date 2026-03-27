@@ -9,7 +9,7 @@ Update an existing schema's definition — rename the schema, change the collect
 ## Endpoint
 
 ```
-PUT $VITE_API_BASE_URL/uds/v1/schemas/define
+PUT $API_BASE_URL/uds/v1/schemas/define
 ```
 
 ---
@@ -17,14 +17,14 @@ PUT $VITE_API_BASE_URL/uds/v1/schemas/define
 ## curl
 
 ```bash
-curl --location --request PUT "$VITE_API_BASE_URL/uds/v1/schemas/define" \
+curl --location --request PUT "$API_BASE_URL/uds/v1/schemas/define" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "CollectionName": "products",
     "SchemaName": "Product",
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "SchemaType": "Collection",
     "Description": "Updated product catalog schema"
   }'
@@ -38,7 +38,7 @@ curl --location --request PUT "$VITE_API_BASE_URL/uds/v1/schemas/define" \
 |-------|------|----------|-------|
 | CollectionName | string | yes | MongoDB collection name — must match the existing collection |
 | SchemaName | string | yes | Updated display name |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaType | enum | yes | `Collection` or `SingleObject` — changing type is not recommended |
 | Description | string | no | Updated description |
 

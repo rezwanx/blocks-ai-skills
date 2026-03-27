@@ -9,7 +9,7 @@ Create a new email template or update an existing one. Omit `itemId` to create; 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/communication/v1/Template/Save
+POST $API_BASE_URL/communication/v1/Template/Save
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/communication/v1/Template/Save
 ## curl — Create
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Save" \
+curl --location "$API_BASE_URL/communication/v1/Template/Save" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "Welcome Email",
@@ -27,16 +27,16 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Save" \
     "templateBody": "<h1>Hello {{firstName}},</h1><p>Welcome to {{appName}}. Click <a href=\"{{activationLink}}\">here</a> to activate your account.</p>",
     "language": "en",
     "purpose": "welcome",
-    "projectKey": "'"$VITE_PROJECT_SLUG"'"
+    "projectKey": "'"$PROJECT_SLUG"'"
   }'
 ```
 
 ## curl — Update
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Save" \
+curl --location "$API_BASE_URL/communication/v1/Template/Save" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "itemId": "template-id-123",
@@ -45,7 +45,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Save" \
     "templateBody": "<h1>Hi {{firstName}},</h1><p>Updated welcome message.</p>",
     "language": "en",
     "purpose": "welcome",
-    "projectKey": "'"$VITE_PROJECT_SLUG"'"
+    "projectKey": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -62,7 +62,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Save" \
 | mailConfigurationId | string | no | Reference to a mail server configuration |
 | language | string | no | BCP 47 code — defaults to `"en"` |
 | purpose | string | yes | Slug-style identifier — used when sending via `send-email-with-template` |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -105,7 +105,7 @@ Both are injected at send time from the `bodyDataContext` object in `SendMailReq
 | 200 with `isSuccess: false` | Validation error, duplicate purpose/language combo, or ID not found | Inspect `errors` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

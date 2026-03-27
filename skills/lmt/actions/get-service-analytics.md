@@ -9,7 +9,7 @@ Get HTTP status code distribution for a service — useful for monitoring error 
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics
+POST $API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics
 ```
 
 ---
@@ -17,15 +17,15 @@ POST $VITE_API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics" \
+curl --location "$API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "startTime": "2024-01-01T00:00:00Z",
     "endTime": "2024-01-31T23:59:59Z",
     "serviceName": "identity-service",
-    "projectKey": "'"$VITE_X_BLOCKS_KEY"'"
+    "projectKey": "'"$X_BLOCKS_KEY"'"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Trace/GetServiceAnalytics" \
 | startTime | ISO datetime | yes | Analytics window start |
 | endTime | ISO datetime | yes | Analytics window end |
 | serviceName | string | no | Omit for all services |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

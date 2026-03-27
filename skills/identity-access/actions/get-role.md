@@ -9,7 +9,7 @@ Get a specific role by ID.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetRole
+GET $API_BASE_URL/idp/v1/Iam/GetRole
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetRole
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetRole?roleId=ROLE_ID" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetRole?roleId=ROLE_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

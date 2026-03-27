@@ -9,7 +9,7 @@ Get a single validation rule set by its ID.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-validations/get-by-id
+GET $API_BASE_URL/uds/v1/data-validations/get-by-id
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/data-validations/get-by-id
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/get-by-id?validationId=$VALIDATION_ID&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/data-validations/get-by-id?validationId=$VALIDATION_ID&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-validations/get-by-id?validation
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | validationId | string | yes | Validation ID returned from `create-validation` or `get-validations` |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

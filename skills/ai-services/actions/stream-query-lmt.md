@@ -9,7 +9,7 @@ Send a message directly to a language model and receive the response as a stream
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream
+POST $API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream
 ## curl
 
 ```bash
-curl --location --no-buffer "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream" \
+curl --location --no-buffer "$API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt/stream" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "message": "Write a detailed explanation of transformer architecture.",
     "model_id": "mdl_abc123",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -38,7 +38,7 @@ curl --location --no-buffer "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-l
 |-------|------|----------|-------------|
 | `message` | string | yes | The prompt or message to send to the LLM |
 | `model_id` | string | yes | ID of the model configuration to use |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

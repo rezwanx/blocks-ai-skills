@@ -142,7 +142,7 @@ export default config
 
 ## Step 4 — Global CSS + Runtime Theme
 
-Colors from `VITE_PRIMARY_COLOR` and `VITE_SECONDARY_COLOR` are applied at runtime via a theme initialiser.
+Colors from `PRIMARY_COLOR` and `SECONDARY_COLOR` are applied at runtime via a theme initialiser.
 
 ```css
 /* src/styles/globals.css */
@@ -226,8 +226,8 @@ function toHslValue(value: string): string {
 
 export function applyTheme(): void {
   const root = document.documentElement
-  const primary = import.meta.env.VITE_PRIMARY_COLOR ?? '#15969B'
-  const secondary = import.meta.env.VITE_SECONDARY_COLOR ?? '#5194B8'
+  const primary = import.meta.env.PRIMARY_COLOR ?? '#15969B'
+  const secondary = import.meta.env.SECONDARY_COLOR ?? '#5194B8'
   root.style.setProperty('--primary', toHslValue(primary))
   root.style.setProperty('--primary-foreground', '0 0% 100%')
   root.style.setProperty('--secondary', toHslValue(secondary))
@@ -246,8 +246,8 @@ The shared HTTP client used by every service layer. Handles auth headers and aut
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { useAuthStore } from '@/state/store/auth'
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL
-const BLOCKS_KEY = import.meta.env.VITE_X_BLOCKS_KEY
+const BASE_URL = import.meta.env.API_BASE_URL
+const BLOCKS_KEY = import.meta.env.X_BLOCKS_KEY
 
 // Track in-flight refresh to avoid parallel refresh requests
 let isRefreshing = false
@@ -314,7 +314,7 @@ https.interceptors.response.use(
       const params = new URLSearchParams()
       params.append('grant_type', 'refresh_token')
       params.append('refresh_token', refreshToken)
-      params.append('client_id', import.meta.env.VITE_BLOCKS_OIDC_CLIENT_ID)
+      params.append('client_id', import.meta.env.BLOCKS_OIDC_CLIENT_ID)
 
       const { data } = await axios.post(
         `${BASE_URL}/idp/v1/Authentication/Token`,
@@ -424,7 +424,7 @@ import { onError } from '@apollo/client/link/error'
 import { useAuthStore } from '@/state/store/auth'
 
 const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_API_BASE_URL}/uds/v1/${import.meta.env.VITE_PROJECT_SLUG}/graphql`,
+  uri: `${import.meta.env.API_BASE_URL}/uds/v1/${import.meta.env.PROJECT_SLUG}/graphql`,
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -433,7 +433,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: accessToken ? `Bearer ${accessToken}` : '',
-      'x-blocks-key': import.meta.env.VITE_X_BLOCKS_KEY,
+      'x-blocks-key': import.meta.env.X_BLOCKS_KEY,
     },
   }
 })

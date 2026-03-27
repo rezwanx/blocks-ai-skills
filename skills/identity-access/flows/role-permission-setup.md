@@ -63,7 +63,7 @@ Input:
   resource      = resource name (e.g. "users")
   resourceGroup = resource group from Step 1
   description   = optional
-  projectKey    = VITE_X_BLOCKS_KEY
+  projectKey    = X_BLOCKS_KEY
 ```
 
 Repeat for each permission needed.
@@ -82,7 +82,7 @@ Input:
   name        = human-readable name (e.g. "Admin")
   slug        = kebab-case unique identifier (e.g. "admin")
   description = optional
-  projectKey  = VITE_X_BLOCKS_KEY
+  projectKey  = X_BLOCKS_KEY
 ```
 
 ```
@@ -100,7 +100,7 @@ Action: save-roles-and-permissions
 Input:
   roleId      = role ID from Step 3
   permissions = array of permission names created in Step 2
-  projectKey  = VITE_X_BLOCKS_KEY
+  projectKey  = X_BLOCKS_KEY
 ```
 
 ---
@@ -112,7 +112,7 @@ Action: set-roles
 Input:
   userId     = target user's ID
   roles      = array of role slugs (e.g. ["admin"])
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 > `set-roles` **replaces** all existing role assignments.

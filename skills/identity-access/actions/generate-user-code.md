@@ -9,7 +9,7 @@ Generate a new user code that can be used to obtain an access token via get-toke
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/GenerateUserCode
+POST $API_BASE_URL/idp/v1/Authentication/GenerateUserCode
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/GenerateUserCode
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GenerateUserCode" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/GenerateUserCode" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "clientId": "'$VITE_BLOCKS_OIDC_CLIENT_ID'",
+    "clientId": "'$BLOCKS_OIDC_CLIENT_ID'",
     "codeTtlInMinute": 60,
     "note": "string"
   }'
@@ -34,7 +34,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/GenerateUserCode" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| clientId | string | yes | Fixed — $VITE_BLOCKS_OIDC_CLIENT_ID |
+| clientId | string | yes | Fixed — $BLOCKS_OIDC_CLIENT_ID |
 | codeTtlInMinute | integer | yes | How long the code is valid |
 | note | string | no | Optional label for the code |
 

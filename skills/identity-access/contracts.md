@@ -4,7 +4,7 @@
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
@@ -32,7 +32,7 @@ Content-Type: application/json
 | Field | Type | Fixed/Dynamic | Value |
 |-------|------|---------------|-------|
 | grant_type | string | fixed | `password` |
-| client_id | string | fixed | $VITE_BLOCKS_OIDC_CLIENT_ID |
+| client_id | string | fixed | $BLOCKS_OIDC_CLIENT_ID |
 | username | string | dynamic | $USERNAME |
 | password | string | dynamic | $PASSWORD |
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 | Field | Type | Fixed/Dynamic | Value |
 |-------|------|---------------|-------|
 | grant_type | string | fixed | `refresh_token` |
-| client_id | string | fixed | $VITE_BLOCKS_OIDC_CLIENT_ID |
+| client_id | string | fixed | $BLOCKS_OIDC_CLIENT_ID |
 | refresh_token | string | runtime | $REFRESH_TOKEN |
 
 ### Token Response (no MFA)
@@ -74,7 +74,7 @@ Content-Type: application/json
 | Field | Type | Required | Value |
 |-------|------|----------|-------|
 | grant_type | string | yes | `mfa_code` |
-| client_id | string | yes | $VITE_BLOCKS_OIDC_CLIENT_ID |
+| client_id | string | yes | $BLOCKS_OIDC_CLIENT_ID |
 | mfa_id | string | yes | `mfaId` from MFA token response |
 | mfa_type | string | yes | `mfaType` from MFA token response (`"email"` or `"authenticator"`) |
 | otp | string | yes | OTP entered by user |
@@ -84,9 +84,9 @@ Content-Type: application/json
 | Field | Type | Required | Value |
 |-------|------|----------|-------|
 | grant_type | string | yes | `authorization_code` |
-| client_id | string | yes | $VITE_BLOCKS_OIDC_CLIENT_ID |
+| client_id | string | yes | $BLOCKS_OIDC_CLIENT_ID |
 | code | string | yes | authorization code from redirect URL param |
-| redirect_uri | string | yes | $VITE_BLOCKS_OIDC_REDIRECT_URI |
+| redirect_uri | string | yes | $BLOCKS_OIDC_REDIRECT_URI |
 
 ### GetLoginOptionsResponse
 

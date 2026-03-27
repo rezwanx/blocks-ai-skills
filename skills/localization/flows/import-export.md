@@ -47,7 +47,7 @@ Call `import-uilm` with the JSON file as multipart form data.
 Action: import-uilm
 Input:
   file         = <.json file>
-  projectKey   = $VITE_X_BLOCKS_KEY
+  projectKey   = $X_BLOCKS_KEY
   moduleId     = <chosen moduleId>
   languageCode = <language code, e.g. "en">
 ```
@@ -63,7 +63,7 @@ Call `get-keys` to confirm keys were imported successfully.
 ```
 Action: get-keys
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   moduleId   = <chosen moduleId>
   pageNumber = 1
   pageSize   = 20
@@ -80,7 +80,7 @@ Call `generate-uilm-file` to rebuild the compiled JSON for the requested languag
 ```
 Action: generate-uilm-file
 Input:
-  projectKey   = $VITE_X_BLOCKS_KEY
+  projectKey   = $X_BLOCKS_KEY
   moduleId     = <chosen moduleId>
   languageCode = <language code, e.g. "fr">
 ```
@@ -96,7 +96,7 @@ Action: get-uilm-file
 Input:
   language   = <language code, e.g. "fr">
   moduleId   = <chosen moduleId>
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
 ```
 
 The response is the raw flat JSON — trigger a browser download using `URL.createObjectURL`.
@@ -112,7 +112,7 @@ Call `export-uilm` with the module IDs to export.
 ```
 Action: export-uilm
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   moduleIds  = ["<MODULE_ID_1>", "<MODULE_ID_2>"]
 ```
 
@@ -125,7 +125,7 @@ Call `get-exported-files` to retrieve the download URL for the generated export.
 ```
 Action: get-exported-files
 Input:
-  projectKey = $VITE_X_BLOCKS_KEY
+  projectKey = $X_BLOCKS_KEY
   pageNumber = 1
   pageSize   = 10
 ```

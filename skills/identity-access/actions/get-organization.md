@@ -9,7 +9,7 @@ Get a specific organization by ID.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganization
+GET $API_BASE_URL/idp/v1/Iam/GetOrganization
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetOrganization
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetOrganization?organizationId=ORG_ID" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetOrganization?organizationId=ORG_ID" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

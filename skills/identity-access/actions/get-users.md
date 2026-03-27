@@ -9,7 +9,7 @@ List users with pagination, sorting, and filtering.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/GetUsers
+POST $API_BASE_URL/idp/v1/Iam/GetUsers
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/GetUsers
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUsers" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetUsers" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "page": 1,
@@ -32,7 +32,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUsers" \
       "name": "",
       "email": ""
     },
-    "projectKey": "'$VITE_X_BLOCKS_KEY'"
+    "projectKey": "'$X_BLOCKS_KEY'"
   }'
 ```
 
@@ -53,7 +53,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetUsers" \
 | filter.organizationId | string | no | Filter by organization |
 | filter.joinedOn | date-time | no | Filter by join date (ISO 8601) |
 | filter.lastLogin | date-time | no | Filter by last login date (ISO 8601) |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

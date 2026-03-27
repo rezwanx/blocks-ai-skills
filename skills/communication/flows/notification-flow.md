@@ -38,7 +38,7 @@ Input:
   subscriptionFilters = ["order-updates"]
   denormalizedPayload = '{"message": "Your order has been shipped.", "orderId": "ORD-001"}'
   configuratoinName   = ""                      (API typo — leave as-is)
-  projectKey          = $VITE_PROJECT_SLUG
+  projectKey          = $PROJECT_SLUG
 ```
 
 Use at least one of `userIds`, `roles`, or `subscriptionFilters` per request.
@@ -55,7 +55,7 @@ The `NotificationBell` component polls for the unread count every 30 seconds.
 Action: get-unread-notifications
 Input:
   subscriptionFilter = "order-updates"
-  projectKey         = $VITE_PROJECT_SLUG
+  projectKey         = $PROJECT_SLUG
 Output:
   unReadNotificationsCount → drive badge on NotificationBell
 ```
@@ -74,7 +74,7 @@ Action: get-notifications
 Input:
   page       = 1
   pageSize   = 20
-  projectKey = $VITE_PROJECT_SLUG
+  projectKey = $PROJECT_SLUG
 Output:
   notifications[]          → render as list items
   totalNotificationsCount  → use for load-more / pagination
@@ -96,7 +96,7 @@ When user clicks a notification item:
 Action: mark-notification-read
 Input:
   notificationId = notification.id
-  projectKey     = $VITE_PROJECT_SLUG
+  projectKey     = $PROJECT_SLUG
 ```
 
 After success, invalidate `['notifications']` React Query cache.
@@ -112,7 +112,7 @@ When user clicks "Mark all as read":
 Action: mark-all-notifications-read
 Input:
   subscriptionFilter = "order-updates"
-  projectKey         = $VITE_PROJECT_SLUG
+  projectKey         = $PROJECT_SLUG
 ```
 
 After success, invalidate `['notifications']` React Query cache.
@@ -158,7 +158,7 @@ React Query's `refetchInterval: 30_000` on `useGetUnreadNotifications` handles p
 | `isSuccess: false` on mark-as-read | Notification ID not found or already read | Ignore silently or log — non-critical |
 | `401` | `ACCESS_TOKEN` expired | Re-run `get-token` |
 | `403` | Missing `cloudadmin` role | Verify role in Cloud Portal → People |
-| `404` | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| `404` | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 | Poll returning stale data | Network error during polling | React Query retries automatically; show last known count |
 
 ---

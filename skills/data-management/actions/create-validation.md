@@ -9,7 +9,7 @@ Create one or more validation rules for a specific field on a schema. These rule
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/data-validations
+POST $API_BASE_URL/uds/v1/data-validations
 ```
 
 ---
@@ -17,12 +17,12 @@ POST $VITE_API_BASE_URL/uds/v1/data-validations
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-validations" \
+curl --location "$API_BASE_URL/uds/v1/data-validations" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "ProjectKey": "$VITE_PROJECT_SLUG",
+    "ProjectKey": "$PROJECT_SLUG",
     "SchemaId": "$SCHEMA_ID",
     "FieldName": "email",
     "Validations": [
@@ -51,7 +51,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/data-validations" \
 
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 | SchemaId | string | yes | Schema ID containing the field |
 | FieldName | string | yes | Exact field name as defined in the schema |
 | Validations | array | yes | Array of one or more validation rules |

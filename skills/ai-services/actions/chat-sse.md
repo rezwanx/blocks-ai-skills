@@ -9,7 +9,7 @@ Send a message to an AI agent and receive the response as a Server-Sent Events (
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/chat/{session_id}
+POST $API_BASE_URL/blocksai-api/v1/chat/{session_id}
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/chat/{session_id}
 ## curl
 
 ```bash
-curl --location --no-buffer "$VITE_API_BASE_URL/blocksai-api/v1/chat/sess_xyz789" \
+curl --location --no-buffer "$API_BASE_URL/blocksai-api/v1/chat/sess_xyz789" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "message": "What is your return policy?",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -44,7 +44,7 @@ curl --location --no-buffer "$VITE_API_BASE_URL/blocksai-api/v1/chat/sess_xyz789
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `message` | string | yes | The user's message to send to the agent |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

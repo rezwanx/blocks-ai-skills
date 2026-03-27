@@ -9,7 +9,7 @@ Download a single file by its ID. Returns the file binary content.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/Files/GetFile
+GET $API_BASE_URL/uds/v1/Files/GetFile
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/Files/GetFile
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFile?fileId=$FILE_ID&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetFile?fileId=$FILE_ID&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --output downloaded-file
 ```
 
@@ -30,7 +30,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFile?fileId=$FILE_ID&project
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | fileId | string | yes | File ID from upload or get-files-info |
-| projectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

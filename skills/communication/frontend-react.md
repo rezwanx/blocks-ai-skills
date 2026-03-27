@@ -500,7 +500,7 @@ React Query handles cache invalidation automatically when mark-as-read mutations
 
 ## Rules
 
-- Never hardcode `projectKey` — always pass from `import.meta.env.VITE_PROJECT_SLUG` or app config
+- Never hardcode `projectKey` — always pass from `import.meta.env.PROJECT_SLUG` or app config
 - The `configuratoinName` field in `NotifyPayload` keeps the API typo — do not rename in TypeScript
 - Template body is always HTML — render previews in a sandboxed `<iframe>`, never use `dangerouslySetInnerHTML` in production UI
 - All pages must handle loading (`<Skeleton />`), error (`<ErrorAlert />`), and empty states

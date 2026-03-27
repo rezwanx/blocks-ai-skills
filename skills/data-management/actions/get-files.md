@@ -9,7 +9,7 @@ Download multiple files in a single request. Returns a ZIP archive or batch of f
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/GetFiles
+POST $API_BASE_URL/uds/v1/Files/GetFiles
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/GetFiles
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFiles" \
+curl --location "$API_BASE_URL/uds/v1/Files/GetFiles" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "FileIds": ["file-id-1", "file-id-2", "file-id-3"],
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }' \
   --output files.zip
 ```
@@ -35,7 +35,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/GetFiles" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | FileIds | array | yes | Array of file IDs to download |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

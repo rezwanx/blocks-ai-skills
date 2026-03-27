@@ -9,7 +9,7 @@ Create a new user in SELISE Blocks.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Iam/Create
+POST $API_BASE_URL/idp/v1/Iam/Create
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/idp/v1/Iam/Create
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Create" \
+curl --location "$API_BASE_URL/idp/v1/Iam/Create" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "email": "user@example.com",
@@ -32,7 +32,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Create" \
     "userPassType": "Plain",
     "mfaEnabled": false,
     "allowedLogInType": ["Email"],
-    "projectKey": "'$VITE_X_BLOCKS_KEY'",
+    "projectKey": "'$X_BLOCKS_KEY'",
     "organizationId": "default"
   }'
 ```
@@ -55,7 +55,7 @@ curl --location "$VITE_API_BASE_URL/idp/v1/Iam/Create" \
 | allowedLogInType | array | no | Email, UserName, Phone, SocialLogin |
 | memberships | array | no | OrganizationMembership objects |
 | tags | array | no | String tags |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 | organizationId | string | no | Default: "default" |
 
 ---

@@ -9,7 +9,7 @@ Stream live log output for a named service in real time using Server-Sent Events
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/lmt/v1/Log/Live?serviceName={serviceName}&projectKey={projectKey}
+GET $API_BASE_URL/lmt/v1/Log/Live?serviceName={serviceName}&projectKey={projectKey}
 ```
 
 ---
@@ -18,9 +18,9 @@ GET $VITE_API_BASE_URL/lmt/v1/Log/Live?serviceName={serviceName}&projectKey={pro
 
 ```bash
 curl --location --no-buffer \
-  "$VITE_API_BASE_URL/lmt/v1/Log/Live?serviceName=identity-service&projectKey=$VITE_X_BLOCKS_KEY" \
+  "$API_BASE_URL/lmt/v1/Log/Live?serviceName=identity-service&projectKey=$X_BLOCKS_KEY" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Accept: text/event-stream"
 ```
 
@@ -31,7 +31,7 @@ curl --location --no-buffer \
 | Param | Type | Required | Notes |
 |-------|------|----------|-------|
 | serviceName | string | yes | SELISE Blocks service name |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 
@@ -53,7 +53,7 @@ The connection stays open until the client disconnects.
 
 ```typescript
 const evtSource = new EventSource(
-  `${import.meta.env.VITE_API_BASE_URL}/lmt/v1/Log/Live?serviceName=${serviceName}&projectKey=${projectKey}`,
+  `${import.meta.env.API_BASE_URL}/lmt/v1/Log/Live?serviceName=${serviceName}&projectKey=${projectKey}`,
   { withCredentials: false }
 )
 

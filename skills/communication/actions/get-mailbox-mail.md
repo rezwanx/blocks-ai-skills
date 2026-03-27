@@ -9,7 +9,7 @@ Retrieve a single email from the project mailbox by its ID. Use this to display 
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/communication/v1/Mail/GetMailBoxMail
+GET $API_BASE_URL/communication/v1/Mail/GetMailBoxMail
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/communication/v1/Mail/GetMailBoxMail
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Mail/GetMailBoxMail?itemId=mail-id-123&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Mail/GetMailBoxMail?itemId=mail-id-123&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Mail/GetMailBoxMail?itemId=
 | Parameter | Type | Required | Notes |
 |-----------|------|----------|-------|
 | itemId | string | yes | ID of the email to retrieve — obtained from `get-mailbox-mails` |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -62,7 +62,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Mail/GetMailBoxMail?itemId=
 | 200 with `isSuccess: false` | Email not found for the given `itemId` | Verify the ID from `get-mailbox-mails` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

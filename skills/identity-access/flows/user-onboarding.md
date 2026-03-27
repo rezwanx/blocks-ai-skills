@@ -34,7 +34,7 @@ Action: get-roles
 Input:
   page       = 1
   pageSize   = 100
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Use the response to populate a role multi-select in the form.
@@ -65,7 +65,7 @@ Input:
   mfaEnabled       = true/false based on pre-flight answer
   allowedLogInType = ["Email"] or as configured
   organizationId   = org ID if applicable
-  projectKey       = VITE_X_BLOCKS_KEY
+  projectKey       = X_BLOCKS_KEY
 ```
 
 ```
@@ -85,7 +85,7 @@ Action: set-roles
 Input:
   userId     = ID of the user created in Step 3
   roles      = array of role slugs selected in form
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -118,7 +118,7 @@ Input:
   sort.isDescending = true
   filter.name     = search term (optional)
   filter.status   = "Active" | "Inactive" (optional)
-  projectKey      = VITE_X_BLOCKS_KEY
+  projectKey      = X_BLOCKS_KEY
 ```
 
 ### Get single user

@@ -9,7 +9,7 @@ Test a specific action on a tool by sending a sample request and verifying the r
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/tools/{tool_id}/test-action/{action_id}
+POST $API_BASE_URL/blocksai-api/v1/tools/{tool_id}/test-action/{action_id}
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/tools/{tool_id}/test-action/{action_id}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/tools/tool_abc123/test-action/action_get_weather" \
+curl --location "$API_BASE_URL/blocksai-api/v1/tools/tool_abc123/test-action/action_get_weather" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "parameters": {

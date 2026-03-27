@@ -75,7 +75,7 @@ Each SELISE Blocks service uses a different naming convention. **Always match th
 
 ```
 Authorization: Bearer $ACCESS_TOKEN
-x-blocks-key: $VITE_X_BLOCKS_KEY
+x-blocks-key: $X_BLOCKS_KEY
 Content-Type: application/json
 ```
 
@@ -83,7 +83,7 @@ Content-Type: application/json
 
 ```
 Authorization: Bearer ${accessToken}      ← from Zustand store
-x-blocks-key: ${import.meta.env.VITE_X_BLOCKS_KEY}
+x-blocks-key: ${import.meta.env.X_BLOCKS_KEY}
 Content-Type: application/json
 ```
 
@@ -103,8 +103,8 @@ Content-Type: application/json
 
 | Context | Source | How to access |
 |---------|--------|---------------|
-| Claude operations (curl) | `.env` in project root | `$VITE_X_BLOCKS_KEY` |
-| Generated Vite app code | `.env` in project root | `import.meta.env.VITE_X_BLOCKS_KEY` |
+| Claude operations (curl) | `.env` in project root | `$X_BLOCKS_KEY` |
+| Generated Vite app code | `.env` in project root | `import.meta.env.X_BLOCKS_KEY` |
 
 Never mix contexts. Never hardcode values from one context into the other.
 

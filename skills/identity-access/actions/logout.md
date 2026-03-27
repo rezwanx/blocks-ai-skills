@@ -9,7 +9,7 @@ Logout the current user session by invalidating the refresh token.
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/idp/v1/Authentication/Logout
+POST $API_BASE_URL/idp/v1/Authentication/Logout
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/idp/v1/Authentication/Logout
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Authentication/Logout" \
+curl --location "$API_BASE_URL/idp/v1/Authentication/Logout" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "refreshToken": "'$REFRESH_TOKEN'"

@@ -9,7 +9,7 @@ Get all roles assigned to the currently authenticated account.
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccountRoles
+GET $API_BASE_URL/idp/v1/Iam/GetAccountRoles
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/idp/v1/Iam/GetAccountRoles
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/idp/v1/Iam/GetAccountRoles" \
+curl --location "$API_BASE_URL/idp/v1/Iam/GetAccountRoles" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

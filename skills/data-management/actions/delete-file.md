@@ -9,7 +9,7 @@ Permanently delete a file from storage (S3 or local) by its ID. This cannot be u
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/DeleteFile
+POST $API_BASE_URL/uds/v1/Files/DeleteFile
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/DeleteFile
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/DeleteFile" \
+curl --location "$API_BASE_URL/uds/v1/Files/DeleteFile" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "FileId": "$FILE_ID",
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -34,7 +34,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/DeleteFile" \
 | Field | Type | Required | Notes |
 |-------|------|----------|-------|
 | FileId | string | yes | ID of the file to delete |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

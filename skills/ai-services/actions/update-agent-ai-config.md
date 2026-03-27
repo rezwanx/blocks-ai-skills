@@ -9,7 +9,7 @@ Update an agent's AI configuration — model, temperature, max tokens, system pr
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/agents/update-ai-configurations
+POST $API_BASE_URL/blocksai-api/v1/agents/update-ai-configurations
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/agents/update-ai-configurations
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/update-ai-configurations" \
+curl --location "$API_BASE_URL/blocksai-api/v1/agents/update-ai-configurations" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "agent_id": "agt_abc123",
@@ -29,7 +29,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/update-ai-configurati
     "system_prompt": "You are a helpful assistant. Answer questions accurately and concisely.",
     "kb_ids": ["kb_001", "kb_002"],
     "tool_ids": ["tool_001"],
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -46,7 +46,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/agents/update-ai-configurati
 | `system_prompt` | string | no | System-level instructions that guide all responses |
 | `kb_ids` | string[] | no | List of knowledge base IDs to attach. Pass empty array `[]` to detach all |
 | `tool_ids` | string[] | no | List of tool IDs to attach. Pass empty array `[]` to detach all |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

@@ -9,7 +9,7 @@ List all email templates for the project with optional search and sort. Use this
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/communication/v1/Template/Gets
+GET $API_BASE_URL/communication/v1/Template/Gets
 ```
 
 ---
@@ -17,17 +17,17 @@ GET $VITE_API_BASE_URL/communication/v1/Template/Gets
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Gets?projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Template/Gets?projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ### With search and sort
 
 ```bash
-curl --location "$VITE_API_BASE_URL/communication/v1/Template/Gets?search=welcome&sort=name&projectKey=$VITE_PROJECT_SLUG" \
+curl --location "$API_BASE_URL/communication/v1/Template/Gets?search=welcome&sort=name&projectKey=$PROJECT_SLUG" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Gets?search=welcom
 |-----------|------|----------|-------|
 | search | string | no | Filter by template name (partial match) |
 | sort | string | no | Field name to sort by (e.g. `"name"`, `"createdDate"`) |
-| projectKey | string | yes | Use `$VITE_PROJECT_SLUG` |
+| projectKey | string | yes | Use `$PROJECT_SLUG` |
 
 ---
 
@@ -83,7 +83,7 @@ curl --location "$VITE_API_BASE_URL/communication/v1/Template/Gets?search=welcom
 | 200 with `isSuccess: false` | Missing `projectKey` | Inspect `errors` |
 | 401 | Missing or expired `ACCESS_TOKEN` | Re-run `get-token` |
 | 403 | Account lacks permission | Verify `cloudadmin` role in Cloud Portal |
-| 404 | Wrong `VITE_API_BASE_URL` | Check environment URL in Cloud Portal |
+| 404 | Wrong `API_BASE_URL` | Check environment URL in Cloud Portal |
 
 ---
 

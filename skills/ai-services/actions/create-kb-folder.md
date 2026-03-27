@@ -9,7 +9,7 @@ Create a knowledge base folder with an embedding model configuration to organize
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/kb/folder/create
+POST $API_BASE_URL/blocksai-api/v1/kb/folder/create
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/kb/folder/create
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/folder/create" \
+curl --location "$API_BASE_URL/blocksai-api/v1/kb/folder/create" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "Product Documentation",
     "embedding_model": "text-embedding-3-small",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/kb/folder/create" \
 |-------|------|----------|-------------|
 | `name` | string | yes | Display name for the KB folder |
 | `embedding_model` | string | yes | Embedding model to use for vectorizing content (e.g., `text-embedding-3-small`, `text-embedding-ada-002`) |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 
@@ -62,5 +62,5 @@ The `item_id` is the `kb_folder_id`. Use it in all subsequent KB ingestion calls
 - `400` — Missing required fields or unrecognized `embedding_model`
 - `401` — Invalid or expired `ACCESS_TOKEN` — run `get-token` again
 - `403` — Account lacks permission to create KB folders in this project
-- `404` — Project not found — verify `VITE_PROJECT_SLUG`
+- `404` — Project not found — verify `PROJECT_SLUG`
 - `409` — A KB folder with the same name already exists in this project

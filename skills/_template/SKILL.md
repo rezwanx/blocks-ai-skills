@@ -30,4 +30,4 @@ Use this table to route user requests. Check `flows/` first — if a flow covers
 
 ## Base Path
 
-`$VITE_API_BASE_URL/<service>/v1`
+`$API_BASE_URL/<service>/v1`

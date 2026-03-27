@@ -9,7 +9,7 @@ Upload a file directly to local server storage (not S3). Use this for smaller fi
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage
+POST $API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage
 ```
 
 ---
@@ -17,13 +17,13 @@ POST $VITE_API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage" \
+curl --location "$API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --form "File=@/path/to/document.pdf" \
   --form "Name=My Document" \
   --form "AccessModifier=Private" \
-  --form "ProjectKey=$VITE_PROJECT_SLUG"
+  --form "ProjectKey=$PROJECT_SLUG"
 ```
 
 ---
@@ -38,7 +38,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/UploadFileToLocalStorage" \
 | Tags | string | no | Comma-separated tags (e.g. `"invoice,2024"`) |
 | AccessModifier | string | yes | `Public` or `Private` |
 | ConfigurationName | string | no | Storage configuration name (if multiple configs exist) |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 > Do not set `Content-Type` manually — the HTTP client must set it to `multipart/form-data` with the correct boundary.
 

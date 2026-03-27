@@ -9,7 +9,7 @@ Update the field definitions for an existing schema. Use this to modify the fiel
 ## Endpoint
 
 ```
-PUT $VITE_API_BASE_URL/uds/v1/schemas/info
+PUT $API_BASE_URL/uds/v1/schemas/info
 ```
 
 ---
@@ -17,9 +17,9 @@ PUT $VITE_API_BASE_URL/uds/v1/schemas/info
 ## curl
 
 ```bash
-curl --location --request PUT "$VITE_API_BASE_URL/uds/v1/schemas/info" \
+curl --location --request PUT "$API_BASE_URL/uds/v1/schemas/info" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "SchemaId": "$SCHEMA_ID",
@@ -49,7 +49,7 @@ curl --location --request PUT "$VITE_API_BASE_URL/uds/v1/schemas/info" \
         "DefaultValue": "true"
       }
     ],
-    "ProjectKey": "$VITE_PROJECT_SLUG"
+    "ProjectKey": "$PROJECT_SLUG"
   }'
 ```
 
@@ -69,7 +69,7 @@ Same shape as `save-schema-info` (POST). The full Fields array replaces the exis
 | Fields[].IsRequired | boolean | yes | Whether the field is required |
 | Fields[].Description | string | no | Field description |
 | Fields[].DefaultValue | string | no | Default value as a string |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 ---
 

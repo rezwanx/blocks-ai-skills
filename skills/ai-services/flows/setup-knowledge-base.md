@@ -35,7 +35,7 @@ Action: create-kb-folder
 Input:
   name            = descriptive folder name (e.g., "Product Documentation", "Support FAQs")
   embedding_model = user-chosen model (e.g., "text-embedding-3-small")
-  project_key     = $VITE_PROJECT_SLUG
+  project_key     = $PROJECT_SLUG
 
 Output:
   item_id → kb_folder_id (store this — needed for all ingestion calls)
@@ -61,7 +61,7 @@ Choose the ingestion method based on content type. Multiple methods can be combi
 Action: upload-kb-file
 Input:
   file         = binary file
-  project_key  = $VITE_PROJECT_SLUG
+  project_key  = $PROJECT_SLUG
   kb_folder_id = kb_folder_id from Step 1
   chunk_size   = 512 (default) or user preference
 
@@ -86,7 +86,7 @@ Input:
   content      = text content
   title        = descriptive label
   kb_folder_id = kb_folder_id from Step 1
-  project_key  = $VITE_PROJECT_SLUG
+  project_key  = $PROJECT_SLUG
 
 Output:
   item_id → kb_id for this text block
@@ -106,7 +106,7 @@ Input:
     ...
   ]
   kb_folder_id = kb_folder_id from Step 1
-  project_key  = $VITE_PROJECT_SLUG
+  project_key  = $PROJECT_SLUG
 
 Output:
   item_id → kb_id for this Q&A batch
@@ -123,7 +123,7 @@ Action: ingest-kb-link
 Input:
   url          = fully qualified URL (must be publicly accessible)
   kb_folder_id = kb_folder_id from Step 1
-  project_key  = $VITE_PROJECT_SLUG
+  project_key  = $PROJECT_SLUG
 
 Output:
   item_id → kb_id for this URL's content
@@ -153,11 +153,11 @@ ATTEMPT=0
 
 while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
   RESULT=$(curl --silent --location \
-    "$VITE_API_BASE_URL/blocksai-api/v1/kb/retrieval-test/$AGENT_ID" \
+    "$API_BASE_URL/blocksai-api/v1/kb/retrieval-test/$AGENT_ID" \
     --header "Authorization: Bearer $ACCESS_TOKEN" \
-    --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+    --header "x-blocks-key: $X_BLOCKS_KEY" \
     --header "Content-Type: application/json" \
-    --data "{\"query\": \"test\", \"top_k\": 1, \"project_key\": \"$VITE_PROJECT_SLUG\"}")
+    --data "{\"query\": \"test\", \"top_k\": 1, \"project_key\": \"$PROJECT_SLUG\"}")
 
   COUNT=$(echo $RESULT | jq '.results | length')
   if [ "$COUNT" -gt "0" ]; then
@@ -185,7 +185,7 @@ Input:
   agent_id    = agent_id of the target agent (must have this KB attached)
   query       = representative test question
   top_k       = 5
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
 ```
 
 **Evaluate results:**
@@ -210,7 +210,7 @@ Action: update-agent-ai-config
 Input:
   agent_id    = target agent ID
   kb_ids      = [kb_folder_id, ...existing kb_ids...]
-  project_key = $VITE_PROJECT_SLUG
+  project_key = $PROJECT_SLUG
   (keep all other fields the same as current configuration)
 ```
 

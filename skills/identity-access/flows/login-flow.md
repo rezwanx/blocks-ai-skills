@@ -52,7 +52,7 @@ Input:
   grant_type = "password"
   username   = user's email
   password   = user's password
-  client_id  = VITE_BLOCKS_OIDC_CLIENT_ID
+  client_id  = BLOCKS_OIDC_CLIENT_ID
 ```
 
 **Response branches:**
@@ -94,7 +94,7 @@ Input:
   grant_type = "mfa_code"
   mfa_id     = mfaId from Step 2 response
   mfa_type   = mfaType from Step 2 response
-  client_id  = VITE_BLOCKS_OIDC_CLIENT_ID
+  client_id  = BLOCKS_OIDC_CLIENT_ID
 ```
 
 ```
@@ -123,8 +123,8 @@ Grant type: authorization_code
 Input:
   grant_type   = "authorization_code"
   code         = code from URL param
-  redirect_uri = VITE_BLOCKS_OIDC_REDIRECT_URI
-  client_id    = VITE_BLOCKS_OIDC_CLIENT_ID
+  redirect_uri = BLOCKS_OIDC_REDIRECT_URI
+  client_id    = BLOCKS_OIDC_CLIENT_ID
 ```
 
 Check response for `enable_mfa` — if true, continue to Step 3.
@@ -136,10 +136,10 @@ Check response for `enable_mfa` — if true, continue to Step 3.
 Build the authorization URL and redirect:
 
 ```
-{VITE_API_BASE_URL}/idp/v1/Authentication/Authorize
-  ?X-Blocks-Key={VITE_X_BLOCKS_KEY}
-  &client_id={VITE_BLOCKS_OIDC_CLIENT_ID}
-  &redirect_uri={VITE_BLOCKS_OIDC_REDIRECT_URI}
+{API_BASE_URL}/idp/v1/Authentication/Authorize
+  ?X-Blocks-Key={X_BLOCKS_KEY}
+  &client_id={BLOCKS_OIDC_CLIENT_ID}
+  &redirect_uri={BLOCKS_OIDC_REDIRECT_URI}
   &response_type=code
   &scope=openid
 ```
@@ -172,10 +172,10 @@ On any API call returning 401:
 
 | Error | Cause | Action |
 |-------|-------|--------|
-| 400 | Wrong client_id or malformed request | Check VITE_BLOCKS_OIDC_CLIENT_ID |
+| 400 | Wrong client_id or malformed request | Check BLOCKS_OIDC_CLIENT_ID |
 | 401 | Wrong email/password | Show "Invalid credentials" |
 | 403 | Account missing cloudadmin role | Not applicable for end users — check admin config |
-| 404 | Wrong VITE_API_BASE_URL | Check environment URL |
+| 404 | Wrong API_BASE_URL | Check environment URL |
 | enable_mfa: true | MFA required | Redirect to MFA step |
 
 ---

@@ -9,7 +9,7 @@ Send a message directly to a language model configuration and receive a complete
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt
+POST $API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt
 ```
 
 ---
@@ -17,14 +17,14 @@ POST $VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
+curl --location "$API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "message": "Summarize the key benefits of using vector databases for AI applications.",
     "model_id": "mdl_abc123",
-    "project_key": "'"$VITE_PROJECT_SLUG"'"
+    "project_key": "'"$PROJECT_SLUG"'"
   }'
 ```
 
@@ -36,7 +36,7 @@ curl --location "$VITE_API_BASE_URL/blocksai-api/v1/ai-agent/query-lmt" \
 |-------|------|----------|-------------|
 | `message` | string | yes | The prompt or message to send to the LLM |
 | `model_id` | string | yes | ID of the model configuration to use |
-| `project_key` | string | yes | Project identifier — use `$VITE_PROJECT_SLUG` |
+| `project_key` | string | yes | Project identifier — use `$PROJECT_SLUG` |
 
 ---
 

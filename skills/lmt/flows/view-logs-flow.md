@@ -35,7 +35,7 @@ Input:
   filter.logLevel = "Error" (or omit for all)
   sort.isDescending = true
   pageSize = 50
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 ```
@@ -53,7 +53,7 @@ If a log entry has a `traceId`, use it to get full distributed trace context:
 Action: get-trace
 Input:
   traceId = traceId from log entry
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 This shows the complete call tree — useful for latency debugging.
@@ -68,7 +68,7 @@ If the user wants to watch logs as they happen:
 Action: stream-live-logs
 Input:
   serviceName = chosen service
-  projectKey = VITE_X_BLOCKS_KEY
+  projectKey = X_BLOCKS_KEY
 ```
 
 Connect via EventSource. Display logs as they arrive in a terminal-style panel.

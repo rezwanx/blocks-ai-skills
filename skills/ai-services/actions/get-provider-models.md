@@ -9,7 +9,7 @@ Get the list of available AI models from a specific provider (seed data) to help
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/blocksai-api/v1/models/seed/providers/{provider}
+GET $API_BASE_URL/blocksai-api/v1/models/seed/providers/{provider}
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/blocksai-api/v1/models/seed/providers/{provider}
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/blocksai-api/v1/models/seed/providers/OpenAI" \
+curl --location "$API_BASE_URL/blocksai-api/v1/models/seed/providers/OpenAI" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 ---

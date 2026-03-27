@@ -9,7 +9,7 @@ Retrieve test / mock data that has been seeded for a project. Use this during de
 ## Endpoint
 
 ```
-GET $VITE_API_BASE_URL/uds/v1/data-manage/mock-data
+GET $API_BASE_URL/uds/v1/data-manage/mock-data
 ```
 
 ---
@@ -17,9 +17,9 @@ GET $VITE_API_BASE_URL/uds/v1/data-manage/mock-data
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/data-manage/mock-data" \
+curl --location "$API_BASE_URL/uds/v1/data-manage/mock-data" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY"
+  --header "x-blocks-key: $X_BLOCKS_KEY"
 ```
 
 No path parameters required. The project is identified from the authentication context.

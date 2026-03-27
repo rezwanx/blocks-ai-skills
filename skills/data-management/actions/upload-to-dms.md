@@ -9,7 +9,7 @@ Upload a file to the Document Management System (DMS), optionally placing it ins
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/uds/v1/Files/UploadFile
+POST $API_BASE_URL/uds/v1/Files/UploadFile
 ```
 
 ---
@@ -17,27 +17,27 @@ POST $VITE_API_BASE_URL/uds/v1/Files/UploadFile
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/UploadFile" \
+curl --location "$API_BASE_URL/uds/v1/Files/UploadFile" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --form "File=@/path/to/report.pdf" \
   --form "Name=Annual Report 2024" \
   --form "ParentDirectoryId=folder-id-abc123" \
   --form "Tags=report,2024,annual" \
   --form "AccessModifier=Private" \
-  --form "ProjectKey=$VITE_PROJECT_SLUG"
+  --form "ProjectKey=$PROJECT_SLUG"
 ```
 
 Upload to root (no folder):
 
 ```bash
-curl --location "$VITE_API_BASE_URL/uds/v1/Files/UploadFile" \
+curl --location "$API_BASE_URL/uds/v1/Files/UploadFile" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --form "File=@/path/to/banner.jpg" \
   --form "Name=Homepage Banner" \
   --form "AccessModifier=Public" \
-  --form "ProjectKey=$VITE_PROJECT_SLUG"
+  --form "ProjectKey=$PROJECT_SLUG"
 ```
 
 ---
@@ -53,7 +53,7 @@ curl --location "$VITE_API_BASE_URL/uds/v1/Files/UploadFile" \
 | Tags | string | no | Comma-separated tags |
 | AccessModifier | string | yes | `Public` or `Private` |
 | ConfigurationName | string | no | Storage configuration name |
-| ProjectKey | string | yes | `$VITE_PROJECT_SLUG` |
+| ProjectKey | string | yes | `$PROJECT_SLUG` |
 
 > Do not set `Content-Type` manually — let the HTTP client set it to `multipart/form-data` with the correct boundary.
 

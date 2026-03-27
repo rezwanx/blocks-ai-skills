@@ -9,7 +9,7 @@ Retrieve paginated service logs with optional filtering by log level, date range
 ## Endpoint
 
 ```
-POST $VITE_API_BASE_URL/lmt/v1/Log/GetLogs
+POST $API_BASE_URL/lmt/v1/Log/GetLogs
 ```
 
 ---
@@ -17,9 +17,9 @@ POST $VITE_API_BASE_URL/lmt/v1/Log/GetLogs
 ## curl
 
 ```bash
-curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogs" \
+curl --location "$API_BASE_URL/lmt/v1/Log/GetLogs" \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
-  --header "x-blocks-key: $VITE_X_BLOCKS_KEY" \
+  --header "x-blocks-key: $X_BLOCKS_KEY" \
   --header "Content-Type: application/json" \
   --data '{
     "serviceName": "identity-service",
@@ -32,7 +32,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogs" \
       "endDate": "2024-01-31T23:59:59Z"
     },
     "search": "",
-    "projectKey": "'"$VITE_X_BLOCKS_KEY"'"
+    "projectKey": "'"$X_BLOCKS_KEY"'"
   }'
 ```
 
@@ -53,7 +53,7 @@ curl --location "$VITE_API_BASE_URL/lmt/v1/Log/GetLogs" \
 | filter.traceId | string | no | Correlate logs to a distributed trace |
 | filter.spanId | string | no | Narrow to a specific span |
 | search | string | no | Full-text search in log message |
-| projectKey | string | yes | Use $VITE_X_BLOCKS_KEY |
+| projectKey | string | yes | Use $X_BLOCKS_KEY |
 
 ---
 

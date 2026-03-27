@@ -244,7 +244,7 @@ export interface AiCommonResponse {
 ```ts
 import { getAuthHeaders } from '@/lib/auth-headers'
 
-const BASE = `${import.meta.env.VITE_API_BASE_URL}/blocksai-api/v1`
+const BASE = `${import.meta.env.API_BASE_URL}/blocksai-api/v1`
 
 // Agents
 export const createAgent = (payload: CreateAgentPayload) =>
